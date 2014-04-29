@@ -1,6 +1,6 @@
 /*
  *
- * Magnetic Stripe Parser
+ * Magnetic Track Parser
  * https://github.com/sualeh/magnetictrackparser
  * Copyright (c) 2014, Sualeh Fatehi.
  *
@@ -22,17 +22,14 @@ package us.fatehi.magnetictrack.bankcard;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.apache.commons.lang3.StringUtils.left;
-
-import java.io.Serializable;
-import java.util.regex.Pattern;
+import static org.apache.commons.lang3.StringUtils.trimToEmpty;
+import us.fatehi.magnetictrack.BaseTrackData;
 
 public class PrimaryAccountNumber
-  implements Serializable
+  extends BaseTrackData
 {
 
   private static final long serialVersionUID = -7012531091389412459L;
-
-  private static final Pattern non_digit = Pattern.compile("[^0-9]");
 
   private final String accountNumber;
   private final CardBrand cardBrand;
@@ -41,34 +38,18 @@ public class PrimaryAccountNumber
 
   public PrimaryAccountNumber()
   {
-    this("");
+    this(null);
   }
 
   public PrimaryAccountNumber(final String rawAccountNumber)
   {
-    if (rawAccountNumber != null)
-    {
-      accountNumber = non_digit.matcher(rawAccountNumber).replaceAll("");
-      if (accountNumber.isEmpty())
-      {
-        passesLuhnCheck = false;
-        majorIndustryIdentifier = MajorIndustryIdentifier.unknown;
-        cardBrand = CardBrand.unknown;
-      }
-      else
-      {
-        passesLuhnCheck = passesLuhnCheck();
-        majorIndustryIdentifier = MajorIndustryIdentifier.from(accountNumber);
-        cardBrand = CardBrand.inferFrom(accountNumber);
-      }
-    }
-    else
-    {
-      accountNumber = "";
-      passesLuhnCheck = false;
-      majorIndustryIdentifier = MajorIndustryIdentifier.unknown;
-      cardBrand = CardBrand.unknown;
-    }
+    super(rawAccountNumber);
+
+    accountNumber = non_digit.matcher(trimToEmpty(rawAccountNumber))
+      .replaceAll("");
+    passesLuhnCheck = passesLuhnCheck();
+    majorIndustryIdentifier = MajorIndustryIdentifier.from(accountNumber);
+    cardBrand = CardBrand.from(accountNumber);
   }
 
   /**
@@ -102,6 +83,12 @@ public class PrimaryAccountNumber
       return false;
     }
     return true;
+  }
+
+  @Override
+  public boolean exceedsMaximumLength()
+  {
+    return trimToEmpty(getRawTrackData()).length() > 19;
   }
 
   /**

@@ -1,6 +1,6 @@
 /*
  *
- * Magnetic Stripe Parser
+ * Magnetic Track Parser
  * https://github.com/sualeh/magnetictrackparser
  * Copyright (c) 2014, Sualeh Fatehi.
  *
@@ -20,12 +20,10 @@
 package us.fatehi.magnetictrack.bankcard;
 
 
-import static org.apache.commons.lang3.StringUtils.isBlank;
+import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import org.threeten.bp.YearMonth;
 
 /**
  * From <a
@@ -51,7 +49,7 @@ import org.threeten.bp.YearMonth;
  *      - ISO/IEC 7813</a>
  */
 public class Track2
-  extends BaseTrack
+  extends BaseBankCardTrackData
 {
 
   private static final long serialVersionUID = 2209024303926876386L;
@@ -59,57 +57,63 @@ public class Track2
   private static final Pattern track2Pattern = Pattern
     .compile(".*[\\t\\n\\r ]?(;([0-9]{1,19})=([0-9]{4})([0-9]{3})(.*)\\?).*");
 
-  private final PrimaryAccountNumber pan;
-  private final YearMonth expirationDate;
-  private final ServiceCode serviceCode;
-
-  public Track2(final String track)
+  public static Track2 from(final String rawTrackData)
   {
+    final Matcher matcher = track2Pattern.matcher(trimToEmpty(rawTrackData));
 
-    final Matcher matcher;
-    final boolean matches;
-    if (!isBlank(track))
+    final String rawTrack2Data;
+    final String discretionaryData;
+    if (matcher.matches())
     {
-      matcher = track2Pattern.matcher(track);
-      matches = matcher.matches();
-    }
-    else
-    {
-      matcher = null;
-      matches = false;
-    }
-
-    if (matches)
-    {
-      trackData = getGroup(matcher, 1);
-      pan = new PrimaryAccountNumber(getGroup(matcher, 2));
-      expirationDate = parseExpirationDate(matcher, 3);
-      serviceCode = new ServiceCode(getGroup(matcher, 4));
+      rawTrack2Data = getGroup(matcher, 1);
       discretionaryData = getGroup(matcher, 5);
     }
     else
     {
-      trackData = null;
+      rawTrack2Data = "";
+      discretionaryData = "";
+    }
+    return new Track2(rawTrack2Data, discretionaryData, matcher);
+  }
+
+  private final PrimaryAccountNumber pan;
+  private final ExpirationDate expirationDate;
+
+  private final ServiceCode serviceCode;
+
+  private Track2(final String rawTrack2Data,
+                 final String discretionaryData,
+                 final Matcher matcher)
+  {
+    super(rawTrack2Data, discretionaryData);
+
+    if (matcher.matches())
+    {
+      pan = new PrimaryAccountNumber(getGroup(matcher, 2));
+      expirationDate = new ExpirationDate(getGroup(matcher, 3));
+      serviceCode = new ServiceCode(getGroup(matcher, 4));
+    }
+    else
+    {
       pan = null;
       expirationDate = null;
       serviceCode = null;
-      discretionaryData = null;
     }
   }
 
   /**
-   * @see us.fatehi.magnetictrack.bankcard.Track#exceedsMaximumLength()
+   * @see us.fatehi.magnetictrack.TrackData#exceedsMaximumLength()
    */
   @Override
   public boolean exceedsMaximumLength()
   {
-    return hasTrackData() && trackData.length() > 40;
+    return hasRawTrackData() && getRawTrackData().length() > 40;
   }
 
   /**
    * @return the expirationDate
    */
-  public YearMonth getExpirationDate()
+  public ExpirationDate getExpirationDate()
   {
     return expirationDate;
   }

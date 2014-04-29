@@ -1,6 +1,6 @@
 /*
  *
- * Magnetic Stripe Parser
+ * Magnetic Track Parser
  * https://github.com/sualeh/magnetictrackparser
  * Copyright (c) 2014, Sualeh Fatehi.
  *
@@ -20,7 +20,7 @@
 package us.fatehi.magnetictrack.bankcard;
 
 
-import static org.apache.commons.lang3.StringUtils.isBlank;
+import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -31,7 +31,7 @@ import java.util.regex.Pattern;
  *      - ISO/IEC 7813</a>
  */
 public class Track3
-  extends BaseTrack
+  extends BaseBankCardTrackData
 {
 
   private static final long serialVersionUID = 1469806733607842924L;
@@ -39,36 +39,32 @@ public class Track3
   private static final Pattern track3Pattern = Pattern
     .compile(".*[\\t\\n\\r ]?(\\+(.*)\\?)");
 
-  public Track3(final String track)
+  public static Track3 from(final String rawTrackData)
   {
+    final Matcher matcher = track3Pattern.matcher(trimToEmpty(rawTrackData));
 
-    final Matcher matcher;
-    final boolean matches;
-    if (!isBlank(track))
+    final String rawTrack2Data;
+    final String discretionaryData;
+    if (matcher.matches())
     {
-      matcher = track3Pattern.matcher(track);
-      matches = matcher.matches();
-    }
-    else
-    {
-      matcher = null;
-      matches = false;
-    }
-
-    if (matches)
-    {
-      trackData = getGroup(matcher, 1);
+      rawTrack2Data = getGroup(matcher, 1);
       discretionaryData = getGroup(matcher, 2);
     }
     else
     {
-      trackData = null;
-      discretionaryData = null;
+      rawTrack2Data = "";
+      discretionaryData = "";
     }
+    return new Track3(rawTrack2Data, discretionaryData);
+  }
+
+  private Track3(final String rawTrack2Data, final String discretionaryData)
+  {
+    super(rawTrack2Data, discretionaryData);
   }
 
   /**
-   * @see us.fatehi.magnetictrack.bankcard.Track#exceedsMaximumLength()
+   * @see us.fatehi.magnetictrack.TrackData#exceedsMaximumLength()
    */
   @Override
   public boolean exceedsMaximumLength()

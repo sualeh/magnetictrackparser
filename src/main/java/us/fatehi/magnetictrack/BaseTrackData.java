@@ -17,20 +17,53 @@
  * Boston, MA 02111-1307, USA.
  *
  */
-package us.fatehi.magnetictrack.bankcard;
+package us.fatehi.magnetictrack;
 
 
-public interface ServiceCodeType
+import static org.apache.commons.lang3.StringUtils.isBlank;
+
+import java.util.regex.Pattern;
+
+public abstract class BaseTrackData
+  implements TrackData
 {
 
-  /**
-   * @return the value
-   */
-  public int getValue();
+  private static final long serialVersionUID = 7821463290736676016L;
+
+  protected static final Pattern non_digit = Pattern.compile("[^0-9]");
+
+  private final String rawTrackData;
+
+  protected BaseTrackData(final String rawTrackData)
+  {
+    this.rawTrackData = rawTrackData;
+  }
 
   /**
-   * @return the description
+   * @see us.fatehi.magnetictrack.TrackData#getRawTrackData()
    */
-  String getDescription();
+  @Override
+  public String getRawTrackData()
+  {
+    return rawTrackData;
+  }
+
+  /**
+   *
+   */
+  @Override
+  public boolean hasRawTrackData()
+  {
+    return !isBlank(rawTrackData);
+  }
+
+  /**
+   * @see java.lang.Object#toString()
+   */
+  @Override
+  public String toString()
+  {
+    return rawTrackData;
+  }
 
 }

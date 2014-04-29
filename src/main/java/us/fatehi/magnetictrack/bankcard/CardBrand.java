@@ -1,6 +1,6 @@
 /*
  *
- * Magnetic Stripe Parser
+ * Magnetic Track Parser
  * https://github.com/sualeh/magnetictrackparser
  * Copyright (c) 2014, Sualeh Fatehi.
  *
@@ -34,24 +34,20 @@ public enum CardBrand
   unknown(Pattern.compile("^unknown$")),
   Visa(Pattern.compile("^4[0-9]{6,}$")),
   // MasterCard numbers start with the numbers 51 through 55, but this
-  // will
-  // only detect MasterCard credit cards; there are other cards issued
-  // using
-  // the MasterCard system that do not fall into this IIN range.
+  // will only detect MasterCard credit cards; there are other cards
+  // issued using the MasterCard system that do not fall into this IIN
+  // range.
   MasterCard(Pattern.compile("^5[1-5][0-9]{5,}$")),
   AmericanExpress(Pattern.compile("^3[47][0-9]{5,}$")),
   // Diners Club card numbers begin with 300 through 305, 36 or 38.
-  // There are
-  // Diners Club cards that begin with 5 and have 16 digits. These are a
-  // joint
-  // venture between Diners Club and MasterCard, and should be processed
-  // like
-  // a MasterCard.
+  // There are Diners Club cards that begin with 5 and have 16 digits.
+  // These are a joint venture between Diners Club and MasterCard, and
+  // should be processed like a MasterCard.
   DinersClub(Pattern.compile("^3(?:0[0-5]|[68][0-9])[0-9]{4,}$")),
   Discover(Pattern.compile("^6(?:011|5[0-9]{2})[0-9]{3,}$")),
   JCB(Pattern.compile("^(?:2131|1800|35[0-9]{3})[0-9]{3,}$")), ;
 
-  public static CardBrand inferFrom(final String accountNumber)
+  public static CardBrand from(final String accountNumber)
   {
     if (accountNumber == null)
     {

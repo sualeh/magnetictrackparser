@@ -1,6 +1,6 @@
 /*
  *
- * Magnetic Stripe Parser
+ * Magnetic Track Parser
  * https://github.com/sualeh/magnetictrackparser
  * Copyright (c) 2014, Sualeh Fatehi.
  *
@@ -19,6 +19,7 @@
  */
 package us.fatehi.test.magnetictrack.bankcard;
 
+
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
@@ -30,40 +31,41 @@ import us.fatehi.magnetictrack.bankcard.ServiceCode2;
 import us.fatehi.magnetictrack.bankcard.ServiceCode3;
 import us.fatehi.magnetictrack.bankcard.Track2;
 
-public class Track2Test {
+public class Track2Test
+{
 
-	@Test
-	public void track2__1() {
-		final String track2Data = ";5266092201416174=16042010000056700100?";
-		final Track2 track2 = new Track2(track2Data);
-		checkCardData(track2);
-	}
+  @Test
+  public void track2__1()
+  {
+    final String track2Data = ";5266092201416174=16042010000056700100?";
+    final Track2 track2 = Track2.from(track2Data);
+    checkCardData(track2);
+  }
 
-	@Test
-	public void track2__2() {
-		final String track2Data = "%B5266092201416174^FATEHI/SUALEH^16042010000000000000000000000000000567001000?;5266092201416174=16042010000056700100?";
-		final Track2 track2 = new Track2(track2Data);
-		checkCardData(track2);
-	}
+  @Test
+  public void track2__2()
+  {
+    final String track2Data = "%B5266092201416174^FATEHI/SUALEH^16042010000000000000000000000000000567001000?;5266092201416174=16042010000056700100?";
+    final Track2 track2 = Track2.from(track2Data);
+    checkCardData(track2);
+  }
 
-	private void checkCardData(final Track2 track2) {
-		assertEquals(
-				";5266092201416174=16042010000056700100?",
-				track2.getTrackData());
-		assertEquals("5266092201416174", track2.getPrimaryAccountNumber()
-				.getAccountNumber());
-		assertEquals(CardBrand.MasterCard, track2.getPrimaryAccountNumber().getCardBrand());
-		assertEquals(MajorIndustryIdentifier.mii_5, track2.getPrimaryAccountNumber().getMajorIndustryIdentifier());
-		assertEquals("2016-04", track2.getExpirationDate().toString());
-		assertEquals("201", track2.getServiceCode().toString());
-		assertEquals(ServiceCode1.v_2, track2.getServiceCode()
-				.getServiceCode1());
-		assertEquals(ServiceCode2.v_0, track2.getServiceCode()
-				.getServiceCode2());
-		assertEquals(ServiceCode3.v_1, track2.getServiceCode()
-				.getServiceCode3());
-		assertEquals("0000056700100",
-				track2.getDiscretionaryData());
-	}
+  private void checkCardData(final Track2 track2)
+  {
+    assertEquals(";5266092201416174=16042010000056700100?",
+                 track2.getRawTrackData());
+    assertEquals("5266092201416174", track2.getPrimaryAccountNumber()
+      .getAccountNumber());
+    assertEquals(CardBrand.MasterCard, track2.getPrimaryAccountNumber()
+      .getCardBrand());
+    assertEquals(MajorIndustryIdentifier.mii_5, track2
+      .getPrimaryAccountNumber().getMajorIndustryIdentifier());
+    assertEquals("2016-04", track2.getExpirationDate().toString());
+    assertEquals("201", track2.getServiceCode().toString());
+    assertEquals(ServiceCode1.v_2, track2.getServiceCode().getServiceCode1());
+    assertEquals(ServiceCode2.v_0, track2.getServiceCode().getServiceCode2());
+    assertEquals(ServiceCode3.v_1, track2.getServiceCode().getServiceCode3());
+    assertEquals("0000056700100", track2.getDiscretionaryData());
+  }
 
 }

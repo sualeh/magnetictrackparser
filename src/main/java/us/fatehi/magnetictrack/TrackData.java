@@ -1,6 +1,6 @@
 /*
  *
- * Magnetic Stripe Parser
+ * Magnetic Track Parser
  * https://github.com/sualeh/magnetictrackparser
  * Copyright (c) 2014, Sualeh Fatehi.
  *
@@ -17,28 +17,34 @@
  * Boston, MA 02111-1307, USA.
  *
  */
-package us.fatehi.magnetictrack.bankcard;
+package us.fatehi.magnetictrack;
 
 
 import java.io.Serializable;
 
-public interface Track
+public interface TrackData
   extends Serializable
 {
 
   /**
-   * @return the track1
+   * Whether the track data exceeds the maximum length allowed.
+   *
+   * @return True if too long
    */
   boolean exceedsMaximumLength();
 
   /**
-   * @return the discretionaryData
+   * Raw track data.
+   *
+   * @return Raw track data
    */
-  String getDiscretionaryData();
+  String getRawTrackData();
 
   /**
-   * @return the track1
+   * Whether raw track data is present.
+   *
+   * @return True is raw track data is available
    */
-  String getTrackData();
+  boolean hasRawTrackData();
 
 }

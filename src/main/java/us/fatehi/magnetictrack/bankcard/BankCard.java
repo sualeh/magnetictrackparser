@@ -1,6 +1,6 @@
 /*
  *
- * Magnetic Stripe Parser
+ * Magnetic Track Parser
  * https://github.com/sualeh/magnetictrackparser
  * Copyright (c) 2014, Sualeh Fatehi.
  *
@@ -22,10 +22,9 @@ package us.fatehi.magnetictrack.bankcard;
 
 import java.io.Serializable;
 
-import org.threeten.bp.YearMonth;
 import org.threeten.bp.format.DateTimeFormatter;
 
-public class CardInfo
+public class BankCard
   implements Serializable
 {
 
@@ -36,12 +35,12 @@ public class CardInfo
 
   private final PrimaryAccountNumber pan;
   private final Name name;
-  private final YearMonth expirationDate;
+  private final ExpirationDate expirationDate;
   private final ServiceCode serviceCode;
 
-  public CardInfo(final PrimaryAccountNumber pan,
+  public BankCard(final PrimaryAccountNumber pan,
                   final Name name,
-                  final YearMonth expirationDate,
+                  final ExpirationDate expirationDate,
                   final ServiceCode serviceCode)
   {
     this.pan = pan;
@@ -53,7 +52,7 @@ public class CardInfo
   /**
    * @return the expirationDate
    */
-  public YearMonth getExpirationDate()
+  public ExpirationDate getExpirationDate()
   {
     return expirationDate;
   }
@@ -89,7 +88,7 @@ public class CardInfo
 
   public boolean hasName()
   {
-    return name != null && name.hasName();
+    return name != null && name.hasFullName();
   }
 
   public boolean hasPrimaryAccountNumber()
@@ -122,6 +121,8 @@ public class CardInfo
       buffer.append(pan.getIssuerIdentificationNumber()).append(NEWLINE);
       buffer.append("    Card Brand: ");
       buffer.append(pan.getCardBrand()).append(NEWLINE);
+      buffer.append("    Passes Luhn Check: ");
+      buffer.append(pan.isPassesLuhnCheck()).append(NEWLINE);
     }
     else
     {
@@ -130,7 +131,8 @@ public class CardInfo
     if (hasExpirationDate())
     {
       buffer.append("  Expiration Date: ");
-      buffer.append(formatter.format(expirationDate)).append(NEWLINE);
+      buffer.append(formatter.format(expirationDate.getExpirationDate()))
+        .append(NEWLINE);
     }
     else
     {

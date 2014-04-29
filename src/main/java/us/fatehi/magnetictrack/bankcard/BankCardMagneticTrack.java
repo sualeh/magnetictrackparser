@@ -1,15 +1,12 @@
 package us.fatehi.magnetictrack.bankcard;
 
 
-import static org.apache.commons.lang3.StringUtils.isBlank;
-
 import java.text.ParseException;
 
-import org.threeten.bp.YearMonth;
 import org.threeten.bp.format.DateTimeFormatter;
 
-public class MagneticTrack
-  extends BaseTrack
+public class BankCardMagneticTrack
+  extends BaseBankCardTrackData
 {
 
   private static final long serialVersionUID = -8703108091852410189L;
@@ -17,26 +14,27 @@ public class MagneticTrack
   protected static final DateTimeFormatter formatter = DateTimeFormatter
     .ofPattern("MMMM yyyy");
 
+  public static BankCardMagneticTrack from(final String rawTrackData)
+  {
+    return new BankCardMagneticTrack(rawTrackData);
+  }
+
   private final Track1FormatB track1;
   private final Track2 track2;
+
   private final Track3 track3;
 
-  public MagneticTrack(final String track)
+  private BankCardMagneticTrack(final String rawTrackData)
   {
-    if (isBlank(track))
-    {
-      throw new IllegalArgumentException("No track data provided");
-    }
+    super(rawTrackData, "");
 
-    trackData = track;
-
-    track1 = new Track1FormatB(track);
-    track2 = new Track2(track);
-    track3 = new Track3(track);
+    track1 = Track1FormatB.from(rawTrackData);
+    track2 = Track2.from(rawTrackData);
+    track3 = Track3.from(rawTrackData);
   }
 
   /**
-   * @see us.fatehi.magnetictrack.bankcard.Track#exceedsMaximumLength()
+   * @see us.fatehi.magnetictrack.TrackData#exceedsMaximumLength()
    */
   @Override
   public boolean exceedsMaximumLength()
@@ -45,7 +43,31 @@ public class MagneticTrack
            || track2.exceedsMaximumLength();
   }
 
-  public CardInfo getCardInfo()
+  /**
+   * @return the track1
+   */
+  public Track1FormatB getTrack1()
+  {
+    return track1;
+  }
+
+  /**
+   * @return the track2
+   */
+  public Track2 getTrack2()
+  {
+    return track2;
+  }
+
+  /**
+   * @return the track3
+   */
+  public Track3 getTrack3()
+  {
+    return track3;
+  }
+
+  public BankCard toCardInfo()
     throws ParseException
   {
     final PrimaryAccountNumber pan;
@@ -81,7 +103,7 @@ public class MagneticTrack
       name = new Name();
     }
 
-    final YearMonth expirationDate;
+    final ExpirationDate expirationDate;
     if (track1.hasExpirationDate())
     {
       expirationDate = track1.getExpirationDate();
@@ -125,35 +147,11 @@ public class MagneticTrack
       }
     }
 
-    final CardInfo cardInfo = new CardInfo(pan,
+    final BankCard cardInfo = new BankCard(pan,
                                            name,
                                            expirationDate,
                                            serviceCode);
     return cardInfo;
-  }
-
-  /**
-   * @return the track1
-   */
-  public Track1FormatB getTrack1()
-  {
-    return track1;
-  }
-
-  /**
-   * @return the track2
-   */
-  public Track2 getTrack2()
-  {
-    return track2;
-  }
-
-  /**
-   * @return the track3
-   */
-  public Track3 getTrack3()
-  {
-    return track3;
   }
 
   /**
@@ -164,10 +162,10 @@ public class MagneticTrack
   {
     final String NEWLINE = System.getProperty("line.separator");
     final StringBuilder buffer = new StringBuilder();
-    if (track1.hasTrackData())
+    if (track1.hasRawTrackData())
     {
       buffer.append("Track 1: ");
-      buffer.append(track1.getTrackData()).append(NEWLINE);
+      buffer.append(track1.getRawTrackData()).append(NEWLINE);
       if (track1.hasPrimaryAccountNumber())
       {
         final PrimaryAccountNumber pan = track1.getPrimaryAccountNumber();
@@ -187,8 +185,8 @@ public class MagneticTrack
       if (track1.hasExpirationDate())
       {
         buffer.append("  Expiration Date: ");
-        buffer.append(formatter.format(track2.getExpirationDate()))
-          .append(NEWLINE);
+        buffer.append(formatter.format(track2.getExpirationDate()
+          .getExpirationDate())).append(NEWLINE);
       }
       else
       {
@@ -234,10 +232,10 @@ public class MagneticTrack
       buffer.append("No Track 1 Data").append(NEWLINE);
     }
 
-    if (track2.hasTrackData())
+    if (track2.hasRawTrackData())
     {
       buffer.append("Track 2: ");
-      buffer.append(track2.getTrackData()).append(NEWLINE);
+      buffer.append(track2.getRawTrackData()).append(NEWLINE);
       if (track2.hasPrimaryAccountNumber())
       {
         final PrimaryAccountNumber pan = track2.getPrimaryAccountNumber();
@@ -257,8 +255,8 @@ public class MagneticTrack
       if (track2.hasExpirationDate())
       {
         buffer.append("  Expiration Date: ");
-        buffer.append(formatter.format(track2.getExpirationDate()))
-          .append(NEWLINE);
+        buffer.append(formatter.format(track2.getExpirationDate()
+          .getExpirationDate())).append(NEWLINE);
       }
       else
       {
@@ -295,10 +293,10 @@ public class MagneticTrack
       buffer.append("No Track 2 Data").append(NEWLINE);
     }
 
-    if (track3.hasTrackData())
+    if (track3.hasRawTrackData())
     {
       buffer.append("Track 3: ");
-      buffer.append(track3.getTrackData()).append(NEWLINE);
+      buffer.append(track3.getRawTrackData()).append(NEWLINE);
       if (track3.hasDiscretionaryData())
       {
         buffer.append("  Discretionary Data: ");

@@ -1,6 +1,6 @@
 /*
  *
- * Magnetic Stripe Parser
+ * Magnetic Track Parser
  * https://github.com/sualeh/magnetictrackparser
  * Copyright (c) 2014, Sualeh Fatehi.
  *
@@ -21,11 +21,10 @@ package us.fatehi.magnetictrack.bankcard;
 
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
+import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import org.threeten.bp.YearMonth;
 
 /**
  * From <a
@@ -55,7 +54,7 @@ import org.threeten.bp.YearMonth;
  *      - ISO/IEC 7813</a>
  */
 public class Track1FormatB
-  extends BaseTrack
+  extends BaseBankCardTrackData
 {
 
   private static final long serialVersionUID = 3020739300944280022L;
@@ -63,63 +62,71 @@ public class Track1FormatB
   private static final Pattern track1FormatBPattern = Pattern
     .compile("(%([A-Z])([0-9]{1,19})\\^([^\\^]{2,26})\\^([0-9]{4}|\\^)([0-9]{3}|\\^)?([^\\?]+)?\\?)[\\t\\n\\r ]?.*");
 
-  private final String formatCode;
-  private final PrimaryAccountNumber pan;
-  private final Name name;
-  private final YearMonth expirationDate;
-  private final ServiceCode serviceCode;
-
-  public Track1FormatB(final String track)
+  public static Track1FormatB from(final String rawTrackData)
   {
+    final Matcher matcher = track1FormatBPattern
+      .matcher(trimToEmpty(rawTrackData));
 
-    final Matcher matcher;
-    final boolean matches;
-    if (!isBlank(track))
+    final String rawTrack1Data;
+    final String discretionaryData;
+    if (matcher.matches())
     {
-      matcher = track1FormatBPattern.matcher(track);
-      matches = matcher.matches();
-    }
-    else
-    {
-      matcher = null;
-      matches = false;
-    }
-
-    if (matches)
-    {
-      trackData = getGroup(matcher, 1);
-      formatCode = getGroup(matcher, 2);
-      pan = new PrimaryAccountNumber(getGroup(matcher, 3));
-      name = new Name(getGroup(matcher, 4));
-      expirationDate = parseExpirationDate(matcher, 5);
-      serviceCode = new ServiceCode(getGroup(matcher, 6));
+      rawTrack1Data = getGroup(matcher, 1);
       discretionaryData = getGroup(matcher, 7);
     }
     else
     {
-      trackData = null;
-      formatCode = null;
-      pan = null;
-      name = null;
-      expirationDate = null;
-      serviceCode = null;
-      discretionaryData = null;
+      rawTrack1Data = "";
+      discretionaryData = "";
+    }
+    return new Track1FormatB(rawTrack1Data, discretionaryData, matcher);
+  }
+
+  private final String formatCode;
+  private final PrimaryAccountNumber pan;
+  private final Name name;
+  private final ExpirationDate expirationDate;
+
+  private final ServiceCode serviceCode;
+
+  private Track1FormatB(final String rawTrack1Data,
+                        final String discretionaryData,
+                        final Matcher matcher)
+  {
+    super(rawTrack1Data, discretionaryData);
+
+    if (matcher.matches())
+    {
+      formatCode = getGroup(matcher, 2);
+      pan = new PrimaryAccountNumber(getGroup(matcher, 3));
+      name = new Name(getGroup(matcher, 4));
+      expirationDate = new ExpirationDate(getGroup(matcher, 5));
+      serviceCode = new ServiceCode(getGroup(matcher, 6));
+
+    }
+    else
+    {
+      formatCode = "";
+      pan = new PrimaryAccountNumber();
+      name = new Name();
+      expirationDate = new ExpirationDate();
+      serviceCode = new ServiceCode();
     }
   }
 
   /**
-   * @see us.fatehi.magnetictrack.bankcard.Track#exceedsMaximumLength()
+   * @see us.fatehi.magnetictrack.TrackData#exceedsMaximumLength()
    */
   @Override
   public boolean exceedsMaximumLength()
   {
-    return hasTrackData() && trackData.length() > 79;
+    return hasRawTrackData() && getRawTrackData().length() > 79;
   }
 
   /**
    * @return the expirationDate
    */
-  public YearMonth getExpirationDate()
+  public ExpirationDate getExpirationDate()
   {
     return expirationDate;
   }
@@ -158,7 +165,7 @@ public class Track1FormatB
 
   public boolean hasExpirationDate()
   {
-    return expirationDate != null && pan.hasPrimaryAccountNumber();
+    return expirationDate != null && expirationDate.hasExpirationDate();
   }
 
   public boolean hasFormatCode()
@@ -168,7 +175,7 @@ public class Track1FormatB
 
   public boolean hasName()
   {
-    return name != null && name.hasName();
+    return name != null && name.hasFullName();
   }
 
   public boolean hasPrimaryAccountNumber()

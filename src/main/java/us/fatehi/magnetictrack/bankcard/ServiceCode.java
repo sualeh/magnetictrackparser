@@ -1,6 +1,6 @@
 /*
  *
- * Magnetic Stripe Parser
+ * Magnetic Track Parser
  * https://github.com/sualeh/magnetictrackparser
  * Copyright (c) 2014, Sualeh Fatehi.
  *
@@ -20,8 +20,8 @@
 package us.fatehi.magnetictrack.bankcard;
 
 
-import java.io.Serializable;
-import java.util.regex.Pattern;
+import static org.apache.commons.lang3.StringUtils.trimToEmpty;
+import us.fatehi.magnetictrack.BaseTrackData;
 
 /**
  * @see <a
@@ -30,12 +30,10 @@ import java.util.regex.Pattern;
  * @author Sualeh Fatehi
  */
 public class ServiceCode
-  implements Serializable
+  extends BaseTrackData
 {
 
   private static final long serialVersionUID = -5127753346282374841L;
-
-  private static final Pattern non_digit = Pattern.compile("[^0-9]");
 
   private final String serviceCode;
   private final ServiceCodeType serviceCode1;
@@ -44,39 +42,18 @@ public class ServiceCode
 
   public ServiceCode()
   {
-    serviceCode = "";
-    serviceCode1 = ServiceCode1.unknown;
-    serviceCode2 = ServiceCode2.unknown;
-    serviceCode3 = ServiceCode3.unknown;
+    this(null);
   }
 
-  public ServiceCode(final String serviceCode)
+  public ServiceCode(final String rawServiceCode)
   {
-    boolean hasServiceCode = false;
-    if (serviceCode == null)
-    {
-      this.serviceCode = "";
-      hasServiceCode = false;
-    }
-    else
-    {
-      this.serviceCode = non_digit.matcher(serviceCode).replaceAll("");
-      hasServiceCode = !this.serviceCode.isEmpty();
-    }
+    super(rawServiceCode);
 
-    if (hasServiceCode)
-    {
-      serviceCode1 = serviceCode(0, ServiceCode1.unknown);
-      serviceCode2 = serviceCode(1, ServiceCode2.unknown);
-      serviceCode3 = serviceCode(2, ServiceCode3.unknown);
-    }
-    else
-    {
-      serviceCode1 = ServiceCode1.unknown;
-      serviceCode2 = ServiceCode2.unknown;
-      serviceCode3 = ServiceCode3.unknown;
-    }
+    serviceCode = non_digit.matcher(trimToEmpty(rawServiceCode)).replaceAll("");
 
+    serviceCode1 = serviceCode(0, ServiceCode1.unknown);
+    serviceCode2 = serviceCode(1, ServiceCode2.unknown);
+    serviceCode3 = serviceCode(2, ServiceCode3.unknown);
   }
 
   /*
@@ -111,6 +88,12 @@ public class ServiceCode
       return false;
     }
     return true;
+  }
+
+  @Override
+  public boolean exceedsMaximumLength()
+  {
+    return trimToEmpty(getRawTrackData()).length() > 3;
   }
 
   /**
@@ -173,22 +156,22 @@ public class ServiceCode
   }
 
   private <S extends Enum<S> & ServiceCodeType> S serviceCode(final int position,
-                                                              final S defaultValue)
+                                                              final S defaultServiceCode)
   {
     if (serviceCode.length() > position)
     {
       final int value = Character.digit(serviceCode.charAt(position), 10);
-      final S[] enumValues = defaultValue.getDeclaringClass()
+      final S[] serviceCodes = defaultServiceCode.getDeclaringClass()
         .getEnumConstants();
-      for (final S s: enumValues)
+      for (final S serviceCode: serviceCodes)
       {
-        if (s.getValue() == value)
+        if (serviceCode.getValue() == value)
         {
-          return s;
+          return serviceCode;
         }
       }
     }
-    return defaultValue;
+    return defaultServiceCode;
   }
 
 }

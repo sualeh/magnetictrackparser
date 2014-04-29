@@ -1,6 +1,6 @@
 /*
  *
- * Magnetic Stripe Parser
+ * Magnetic Track Parser
  * https://github.com/sualeh/magnetictrackparser
  * Copyright (c) 2014, Sualeh Fatehi.
  *
@@ -23,50 +23,37 @@ package us.fatehi.magnetictrack.bankcard;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 import static org.apache.commons.lang3.text.WordUtils.capitalizeFully;
-
-import java.io.Serializable;
+import us.fatehi.magnetictrack.BaseTrackData;
 
 public class Name
-  implements Serializable
+  extends BaseTrackData
 {
 
   private static final long serialVersionUID = 5843389621643018055L;
 
-  private final String name;
   private final String firstName;
   private final String lastName;
 
   public Name()
   {
-    this("");
+    this(null);
   }
 
-  public Name(final String name)
+  public Name(final String rawName)
   {
-    this.name = name;
-    if (isBlank(name))
+    super(rawName);
+
+    final String[] splitName = trimToEmpty(rawName).split("/");
+    firstName = capitalize(splitName[splitName.length - 1]);
+    if (splitName.length > 1)
     {
-      firstName = "";
-      lastName = "";
+      lastName = capitalize(splitName[0]);
     }
     else
     {
-      final String[] splitName = name.split("/");
-      firstName = capitalizeFully(trimToEmpty(splitName[splitName.length - 1]),
-                                  new char[] {
-                                      '.', ' '
-                                  });
-      if (splitName.length > 1)
-      {
-        lastName = capitalizeFully(trimToEmpty(splitName[0]), new char[] {
-          '.'
-        });
-      }
-      else
-      {
-        lastName = "";
-      }
+      lastName = "";
     }
+
   }
 
   /**
@@ -88,18 +75,35 @@ public class Name
       return false;
     }
     final Name other = (Name) obj;
-    if (name == null)
+    if (firstName == null)
     {
-      if (other.name != null)
+      if (other.firstName != null)
       {
         return false;
       }
     }
-    else if (!name.equals(other.name))
+    else if (!firstName.equals(other.firstName))
+    {
+      return false;
+    }
+    if (lastName == null)
+    {
+      if (other.lastName != null)
+      {
+        return false;
+      }
+    }
+    else if (!lastName.equals(other.lastName))
     {
       return false;
     }
     return true;
+  }
+
+  @Override
+  public boolean exceedsMaximumLength()
+  {
+    return trimToEmpty(getRawTrackData()).length() > 26;
   }
 
   /**
@@ -110,6 +114,17 @@ public class Name
     return firstName;
   }
 
+  public String getFullName()
+  {
+    final StringBuilder buffer = new StringBuilder();
+    buffer.append(trimToEmpty(firstName));
+    if (!isBlank(lastName))
+    {
+      buffer.append(" ").append(trimToEmpty(lastName));
+    }
+    return buffer.toString();
+  }
+
   /**
    * @return the lastName
    */
@@ -118,15 +133,18 @@ public class Name
     return lastName;
   }
 
-  /**
-   * @return the name
-   */
-  public String getName()
+  public boolean hasFirstName()
   {
-    return name;
+    return !isBlank(firstName);
   }
 
-  /**
+  public boolean hasFullName()
+  {
+    return hasFirstName() && hasLastName();
+  }
+
+  /*
+   * (non-Javadoc)
    * @see java.lang.Object#hashCode()
    */
   @Override
@@ -134,13 +152,19 @@ public class Name
   {
     final int prime = 31;
     int result = 1;
-    result = prime * result + (name == null? 0: name.hashCode());
+    result = prime * result + (firstName == null? 0: firstName.hashCode());
+    result = prime * result + (lastName == null? 0: lastName.hashCode());
     return result;
+  }
+
+  public boolean hasLastName()
+  {
+    return !isBlank(lastName);
   }
 
   public boolean hasName()
   {
-    return !(isBlank(firstName) && isBlank(lastName));
+    return hasFirstName() || hasLastName();
   }
 
   /**
@@ -152,15 +176,11 @@ public class Name
     return getFullName();
   }
 
-  private String getFullName()
+  private String capitalize(final String splitName)
   {
-    final StringBuilder buffer = new StringBuilder();
-    buffer.append(trimToEmpty(firstName));
-    if (!isBlank(lastName))
-    {
-      buffer.append(" ").append(trimToEmpty(lastName));
-    }
-    return buffer.toString();
+    return capitalizeFully(trimToEmpty(splitName), new char[] {
+        '.', '\'', ' '
+    });
   }
 
 }

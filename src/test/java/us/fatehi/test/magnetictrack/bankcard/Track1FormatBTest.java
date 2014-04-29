@@ -1,6 +1,6 @@
 /*
  *
- * Magnetic Stripe Parser
+ * Magnetic Track Parser
  * https://github.com/sualeh/magnetictrackparser
  * Copyright (c) 2014, Sualeh Fatehi.
  *
@@ -38,7 +38,7 @@ public class Track1FormatBTest
   public void track1FormatB1()
   {
     final String track1FormatBData = "%B5266092201416174^FATEHI/SUALEH^16042010000000000000000000000000000567001000?";
-    final Track1FormatB track1FormatB = new Track1FormatB(track1FormatBData);
+    final Track1FormatB track1FormatB = Track1FormatB.from(track1FormatBData);
     checkCardData(track1FormatB);
   }
 
@@ -46,7 +46,7 @@ public class Track1FormatBTest
   public void track1FormatB2()
   {
     final String track1FormatBData = "%B5266092201416174^FATEHI/SUALEH^16042010000000000000000000000000000567001000?\n;5266092201416174=16042010000056700100?";
-    final Track1FormatB track1FormatB = new Track1FormatB(track1FormatBData);
+    final Track1FormatB track1FormatB = Track1FormatB.from(track1FormatBData);
     checkCardData(track1FormatB);
   }
 
@@ -54,14 +54,14 @@ public class Track1FormatBTest
   public void track1FormatB3()
   {
     final String track1FormatBData = "%B5266092201416174^FATEHI/SUALEH^16042010000000000000000000000000000567001000?;5266092201416174=16042010000056700100?";
-    final Track1FormatB track1FormatB = new Track1FormatB(track1FormatBData);
+    final Track1FormatB track1FormatB = Track1FormatB.from(track1FormatBData);
     checkCardData(track1FormatB);
   }
 
   private void checkCardData(final Track1FormatB track1FormatB)
   {
     assertEquals("%B5266092201416174^FATEHI/SUALEH^16042010000000000000000000000000000567001000?",
-                 track1FormatB.getTrackData());
+                 track1FormatB.getRawTrackData());
     assertEquals("B", track1FormatB.getFormatCode());
     assertEquals("5266092201416174", track1FormatB.getPrimaryAccountNumber()
       .getAccountNumber());
