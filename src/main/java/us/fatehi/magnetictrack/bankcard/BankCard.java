@@ -25,13 +25,13 @@ import java.io.Serializable;
 import org.threeten.bp.format.DateTimeFormatter;
 
 public class BankCard
-  implements Serializable
+implements Serializable
 {
 
   private static final long serialVersionUID = 6253084852668206154L;
 
   protected static final DateTimeFormatter formatter = DateTimeFormatter
-    .ofPattern("MMMM yyyy");
+      .ofPattern("MMMM yyyy");
 
   private final PrimaryAccountNumber pan;
   private final Name name;
@@ -43,10 +43,41 @@ public class BankCard
                   final ExpirationDate expirationDate,
                   final ServiceCode serviceCode)
   {
-    this.pan = pan;
-    this.name = name;
-    this.expirationDate = expirationDate;
-    this.serviceCode = serviceCode;
+    if (pan != null)
+    {
+      this.pan = pan;
+    }
+    else
+    {
+      this.pan = new PrimaryAccountNumber();
+    }
+    
+    if (name != null)
+    {
+      this.name = name;
+    }
+    else
+    {
+      this.name = new Name();
+    }
+    
+    if (expirationDate != null)
+    {
+      this.expirationDate = expirationDate;
+    }
+    else
+    {
+      this.expirationDate = new ExpirationDate();
+    }
+    
+    if (serviceCode != null)
+    {
+      this.serviceCode = serviceCode;
+    }
+    else
+    {
+      this.serviceCode = new ServiceCode();
+    }
   }
 
   /**
@@ -83,12 +114,12 @@ public class BankCard
 
   public boolean hasExpirationDate()
   {
-    return expirationDate != null;
+    return expirationDate != null && expirationDate.hasExpirationDate();
   }
 
   public boolean hasName()
   {
-    return name != null && name.hasFullName();
+    return name != null && name.hasName();
   }
 
   public boolean hasPrimaryAccountNumber()
@@ -132,7 +163,7 @@ public class BankCard
     {
       buffer.append("  Expiration Date: ");
       buffer.append(formatter.format(expirationDate.getExpirationDate()))
-        .append(NEWLINE);
+      .append(NEWLINE);
     }
     else
     {

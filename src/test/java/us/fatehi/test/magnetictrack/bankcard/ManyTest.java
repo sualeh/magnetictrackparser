@@ -46,7 +46,8 @@ public class ManyTest
     assertEquals(CardBrand.MasterCard, cardInfo.getPrimaryAccountNumber()
       .getCardBrand());
     assertEquals("Sualeh Fatehi", cardInfo.getName().toString());
-    assertEquals(YearMonth.of(2016, 4), cardInfo.getExpirationDate());
+    assertEquals(YearMonth.of(2016, 4), cardInfo.getExpirationDate()
+      .getExpirationDate());
   }
 
   @Test
@@ -62,7 +63,8 @@ public class ManyTest
     assertEquals(CardBrand.Visa, cardInfo.getPrimaryAccountNumber()
       .getCardBrand());
     assertEquals("Sualeh Fatehi", cardInfo.getName().toString());
-    assertEquals(YearMonth.of(2016, 5), cardInfo.getExpirationDate());
+    assertEquals(YearMonth.of(2016, 5), cardInfo.getExpirationDate()
+      .getExpirationDate());
   }
 
   @Test
@@ -78,7 +80,8 @@ public class ManyTest
     assertEquals(CardBrand.MasterCard, cardInfo.getPrimaryAccountNumber()
       .getCardBrand());
     assertEquals("Sualeh Fatehi", cardInfo.getName().toString());
-    assertEquals(YearMonth.of(2017, 1), cardInfo.getExpirationDate());
+    assertEquals(YearMonth.of(2017, 1), cardInfo.getExpirationDate()
+      .getExpirationDate());
   }
 
   @Test
@@ -94,7 +97,8 @@ public class ManyTest
     assertEquals(CardBrand.Discover, cardInfo.getPrimaryAccountNumber()
       .getCardBrand());
     assertEquals("Sualeh Fatehi", cardInfo.getName().toString());
-    assertEquals(YearMonth.of(2015, 10), cardInfo.getExpirationDate());
+    assertEquals(YearMonth.of(2015, 10), cardInfo.getExpirationDate()
+      .getExpirationDate());
   }
 
   @Test
@@ -110,7 +114,8 @@ public class ManyTest
     assertEquals(CardBrand.unknown, cardInfo.getPrimaryAccountNumber()
       .getCardBrand());
     assertEquals("Sualeh Fatehi", cardInfo.getName().toString());
-    assertEquals(YearMonth.of(2049, 12), cardInfo.getExpirationDate());
+    assertEquals(YearMonth.of(2049, 12), cardInfo.getExpirationDate()
+      .getExpirationDate());
   }
 
   @Test
@@ -126,7 +131,8 @@ public class ManyTest
     assertEquals(CardBrand.Visa, cardInfo.getPrimaryAccountNumber()
       .getCardBrand());
     assertEquals("Sualeh Fatehi", cardInfo.getName().toString());
-    assertEquals(YearMonth.of(2015, 2), cardInfo.getExpirationDate());
+    assertEquals(YearMonth.of(2015, 2), cardInfo.getExpirationDate()
+      .getExpirationDate());
   }
 
   @Test
@@ -142,7 +148,8 @@ public class ManyTest
     assertEquals(CardBrand.AmericanExpress, cardInfo.getPrimaryAccountNumber()
       .getCardBrand());
     assertEquals("", cardInfo.getName().toString());
-    assertEquals(YearMonth.of(2015, 8), cardInfo.getExpirationDate());
+    assertEquals(YearMonth.of(2015, 8), cardInfo.getExpirationDate()
+      .getExpirationDate());
   }
 
   @Test
@@ -158,7 +165,7 @@ public class ManyTest
     assertEquals(CardBrand.Visa, cardInfo.getPrimaryAccountNumber()
       .getCardBrand());
     assertEquals("Sualeh Fatehi", cardInfo.getName().toString());
-    assertEquals(null, cardInfo.getExpirationDate());
+    assertEquals(null, cardInfo.getExpirationDate().getExpirationDate());
   }
 
   @Ignore
@@ -175,7 +182,7 @@ public class ManyTest
     assertEquals(CardBrand.unknown, cardInfo.getPrimaryAccountNumber()
       .getCardBrand());
     assertEquals("", cardInfo.getName().toString());
-    assertEquals(null, cardInfo.getExpirationDate());
+    assertEquals(null, cardInfo.getExpirationDate().getExpirationDate());
   }
 
   @Test
@@ -191,7 +198,7 @@ public class ManyTest
     assertEquals(CardBrand.unknown, cardInfo.getPrimaryAccountNumber()
       .getCardBrand());
     assertEquals("Michaels Open Value Card", cardInfo.getName().toString());
-    assertEquals(null, cardInfo.getExpirationDate());
+    assertEquals(null, cardInfo.getExpirationDate().getExpirationDate());
   }
 
 }

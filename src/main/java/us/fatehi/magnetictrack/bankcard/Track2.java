@@ -136,7 +136,7 @@ public class Track2
 
   public boolean hasExpirationDate()
   {
-    return expirationDate != null;
+    return expirationDate != null && expirationDate.hasExpirationDate();
   }
 
   public boolean hasPrimaryAccountNumber()

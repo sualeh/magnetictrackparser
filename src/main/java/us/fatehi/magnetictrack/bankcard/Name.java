@@ -44,16 +44,8 @@ public class Name
     super(rawName);
 
     final String[] splitName = trimToEmpty(rawName).split("/");
-    firstName = capitalize(splitName[splitName.length - 1]);
-    if (splitName.length > 1)
-    {
-      lastName = capitalize(splitName[0]);
-    }
-    else
-    {
-      lastName = "";
-    }
-
+    firstName = name(splitName, 1);
+    lastName = name(splitName, 0);
   }
 
   /**
@@ -117,10 +109,17 @@ public class Name
   public String getFullName()
   {
     final StringBuilder buffer = new StringBuilder();
-    buffer.append(trimToEmpty(firstName));
-    if (!isBlank(lastName))
+    if (hasFirstName())
     {
-      buffer.append(" ").append(trimToEmpty(lastName));
+      buffer.append(trimToEmpty(firstName));
+    }
+    if (hasFullName())
+    {
+      buffer.append(" ");
+    }
+    if (hasLastName())
+    {
+      buffer.append(trimToEmpty(lastName));
     }
     return buffer.toString();
   }
@@ -176,11 +175,21 @@ public class Name
     return getFullName();
   }
 
-  private String capitalize(final String splitName)
+  private String name(final String[] splitName, final int position)
   {
-    return capitalizeFully(trimToEmpty(splitName), new char[] {
-        '.', '\'', ' '
-    });
+    String name;
+    if (splitName.length > position)
+    {
+      name = capitalizeFully(trimToEmpty(splitName[position]), new char[] {
+          '.', '\'', ' '
+      });
+    }
+    else
+    {
+      name = "";
+    }
+
+    return name;
   }
 
 }

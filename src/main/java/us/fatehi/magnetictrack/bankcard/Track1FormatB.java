@@ -175,7 +175,7 @@ public class Track1FormatB
 
   public boolean hasName()
   {
-    return name != null && name.hasFullName();
+    return name != null && name.hasName();
   }
 
   public boolean hasPrimaryAccountNumber()

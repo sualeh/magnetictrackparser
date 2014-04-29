@@ -60,6 +60,39 @@ public class ExpirationDate
     this.expirationDate = expirationDate;
   }
 
+  /**
+   * @see java.lang.Object#equals(java.lang.Object)
+   */
+  @Override
+  public boolean equals(final Object obj)
+  {
+    if (this == obj)
+    {
+      return true;
+    }
+    if (obj == null)
+    {
+      return false;
+    }
+    if (!(obj instanceof ExpirationDate))
+    {
+      return false;
+    }
+    final ExpirationDate other = (ExpirationDate) obj;
+    if (expirationDate == null)
+    {
+      if (other.expirationDate != null)
+      {
+        return false;
+      }
+    }
+    else if (!expirationDate.equals(other.expirationDate))
+    {
+      return false;
+    }
+    return true;
+  }
+
   @Override
   public boolean exceedsMaximumLength()
   {
@@ -77,6 +110,35 @@ public class ExpirationDate
   public boolean hasExpirationDate()
   {
     return expirationDate != null;
+  }
+
+  /**
+   * @see java.lang.Object#hashCode()
+   */
+  @Override
+  public int hashCode()
+  {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result
+             + (expirationDate == null? 0: expirationDate.hashCode());
+    return result;
+  }
+
+  /**
+   * @see java.lang.Object#toString()
+   */
+  @Override
+  public String toString()
+  {
+    if (hasExpirationDate())
+    {
+      return expirationDate.toString();
+    }
+    else
+    {
+      return super.toString();
+    }
   }
 
 }
