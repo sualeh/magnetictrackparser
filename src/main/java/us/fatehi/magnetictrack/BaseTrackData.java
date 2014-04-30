@@ -40,7 +40,7 @@ public abstract class BaseTrackData
   }
 
   /**
-   * @see us.fatehi.magnetictrack.TrackData#getRawTrackData()
+   * @see TrackData#getRawTrackData()
    */
   @Override
   public String getRawTrackData()
@@ -49,7 +49,7 @@ public abstract class BaseTrackData
   }
 
   /**
-   *
+   * @see TrackData#hasRawTrackData()
    */
   @Override
   public boolean hasRawTrackData()

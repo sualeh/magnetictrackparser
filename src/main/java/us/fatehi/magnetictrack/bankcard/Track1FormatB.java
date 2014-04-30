@@ -27,7 +27,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * From <a
+ * Parses, and represents a card's track 1 data, in format "B". From <a
  * href="https://en.wikipedia.org/wiki/ISO/IEC_7813#Magnetic_tracks"
  * >Wikipedia - ISO/IEC 7813</a><br/>
  * The Track 1 structure is specified as:
@@ -48,7 +48,7 @@ import java.util.regex.Pattern;
  * ISO/IEC 7811-2</li>
  * </ol>
  * The maximum record length is 79 alphanumeric characters.
- *
+ * 
  * @see <a
  *      href="https://en.wikipedia.org/wiki/ISO/IEC_7813#Magnetic_tracks">Wikipedia
  *      - ISO/IEC 7813</a>
@@ -62,6 +62,14 @@ public class Track1FormatB
   private static final Pattern track1FormatBPattern = Pattern
     .compile("(%([A-Z])([0-9]{1,19})\\^([^\\^]{2,26})\\^([0-9]{4}|\\^)([0-9]{3}|\\^)?([^\\?]+)?\\?)[\\t\\n\\r ]?.*");
 
+  /**
+   * Parses magnetic track 1 format B data into a Track1FormatB object.
+   * 
+   * @param rawTrackData
+   *        Raw track data as a string. Can include newlines, and other
+   *        track as well.
+   * @return A Track1FormatB instance, corresponding to the parsed data.
+   */
   public static Track1FormatB from(final String rawTrackData)
   {
     final Matcher matcher = track1FormatBPattern
@@ -86,7 +94,6 @@ public class Track1FormatB
   private final PrimaryAccountNumber pan;
   private final Name name;
   private final ExpirationDate expirationDate;
-
   private final ServiceCode serviceCode;
 
   private Track1FormatB(final String rawTrack1Data,
@@ -124,7 +131,9 @@ public class Track1FormatB
   }
 
   /**
-   * @return the expirationDate
+   * Gets the card expiration date.
+   * 
+   * @return Card expiration date.
    */
   public ExpirationDate getExpirationDate()
   {
@@ -132,7 +141,9 @@ public class Track1FormatB
   }
 
   /**
-   * @return the formatCode
+   * Gets the track 1 format code, usually "B".
+   * 
+   * @return Track 1 format code, usually "B"
    */
   public String getFormatCode()
   {
@@ -140,7 +151,9 @@ public class Track1FormatB
   }
 
   /**
-   * @return the name
+   * Gets the cardholder's name.s
+   * 
+   * @return Cardholder's name
    */
   public Name getName()
   {
@@ -148,7 +161,9 @@ public class Track1FormatB
   }
 
   /**
-   * @return the pan
+   * Gets the primary account number for the card.
+   * 
+   * @return Primary account number.
    */
   public PrimaryAccountNumber getPrimaryAccountNumber()
   {
@@ -156,33 +171,62 @@ public class Track1FormatB
   }
 
   /**
-   * @return the serviceCode
+   * Gets the card service code.
+   * 
+   * @return Card service code.
    */
   public ServiceCode getServiceCode()
   {
     return serviceCode;
   }
 
+  /**
+   * Checks whether the card expiration date is available.
+   * 
+   * @return True if the card expiration date is available.
+   */
   public boolean hasExpirationDate()
   {
     return expirationDate != null && expirationDate.hasExpirationDate();
   }
 
+  /**
+   * Checks whether the format code is available.
+   * 
+   * @return True if the format code is available.
+   */
   public boolean hasFormatCode()
   {
     return !isBlank(formatCode);
   }
 
+  /**
+   * Checks whether the cardholder's name is available.
+   * 
+   * @return True if the cardholder's name is available.
+   */
   public boolean hasName()
   {
     return name != null && name.hasName();
   }
 
+  /**
+   * Checks whether the primary account number for the card is
+   * available.
+   * 
+   * @return True if the primary account number for the card is
+   *         available.
+   */
   public boolean hasPrimaryAccountNumber()
   {
     return pan != null;
   }
 
+  /**
+   * Checks whether the card service code is available.
+   * 
+   * @return True if the card service code is available.
+   */
   public boolean hasServiceCode()
   {
     return serviceCode != null && serviceCode.hasServiceCode();
