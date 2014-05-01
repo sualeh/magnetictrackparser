@@ -57,6 +57,14 @@ public class Track2
   private static final Pattern track2Pattern = Pattern
     .compile(".*[\\t\\n\\r ]?(;([0-9]{1,19})=([0-9]{4})([0-9]{3})(.*)\\?).*");
 
+  /**
+   * Parses magnetic track 2 data into a Track2 object.
+   * 
+   * @param rawTrackData
+   *        Raw track data as a string. Can include newlines, and other
+   *        tracks as well.
+   * @return A Track2 instance, corresponding to the parsed data.
+   */
   public static Track2 from(final String rawTrackData)
   {
     final Matcher matcher = track2Pattern.matcher(trimToEmpty(rawTrackData));
@@ -78,7 +86,6 @@ public class Track2
 
   private final PrimaryAccountNumber pan;
   private final ExpirationDate expirationDate;
-
   private final ServiceCode serviceCode;
 
   private Track2(final String rawTrack2Data,
@@ -111,7 +118,9 @@ public class Track2
   }
 
   /**
-   * @return the expirationDate
+   * Gets the primary account number for the card.
+   * 
+   * @return Primary account number.
    */
   public ExpirationDate getExpirationDate()
   {
@@ -119,7 +128,9 @@ public class Track2
   }
 
   /**
-   * @return the pan
+   * Gets the primary account number for the card.
+   * 
+   * @return Primary account number.
    */
   public PrimaryAccountNumber getPrimaryAccountNumber()
   {
@@ -127,23 +138,42 @@ public class Track2
   }
 
   /**
-   * @return the serviceCode
+   * Gets the card service code.
+   * 
+   * @return Card service code.
    */
   public ServiceCode getServiceCode()
   {
     return serviceCode;
   }
 
+  /**
+   * Checks whether the card expiration date is available.
+   * 
+   * @return True if the card expiration date is available.
+   */
   public boolean hasExpirationDate()
   {
     return expirationDate != null && expirationDate.hasExpirationDate();
   }
 
+  /**
+   * Checks whether the primary account number for the card is
+   * available.
+   * 
+   * @return True if the primary account number for the card is
+   *         available.
+   */
   public boolean hasPrimaryAccountNumber()
   {
     return pan != null && pan.hasPrimaryAccountNumber();
   }
 
+  /**
+   * Checks whether the card service code is available.
+   * 
+   * @return True if the card service code is available.
+   */
   public boolean hasServiceCode()
   {
     return serviceCode != null && serviceCode.hasServiceCode();

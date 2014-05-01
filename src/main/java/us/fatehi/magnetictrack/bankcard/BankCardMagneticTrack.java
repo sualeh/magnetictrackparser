@@ -1,10 +1,12 @@
 package us.fatehi.magnetictrack.bankcard;
 
 
-import java.text.ParseException;
-
 import org.threeten.bp.format.DateTimeFormatter;
 
+/**
+ * Parser and representation for all 3 bank card magnetic track
+ * information. Has a method to generate bank card information.
+ */
 public class BankCardMagneticTrack
   extends BaseBankCardTrackData
 {
@@ -14,6 +16,15 @@ public class BankCardMagneticTrack
   protected static final DateTimeFormatter formatter = DateTimeFormatter
     .ofPattern("MMMM yyyy");
 
+  /**
+   * Parses magnetic track data into a BankCardMagneticTrack object.
+   * 
+   * @param rawTrackData
+   *        Raw track data as a string. Can include newlines, and all 3
+   *        tracks.
+   * @return A BankCardMagneticTrack instance, corresponding to the
+   *         parsed data.
+   */
   public static BankCardMagneticTrack from(final String rawTrackData)
   {
     return new BankCardMagneticTrack(rawTrackData);
@@ -21,7 +32,6 @@ public class BankCardMagneticTrack
 
   private final Track1FormatB track1;
   private final Track2 track2;
-
   private final Track3 track3;
 
   private BankCardMagneticTrack(final String rawTrackData)
@@ -44,7 +54,9 @@ public class BankCardMagneticTrack
   }
 
   /**
-   * @return the track1
+   * Gets track 1 representation.
+   * 
+   * @return Track 1 representation.
    */
   public Track1FormatB getTrack1()
   {
@@ -52,7 +64,9 @@ public class BankCardMagneticTrack
   }
 
   /**
-   * @return the track2
+   * Gets track 2 representation.
+   * 
+   * @return Track 2 representation.
    */
   public Track2 getTrack2()
   {
@@ -60,15 +74,23 @@ public class BankCardMagneticTrack
   }
 
   /**
-   * @return the track3
+   * Gets track 3 representation.
+   * 
+   * @return Track 3 representation.
    */
   public Track3 getTrack3()
   {
     return track3;
   }
 
-  public BankCard toCardInfo()
-    throws ParseException
+  /**
+   * Constructs and returns bank card information, if all the track data
+   * is consistent. That is, if any bank card information is repeated in
+   * track 1 and track 2, it should be the same data.
+   * 
+   * @return Bank card information.
+   */
+  public BankCard toBankCard()
   {
     final PrimaryAccountNumber pan;
     if (track1.hasPrimaryAccountNumber())
@@ -88,8 +110,7 @@ public class BankCardMagneticTrack
       if (!track1.getPrimaryAccountNumber()
         .equals(track2.getPrimaryAccountNumber()))
       {
-        throw new ParseException("Inconsistent primary account number between track 1 and track 2",
-                                 0);
+        throw new IllegalStateException("Inconsistent primary account number between track 1 and track 2");
       }
     }
 
@@ -114,14 +135,13 @@ public class BankCardMagneticTrack
     }
     else
     {
-      expirationDate = null;
+      expirationDate = new ExpirationDate();
     }
     if (track1.hasExpirationDate() && track2.hasExpirationDate())
     {
       if (!track1.getExpirationDate().equals(track2.getExpirationDate()))
       {
-        throw new ParseException("Inconsistent expiration date between track 1 and track 2",
-                                 0);
+        throw new IllegalStateException("Inconsistent expiration date between track 1 and track 2");
       }
     }
 
@@ -142,8 +162,7 @@ public class BankCardMagneticTrack
     {
       if (!track1.getServiceCode().equals(track2.getServiceCode()))
       {
-        throw new ParseException("Inconsistent service between track 1 and track 2",
-                                 0);
+        throw new IllegalStateException("Inconsistent service between track 1 and track 2");
       }
     }
 

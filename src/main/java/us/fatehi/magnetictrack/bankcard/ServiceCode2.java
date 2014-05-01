@@ -20,6 +20,9 @@
 package us.fatehi.magnetictrack.bankcard;
 
 
+/**
+ * Service code, position 2 values.
+ */
 public enum ServiceCode2
   implements ServiceCodeType
 {
@@ -39,7 +42,9 @@ public enum ServiceCode2
   }
 
   /**
-   * @return the authorizationProcessing
+   * Gets the authorization processing rules.
+   * 
+   * @return Authorization processing rules.
    */
   public String getAuthorizationProcessing()
   {
@@ -47,7 +52,7 @@ public enum ServiceCode2
   }
 
   /**
-   * @return the description
+   * @see us.fatehi.magnetictrack.bankcard.ServiceCodeType#getDescription()
    */
   @Override
   public String getDescription()
@@ -57,7 +62,7 @@ public enum ServiceCode2
   }
 
   /**
-   * @return the value
+   * @see us.fatehi.magnetictrack.bankcard.ServiceCodeType#getValue()
    */
   @Override
   public int getValue()
@@ -65,6 +70,9 @@ public enum ServiceCode2
     return value;
   }
 
+  /**
+   * @see Object#toString()
+   */
   @Override
   public String toString()
   {

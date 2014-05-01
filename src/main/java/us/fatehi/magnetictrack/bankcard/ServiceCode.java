@@ -22,6 +22,7 @@ package us.fatehi.magnetictrack.bankcard;
 
 import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 import us.fatehi.magnetictrack.BaseTrackData;
+import us.fatehi.magnetictrack.TrackData;
 
 /**
  * @see <a
@@ -40,11 +41,20 @@ public class ServiceCode
   private final ServiceCode2 serviceCode2;
   private final ServiceCode3 serviceCode3;
 
+  /**
+   * Unknown service code.
+   */
   public ServiceCode()
   {
     this(null);
   }
 
+  /**
+   * Service code from string.
+   * 
+   * @param rawServiceCode
+   *        Raw service code from magnetic track data.
+   */
   public ServiceCode(final String rawServiceCode)
   {
     super(rawServiceCode);
@@ -56,8 +66,7 @@ public class ServiceCode
     serviceCode3 = serviceCode(2, ServiceCode3.unknown);
   }
 
-  /*
-   * (non-Javadoc)
+  /**
    * @see java.lang.Object#equals(java.lang.Object)
    */
   @Override
@@ -90,6 +99,9 @@ public class ServiceCode
     return true;
   }
 
+  /**
+   * @see TrackData#exceedsMaximumLength()
+   */
   @Override
   public boolean exceedsMaximumLength()
   {
@@ -97,7 +109,9 @@ public class ServiceCode
   }
 
   /**
-   * @return the serviceCode
+   * Gets the parsed service code.
+   * 
+   * @return Service code.
    */
   public String getServiceCode()
   {
@@ -105,7 +119,9 @@ public class ServiceCode
   }
 
   /**
-   * @return the serviceCode1
+   * Gets the service code position 1 value.
+   * 
+   * @return Service code position 1.
    */
   public ServiceCodeType getServiceCode1()
   {
@@ -113,7 +129,9 @@ public class ServiceCode
   }
 
   /**
-   * @return the serviceCode2
+   * Gets the service code position 2 value.
+   * 
+   * @return Service code position 2.
    */
   public ServiceCode2 getServiceCode2()
   {
@@ -121,7 +139,9 @@ public class ServiceCode
   }
 
   /**
-   * @return the serviceCode3
+   * Gets the service code position 3 value.
+   * 
+   * @return Service code position 3.
    */
   public ServiceCode3 getServiceCode3()
   {

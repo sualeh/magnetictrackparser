@@ -43,7 +43,7 @@ public interface TrackData
   /**
    * Whether raw track data is present.
    *
-   * @return True is raw track data is available
+   * @return True if raw track data is available.
    */
   boolean hasRawTrackData();
 

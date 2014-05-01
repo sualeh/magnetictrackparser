@@ -24,12 +24,16 @@ public interface ServiceCodeType
 {
 
   /**
-   * @return the value
+   * Gets the service code value.
+   * 
+   * @return Service code value.
    */
   public int getValue();
 
   /**
-   * @return the description
+   * Gets the description.
+   * 
+   * @return Description.
    */
   String getDescription();
 

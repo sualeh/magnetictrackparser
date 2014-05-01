@@ -39,6 +39,14 @@ public class Track3
   private static final Pattern track3Pattern = Pattern
     .compile(".*[\\t\\n\\r ]?(\\+(.*)\\?)");
 
+  /**
+   * Parses magnetic track 3 data into a Track3 object.
+   * 
+   * @param rawTrackData
+   *        Raw track data as a string. Can include newlines, and other
+   *        tracks as well.
+   * @return A Track3instance, corresponding to the parsed data.
+   */
   public static Track3 from(final String rawTrackData)
   {
     final Matcher matcher = track3Pattern.matcher(trimToEmpty(rawTrackData));

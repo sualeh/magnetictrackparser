@@ -24,20 +24,36 @@ import java.io.Serializable;
 
 import org.threeten.bp.format.DateTimeFormatter;
 
+/**
+ * Represents a bank card, and contains information about the card
+ * number, cardholder's name, expiration date, and service code.
+ */
 public class BankCard
-implements Serializable
+  implements Serializable
 {
 
   private static final long serialVersionUID = 6253084852668206154L;
 
   protected static final DateTimeFormatter formatter = DateTimeFormatter
-      .ofPattern("MMMM yyyy");
+    .ofPattern("MMMM yyyy");
 
   private final PrimaryAccountNumber pan;
   private final Name name;
   private final ExpirationDate expirationDate;
   private final ServiceCode serviceCode;
 
+  /**
+   * Construct a bank card from the constituent parts.
+   *
+   * @param pan
+   *        Primary account number
+   * @param name
+   *        Cardholder name
+   * @param expirationDate
+   *        Card expiration date
+   * @param serviceCode
+   *        Service code
+   */
   public BankCard(final PrimaryAccountNumber pan,
                   final Name name,
                   final ExpirationDate expirationDate,
@@ -51,7 +67,7 @@ implements Serializable
     {
       this.pan = new PrimaryAccountNumber();
     }
-    
+
     if (name != null)
     {
       this.name = name;
@@ -60,7 +76,7 @@ implements Serializable
     {
       this.name = new Name();
     }
-    
+
     if (expirationDate != null)
     {
       this.expirationDate = expirationDate;
@@ -69,7 +85,7 @@ implements Serializable
     {
       this.expirationDate = new ExpirationDate();
     }
-    
+
     if (serviceCode != null)
     {
       this.serviceCode = serviceCode;
@@ -81,7 +97,75 @@ implements Serializable
   }
 
   /**
-   * @return the expirationDate
+   * @see java.lang.Object#equals(java.lang.Object)
+   */
+  @Override
+  public boolean equals(final Object obj)
+  {
+    if (this == obj)
+    {
+      return true;
+    }
+    if (obj == null)
+    {
+      return false;
+    }
+    if (!(obj instanceof BankCard))
+    {
+      return false;
+    }
+    final BankCard other = (BankCard) obj;
+    if (expirationDate == null)
+    {
+      if (other.expirationDate != null)
+      {
+        return false;
+      }
+    }
+    else if (!expirationDate.equals(other.expirationDate))
+    {
+      return false;
+    }
+    if (name == null)
+    {
+      if (other.name != null)
+      {
+        return false;
+      }
+    }
+    else if (!name.equals(other.name))
+    {
+      return false;
+    }
+    if (pan == null)
+    {
+      if (other.pan != null)
+      {
+        return false;
+      }
+    }
+    else if (!pan.equals(other.pan))
+    {
+      return false;
+    }
+    if (serviceCode == null)
+    {
+      if (other.serviceCode != null)
+      {
+        return false;
+      }
+    }
+    else if (!serviceCode.equals(other.serviceCode))
+    {
+      return false;
+    }
+    return true;
+  }
+
+  /**
+   * Gets the card expiration date.
+   *
+   * @return Card expiration date.
    */
   public ExpirationDate getExpirationDate()
   {
@@ -89,7 +173,9 @@ implements Serializable
   }
 
   /**
-   * @return the name
+   * Gets the cardholder's name.
+   *
+   * @return Cardholder's name.
    */
   public Name getName()
   {
@@ -97,7 +183,9 @@ implements Serializable
   }
 
   /**
-   * @return the pan
+   * Gets the primary account number for the card.
+   *
+   * @return Primary account number.
    */
   public PrimaryAccountNumber getPrimaryAccountNumber()
   {
@@ -105,28 +193,68 @@ implements Serializable
   }
 
   /**
-   * @return the serviceCode
+   * Gets the service code.
+   *
+   * @return Service code.
    */
   public ServiceCode getServiceCode()
   {
     return serviceCode;
   }
 
+  /**
+   * Checks whether the card expiration date is available.
+   *
+   * @return True if the card expiration date is available.
+   */
   public boolean hasExpirationDate()
   {
     return expirationDate != null && expirationDate.hasExpirationDate();
   }
 
+  /**
+   * @see java.lang.Object#hashCode()
+   */
+  @Override
+  public int hashCode()
+  {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result
+             + (expirationDate == null? 0: expirationDate.hashCode());
+    result = prime * result + (name == null? 0: name.hashCode());
+    result = prime * result + (pan == null? 0: pan.hashCode());
+    result = prime * result + (serviceCode == null? 0: serviceCode.hashCode());
+    return result;
+  }
+
+  /**
+   * Checks whether the cardholder's name is available.
+   *
+   * @return True if the cardholder's name is available.
+   */
   public boolean hasName()
   {
     return name != null && name.hasName();
   }
 
+  /**
+   * Checks whether the primary account number for the card is
+   * available.
+   *
+   * @return True if the primary account number for the card is
+   *         available.
+   */
   public boolean hasPrimaryAccountNumber()
   {
     return pan != null && pan.hasPrimaryAccountNumber();
   }
 
+  /**
+   * Checks whether the card service code is available.
+   *
+   * @return True if the card service code is available.
+   */
   public boolean hasServiceCode()
   {
     return serviceCode != null && serviceCode.hasServiceCode();
@@ -163,7 +291,7 @@ implements Serializable
     {
       buffer.append("  Expiration Date: ");
       buffer.append(formatter.format(expirationDate.getExpirationDate()))
-      .append(NEWLINE);
+        .append(NEWLINE);
     }
     else
     {

@@ -67,7 +67,7 @@ public class Track1FormatB
    * 
    * @param rawTrackData
    *        Raw track data as a string. Can include newlines, and other
-   *        track as well.
+   *        tracks as well.
    * @return A Track1FormatB instance, corresponding to the parsed data.
    */
   public static Track1FormatB from(final String rawTrackData)

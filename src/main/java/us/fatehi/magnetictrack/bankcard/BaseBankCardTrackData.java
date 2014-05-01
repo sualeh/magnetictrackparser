@@ -60,13 +60,20 @@ public abstract class BaseBankCardTrackData
   }
 
   /**
-   * @see us.fatehi.magnetictrack.TrackData#getDiscretionaryData()
+   * Gets discretionary data on the track.
+   * 
+   * @return Discretionary data.
    */
   public String getDiscretionaryData()
   {
     return discretionaryData;
   }
 
+  /**
+   * Whether discretionary data is present.
+   *
+   * @return True if discretionary data is available
+   */
   public boolean hasDiscretionaryData()
   {
     return !isBlank(discretionaryData);

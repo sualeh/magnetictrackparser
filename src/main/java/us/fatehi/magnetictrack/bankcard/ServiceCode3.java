@@ -20,6 +20,9 @@
 package us.fatehi.magnetictrack.bankcard;
 
 
+/**
+ * Service code, position 3 values.
+ */
 public enum ServiceCode3
   implements ServiceCodeType
 {
@@ -48,7 +51,9 @@ public enum ServiceCode3
   }
 
   /**
-   * @return the allowedServices
+   * Gets the allowed services.
+   * 
+   * @return Allowed services.
    */
   public String getAllowedServices()
   {
@@ -56,7 +61,7 @@ public enum ServiceCode3
   }
 
   /**
-   * @return the description
+   * @see ServiceCodeType#getDescription()
    */
   @Override
   public String getDescription()
@@ -67,7 +72,9 @@ public enum ServiceCode3
   }
 
   /**
-   * @return the pinRequirements
+   * Gets the the PIN requirements.
+   * 
+   * @return PIN requirements.
    */
   public String getPinRequirements()
   {
@@ -75,7 +82,7 @@ public enum ServiceCode3
   }
 
   /**
-   * @return the value
+   * @see ServiceCodeType#getValue()
    */
   @Override
   public int getValue()
@@ -83,6 +90,9 @@ public enum ServiceCode3
     return value;
   }
 
+  /**
+   * @see Object#toString()
+   */
   @Override
   public String toString()
   {

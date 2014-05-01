@@ -20,6 +20,9 @@
 package us.fatehi.magnetictrack.bankcard;
 
 
+/**
+ * Service code, position 1 values.
+ */
 public enum ServiceCode1
   implements ServiceCodeType
 {
@@ -57,7 +60,9 @@ public enum ServiceCode1
   }
 
   /**
-   * @return the interchange
+   * Gets the interchange rules.
+   * 
+   * @return Interchange rules.
    */
   public String getInterchange()
   {
@@ -65,7 +70,9 @@ public enum ServiceCode1
   }
 
   /**
-   * @return the technology
+   * Gets the the technology.
+   * 
+   * @return Technology.
    */
   public String getTechnology()
   {
@@ -81,6 +88,9 @@ public enum ServiceCode1
     return value;
   }
 
+  /**
+   * @see Object#toString()
+   */
   @Override
   public String toString()
   {
