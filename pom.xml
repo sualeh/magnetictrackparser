@@ -91,8 +91,12 @@
 							<addClasspath>true</addClasspath>
 						</manifest>
 						<manifestEntries>
-							<Project>${project.name}, ${project.version}</Project>
-							<Author>Sualeh Fatehi, sualeh@hotmail.com</Author>
+							<Specification-Title>${project.name}</Specification-Title>
+							<Specification-Version>${project.version}</Specification-Version>
+							<Specification-Vendor>Sualeh Fatehi, sualeh@hotmail.com</Specification-Vendor>
+							<Implementation-Title>${project.name}</Implementation-Title>
+							<Implementation-Version>${project.version}</Implementation-Version>
+							<Implementation-Vendor>Sualeh Fatehi, sualeh@hotmail.com</Implementation-Vendor>
 						</manifestEntries>
 					</archive>
 				</configuration>

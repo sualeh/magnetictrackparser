@@ -29,10 +29,10 @@ public enum ServiceCode3
 
   unknown(-1, "Unknown", ""),
   v_0(0, "No restrictions", "PIN required"),
-  v_1(1, "No restrictions", ""),
-  v_2(2, "Goods and services only", ""),
+  v_1(1, "No restrictions", "None"),
+  v_2(2, "Goods and services only", "None"),
   v_3(3, "ATM only", "PIN required"),
-  v_4(4, "Cash only", ""),
+  v_4(4, "Cash only", "None"),
   v_5(5, "Goods and services only", "PIN required"),
   v_6(6, "No restrictions", "Prompt for PIN if PED present"),
   v_7(7, "Goods and services only", "Prompt for PIN if PED present"), ;
