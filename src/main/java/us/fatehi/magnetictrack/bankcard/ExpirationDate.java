@@ -27,6 +27,9 @@ import org.threeten.bp.format.DateTimeFormatter;
 
 import us.fatehi.magnetictrack.BaseTrackData;
 
+/**
+ * Parses and represents a card expiration date.
+ */
 public class ExpirationDate
   extends BaseTrackData
 {
@@ -38,11 +41,20 @@ public class ExpirationDate
 
   private final YearMonth expirationDate;
 
+  /**
+   * No expiration date.
+   */
   public ExpirationDate()
   {
     this(null);
   }
 
+  /**
+   * Expiration date parsed from raw track data.
+   * 
+   * @param rawExpirationDate
+   *        Raw track data for expiration date.
+   */
   public ExpirationDate(final String rawExpirationDate)
   {
     super(rawExpirationDate);
@@ -93,6 +105,9 @@ public class ExpirationDate
     return true;
   }
 
+  /**
+   * @see us.fatehi.magnetictrack.TrackData#exceedsMaximumLength()
+   */
   @Override
   public boolean exceedsMaximumLength()
   {
@@ -100,13 +115,20 @@ public class ExpirationDate
   }
 
   /**
-   * @return the expirationDate
+   * Gets the card expiration date.
+   * 
+   * @return Card expiration date.
    */
   public YearMonth getExpirationDate()
   {
     return expirationDate;
   }
 
+  /**
+   * Checks whether the card expiration date is available.
+   * 
+   * @return True if the card expiration date is available.
+   */
   public boolean hasExpirationDate()
   {
     return expirationDate != null;

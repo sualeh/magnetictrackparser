@@ -25,6 +25,9 @@ import static org.apache.commons.lang3.StringUtils.left;
 import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 import us.fatehi.magnetictrack.BaseTrackData;
 
+/**
+ * Parses and represents the primary account number of the bank card.
+ */
 public class PrimaryAccountNumber
   extends BaseTrackData
 {
@@ -36,11 +39,21 @@ public class PrimaryAccountNumber
   private final MajorIndustryIdentifier majorIndustryIdentifier;
   private final boolean passesLuhnCheck;
 
+  /**
+   * No primary account number of the bank card.
+   */
   public PrimaryAccountNumber()
   {
     this(null);
   }
 
+  /**
+   * Parses the primary account number of the bank card. Can accept card
+   * numbers with spaces or dashes.
+   * 
+   * @param rawAccountNumber
+   *        Raw primary account number from the magnetic track data.
+   */
   public PrimaryAccountNumber(final String rawAccountNumber)
   {
     super(rawAccountNumber);
@@ -85,6 +98,9 @@ public class PrimaryAccountNumber
     return true;
   }
 
+  /**
+   * @see us.fatehi.magnetictrack.TrackData#exceedsMaximumLength()
+   */
   @Override
   public boolean exceedsMaximumLength()
   {
@@ -92,7 +108,9 @@ public class PrimaryAccountNumber
   }
 
   /**
-   * @return the account number
+   * Gets the primary account number of the bank card.
+   * 
+   * @return Primary account number.
    */
   public String getAccountNumber()
   {
@@ -100,7 +118,9 @@ public class PrimaryAccountNumber
   }
 
   /**
-   * @return the card brand
+   * Gets the the card brand.
+   * 
+   * @return Card brand.
    */
   public CardBrand getCardBrand()
   {
@@ -115,7 +135,7 @@ public class PrimaryAccountNumber
    * digits are subject to an international standard, ISO/IEC 7812, and
    * can be used to determine the type of card from the number.
    *
-   * @return IIN
+   * @return IIN.s
    */
   public String getIssuerIdentificationNumber()
   {
@@ -123,15 +143,18 @@ public class PrimaryAccountNumber
   }
 
   /**
-   * @return the majorIndustryIdentifier
+   * The first digit of a credit card number is the Major Industry
+   * Identifier (MII) (see ISO/IEC 7812), which represents the category
+   * of entity which issued the card.
+   * 
+   * @return MII.
    */
   public MajorIndustryIdentifier getMajorIndustryIdentifier()
   {
     return majorIndustryIdentifier;
   }
 
-  /*
-   * (non-Javadoc)
+  /**
    * @see java.lang.Object#hashCode()
    */
   @Override
@@ -144,13 +167,22 @@ public class PrimaryAccountNumber
     return result;
   }
 
+  /**
+   * Checks whether the primary account number for the card is
+   * available.
+   * 
+   * @return True if the primary account number for the card is
+   *         available.
+   */
   public boolean hasPrimaryAccountNumber()
   {
     return !isBlank(accountNumber);
   }
 
   /**
-   * @return Whether the account number passes the Luhn check
+   * Checks whether the primary account number passes the Luhn check.
+   * 
+   * @return True if the primary account number passes the Luhn check.
    */
   public boolean isPassesLuhnCheck()
   {

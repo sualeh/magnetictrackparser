@@ -25,6 +25,9 @@ import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 import static org.apache.commons.lang3.text.WordUtils.capitalizeFully;
 import us.fatehi.magnetictrack.BaseTrackData;
 
+/**
+ * Parses and represents the cardholder's name.
+ */
 public class Name
   extends BaseTrackData
 {
@@ -34,11 +37,20 @@ public class Name
   private final String firstName;
   private final String lastName;
 
+  /**
+   * No name.
+   */
   public Name()
   {
     this(null);
   }
 
+  /**
+   * Name from raw magnetic track data.
+   * 
+   * @param rawName
+   *        Raw magnetic track data for name.
+   */
   public Name(final String rawName)
   {
     super(rawName);
@@ -92,6 +104,9 @@ public class Name
     return true;
   }
 
+  /**
+   * @see us.fatehi.magnetictrack.TrackData#exceedsMaximumLength()
+   */
   @Override
   public boolean exceedsMaximumLength()
   {
@@ -99,13 +114,20 @@ public class Name
   }
 
   /**
-   * @return the firstName
+   * Gets the first name.
+   * 
+   * @return First name.
    */
   public String getFirstName()
   {
     return firstName;
   }
 
+  /**
+   * Gets the full name.
+   * 
+   * @return full name.
+   */
   public String getFullName()
   {
     final StringBuilder buffer = new StringBuilder();
@@ -125,25 +147,36 @@ public class Name
   }
 
   /**
-   * @return the lastName
+   * Gets the last name.
+   * 
+   * @return Last name.
    */
   public String getLastName()
   {
     return lastName;
   }
 
+  /**
+   * Checks whether the first name is available.
+   * 
+   * @return True if the first name is available.
+   */
   public boolean hasFirstName()
   {
     return !isBlank(firstName);
   }
 
+  /**
+   * Checks whether the full name (first and last) is available.
+   * 
+   * @return True if the full name is available.
+   */
   public boolean hasFullName()
   {
     return hasFirstName() && hasLastName();
   }
 
-  /*
-   * (non-Javadoc)
+  /**
    * @see java.lang.Object#hashCode()
    */
   @Override
@@ -156,11 +189,21 @@ public class Name
     return result;
   }
 
+  /**
+   * Checks whether the last name is available.
+   * 
+   * @return True if the last name is available.
+   */
   public boolean hasLastName()
   {
     return !isBlank(lastName);
   }
 
+  /**
+   * Checks whether the name (either first or last) is available.
+   * 
+   * @return True if the name is available.
+   */
   public boolean hasName()
   {
     return hasFirstName() || hasLastName();
