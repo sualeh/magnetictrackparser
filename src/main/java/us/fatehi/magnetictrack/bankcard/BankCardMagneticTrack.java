@@ -167,8 +167,8 @@ public class BankCardMagneticTrack
     }
 
     final BankCard cardInfo = new BankCard(pan,
-                                           name,
                                            expirationDate,
+                                           name,
                                            serviceCode);
     return cardInfo;
   }

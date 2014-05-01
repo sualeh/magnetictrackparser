@@ -29,13 +29,13 @@ import org.threeten.bp.format.DateTimeFormatter;
  * number, cardholder's name, expiration date, and service code.
  */
 public class BankCard
-  implements Serializable
+implements Serializable
 {
 
   private static final long serialVersionUID = 6253084852668206154L;
 
   protected static final DateTimeFormatter formatter = DateTimeFormatter
-    .ofPattern("MMMM yyyy");
+      .ofPattern("MMMM yyyy");
 
   private final PrimaryAccountNumber pan;
   private final Name name;
@@ -43,20 +43,70 @@ public class BankCard
   private final ServiceCode serviceCode;
 
   /**
+   * No bank card.
+   */
+  public BankCard()
+  {
+    this(null);
+  }
+
+  /**
    * Construct a bank card from the constituent parts.
    *
    * @param pan
    *        Primary account number
-   * @param name
-   *        Cardholder name
+   */
+  public BankCard(final PrimaryAccountNumber pan)
+  {
+    this(pan, null);
+  }
+
+  /**
+   * Construct a bank card from the constituent parts.
+   *
+   * @param pan
+   *        Primary account number
    * @param expirationDate
    *        Card expiration date
+   */
+  public BankCard(final PrimaryAccountNumber pan,
+                  final ExpirationDate expirationDate)
+  {
+    this(pan, expirationDate, null);
+  }
+
+  /**
+   * Construct a bank card from the constituent parts.
+   *
+   * @param pan
+   *        Primary account number
+   * @param expirationDate
+   *        Card expiration date
+   * @param name
+   *        Cardholder name
+   */
+  public BankCard(final PrimaryAccountNumber pan,
+                  final ExpirationDate expirationDate,
+                  final Name name)
+  {
+    this(pan, expirationDate, name, null);
+  }
+
+  /**
+   * Construct a bank card from the constituent parts.
+   *
+   * @param pan
+   *        Primary account number
+   * @param expirationDate
+   *        Card expiration date
+   * @param name
+   *        Cardholder name
    * @param serviceCode
    *        Service code
    */
   public BankCard(final PrimaryAccountNumber pan,
-                  final Name name,
                   final ExpirationDate expirationDate,
+                  final Name name,
                   final ServiceCode serviceCode)
   {
     if (pan != null)
@@ -221,7 +271,7 @@ public class BankCard
     final int prime = 31;
     int result = 1;
     result = prime * result
-             + (expirationDate == null? 0: expirationDate.hashCode());
+        + (expirationDate == null? 0: expirationDate.hashCode());
     result = prime * result + (name == null? 0: name.hashCode());
     result = prime * result + (pan == null? 0: pan.hashCode());
     result = prime * result + (serviceCode == null? 0: serviceCode.hashCode());
@@ -269,7 +319,7 @@ public class BankCard
     final String NEWLINE = System.getProperty("line.separator");
     final StringBuilder buffer = new StringBuilder();
 
-    buffer.append("Card Info: ").append(NEWLINE);
+    buffer.append("Bank Card Information: ").append(NEWLINE);
     if (hasPrimaryAccountNumber())
     {
       buffer.append("  Primary Account Number: ");
@@ -283,28 +333,16 @@ public class BankCard
       buffer.append("    Passes Luhn Check: ");
       buffer.append(pan.isPassesLuhnCheck()).append(NEWLINE);
     }
-    else
-    {
-      buffer.append("  No Primary Account Number").append(NEWLINE);
-    }
     if (hasExpirationDate())
     {
       buffer.append("  Expiration Date: ");
       buffer.append(formatter.format(expirationDate.getExpirationDate()))
-        .append(NEWLINE);
-    }
-    else
-    {
-      buffer.append("  No Expiration Date").append(NEWLINE);
+      .append(NEWLINE);
     }
     if (hasName())
     {
       buffer.append("  Name: ");
       buffer.append(getName()).append(NEWLINE);
-    }
-    else
-    {
-      buffer.append("  No Name").append(NEWLINE);
     }
     if (hasServiceCode())
     {
@@ -317,10 +355,6 @@ public class BankCard
       buffer.append(serviceCode.getServiceCode2()).append(NEWLINE);
       buffer.append("    ");
       buffer.append(serviceCode.getServiceCode3()).append(NEWLINE);
-    }
-    else
-    {
-      buffer.append("  No Service Code");
     }
 
     return buffer.toString();
