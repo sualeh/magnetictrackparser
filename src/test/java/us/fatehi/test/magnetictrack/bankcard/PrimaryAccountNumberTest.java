@@ -35,14 +35,18 @@ public class PrimaryAccountNumberTest
   @Test
   public void pan_1()
   {
-    final PrimaryAccountNumber pan = new PrimaryAccountNumber(null);
+    final String rawAccountNumber = null;
+    final PrimaryAccountNumber pan = new PrimaryAccountNumber(rawAccountNumber);
+    assertEquals(rawAccountNumber, pan.getRawTrackData());
     assertTrue(!pan.hasPrimaryAccountNumber());
   }
 
   @Test
   public void pan_2()
   {
-    final PrimaryAccountNumber pan = new PrimaryAccountNumber("\t\t");
+    final String rawAccountNumber = "\t\t";
+    final PrimaryAccountNumber pan = new PrimaryAccountNumber(rawAccountNumber);
+    assertEquals(rawAccountNumber, pan.getRawTrackData());
     assertTrue(!pan.hasPrimaryAccountNumber());
   }
 
@@ -51,8 +55,9 @@ public class PrimaryAccountNumberTest
   {
     final String rawAccountNumber = "5266092201416173";
     final PrimaryAccountNumber pan = new PrimaryAccountNumber(rawAccountNumber);
+    assertEquals(rawAccountNumber, pan.getRawTrackData());
     assertTrue("Should not pass Luhn check", !pan.isPassesLuhnCheck());
-    check(pan, rawAccountNumber);
+    check(rawAccountNumber, pan, rawAccountNumber);
   }
 
   @Test
@@ -61,21 +66,24 @@ public class PrimaryAccountNumberTest
     final String rawAccountNumber = "5266092201416174";
     final PrimaryAccountNumber pan = new PrimaryAccountNumber(rawAccountNumber);
     assertTrue("Does not pass Luhn check", pan.isPassesLuhnCheck());
-    check(pan, rawAccountNumber);
+    check(rawAccountNumber, pan, rawAccountNumber);
   }
 
   @Test
   public void pan2()
   {
     final String rawAccountNumber = "  5266-0922-0141-6174  ";
+    final String accountNumber = "5266092201416174";
     final PrimaryAccountNumber pan = new PrimaryAccountNumber(rawAccountNumber);
     assertTrue("Does not pass Luhn check", pan.isPassesLuhnCheck());
-    final String accountNumber = "5266092201416174";
-    check(pan, accountNumber);
+    check(rawAccountNumber, pan, accountNumber);
   }
 
-  private void check(final PrimaryAccountNumber pan, final String accountNumber)
+  private void check(final String rawAccountNumber,
+                     final PrimaryAccountNumber pan,
+                     final String accountNumber)
   {
+    assertEquals(rawAccountNumber, pan.getRawTrackData());
     assertEquals(accountNumber, pan.getAccountNumber());
     assertEquals(CardBrand.MasterCard, pan.getCardBrand());
     assertEquals(MajorIndustryIdentifier.mii_5,

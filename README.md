@@ -42,3 +42,37 @@ Bank Card Information:
 ```
 
 ### How to Parse Magnetic Track Data
+
+To parse a magnetic track, use code like:
+```
+final BankCardMagneticTrack track = 
+    BankCardMagneticTrack.from("%B5350290149345177^FATEHI/SUALEH^16042010000000000000000000000000000567001000?;5350290149345177=16042010000056700100?");
+System.out.println(track);
+```
+and you will get this output:
+```
+Track 1: %B5350290149345177^FATEHI/SUALEH^16042010000000000000000000000000000567001000?
+  Primary Account Number: 5350290149345177
+    MII: 5 - Banking and financial
+    IIN: 535029
+    Card Brand: MasterCard
+  Expiration Date: April 2016
+  Name: Sualeh Fatehi
+  Service Code: 
+    2 - Interchange: International interchange. Technology: Integrated circuit card.
+    0 - Authorization Processing: Normal.
+    1 - Allowed Services: No restrictions. PIN Requirements: None.
+  Discretionary Data: 0000000000000000000000000000567001000
+Track 2: ;5350290149345177=16042010000056700100?
+  Primary Account Number: 5350290149345177
+    MII: 5 - Banking and financial
+    IIN: 535029
+    Card Brand: MasterCard
+  Expiration Date: April 2016
+  Service Code: 
+    2 - Interchange: International interchange. Technology: Integrated circuit card.
+    0 - Authorization Processing: Normal.
+    1 - Allowed Services: No restrictions. PIN Requirements: None.
+  Discretionary Data: 0000056700100
+No Track 3 Data
+```
