@@ -29,13 +29,13 @@ import org.threeten.bp.format.DateTimeFormatter;
  * number, cardholder's name, expiration date, and service code.
  */
 public class BankCard
-implements Serializable
+  implements Serializable
 {
 
   private static final long serialVersionUID = 6253084852668206154L;
 
   protected static final DateTimeFormatter formatter = DateTimeFormatter
-      .ofPattern("MMMM yyyy");
+    .ofPattern("MMMM yyyy");
 
   private final PrimaryAccountNumber pan;
   private final Name name;
@@ -52,7 +52,7 @@ implements Serializable
 
   /**
    * Construct a bank card from the constituent parts.
-   *
+   * 
    * @param pan
    *        Primary account number
    */
@@ -63,7 +63,7 @@ implements Serializable
 
   /**
    * Construct a bank card from the constituent parts.
-   *
+   * 
    * @param pan
    *        Primary account number
    * @param expirationDate
@@ -77,7 +77,7 @@ implements Serializable
 
   /**
    * Construct a bank card from the constituent parts.
-   *
+   * 
    * @param pan
    *        Primary account number
    * @param expirationDate
@@ -94,7 +94,7 @@ implements Serializable
 
   /**
    * Construct a bank card from the constituent parts.
-   *
+   * 
    * @param pan
    *        Primary account number
    * @param expirationDate
@@ -214,7 +214,7 @@ implements Serializable
 
   /**
    * Gets the card expiration date.
-   *
+   * 
    * @return Card expiration date.
    */
   public ExpirationDate getExpirationDate()
@@ -224,7 +224,7 @@ implements Serializable
 
   /**
    * Gets the cardholder's name.
-   *
+   * 
    * @return Cardholder's name.
    */
   public Name getName()
@@ -234,7 +234,7 @@ implements Serializable
 
   /**
    * Gets the primary account number for the card.
-   *
+   * 
    * @return Primary account number.
    */
   public PrimaryAccountNumber getPrimaryAccountNumber()
@@ -244,7 +244,7 @@ implements Serializable
 
   /**
    * Gets the service code.
-   *
+   * 
    * @return Service code.
    */
   public ServiceCode getServiceCode()
@@ -254,7 +254,7 @@ implements Serializable
 
   /**
    * Checks whether the card expiration date is available.
-   *
+   * 
    * @return True if the card expiration date is available.
    */
   public boolean hasExpirationDate()
@@ -271,7 +271,7 @@ implements Serializable
     final int prime = 31;
     int result = 1;
     result = prime * result
-        + (expirationDate == null? 0: expirationDate.hashCode());
+             + (expirationDate == null? 0: expirationDate.hashCode());
     result = prime * result + (name == null? 0: name.hashCode());
     result = prime * result + (pan == null? 0: pan.hashCode());
     result = prime * result + (serviceCode == null? 0: serviceCode.hashCode());
@@ -280,7 +280,7 @@ implements Serializable
 
   /**
    * Checks whether the cardholder's name is available.
-   *
+   * 
    * @return True if the cardholder's name is available.
    */
   public boolean hasName()
@@ -291,7 +291,7 @@ implements Serializable
   /**
    * Checks whether the primary account number for the card is
    * available.
-   *
+   * 
    * @return True if the primary account number for the card is
    *         available.
    */
@@ -302,12 +302,22 @@ implements Serializable
 
   /**
    * Checks whether the card service code is available.
-   *
+   * 
    * @return True if the card service code is available.
    */
   public boolean hasServiceCode()
   {
     return serviceCode != null && serviceCode.hasServiceCode();
+  }
+
+  /**
+   * Whether the card has expired.
+   * 
+   * @return True if the the card has expired.
+   */
+  public boolean isExpired()
+  {
+    return expirationDate.isExpired();
   }
 
   /**
@@ -331,13 +341,15 @@ implements Serializable
       buffer.append("    Card Brand: ");
       buffer.append(pan.getCardBrand()).append(NEWLINE);
       buffer.append("    Passes Luhn Check: ");
-      buffer.append(pan.isPassesLuhnCheck()).append(NEWLINE);
+      buffer.append(pan.isPassesLuhnCheck()? "Yes": "No").append(NEWLINE);
     }
     if (hasExpirationDate())
     {
       buffer.append("  Expiration Date: ");
       buffer.append(formatter.format(expirationDate.getExpirationDate()))
-      .append(NEWLINE);
+        .append(NEWLINE);
+      buffer.append("    Is Expired: ");
+      buffer.append(expirationDate.isExpired()? "Yes": "No").append(NEWLINE);
     }
     if (hasName())
     {

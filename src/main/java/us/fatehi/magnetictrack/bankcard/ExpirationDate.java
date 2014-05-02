@@ -22,8 +22,15 @@ package us.fatehi.magnetictrack.bankcard;
 
 import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 
+import java.util.Date;
+
+import org.threeten.bp.Instant;
+import org.threeten.bp.LocalDate;
+import org.threeten.bp.LocalDateTime;
 import org.threeten.bp.YearMonth;
+import org.threeten.bp.ZoneId;
 import org.threeten.bp.format.DateTimeFormatter;
+import org.threeten.bp.temporal.ChronoUnit;
 
 import us.fatehi.magnetictrack.BaseTrackData;
 
@@ -125,6 +132,28 @@ public class ExpirationDate
   }
 
   /**
+   * Gets the card expiration date, as a java.util.Date object.
+   * 
+   * @return Card expiration date.
+   */
+  public Date getExpirationDateAsDate()
+  {
+    if (hasExpirationDate())
+    {
+      final LocalDateTime endOfMonth = expirationDate.atEndOfMonth()
+        .atStartOfDay().plus(1, ChronoUnit.DAYS).minus(1, ChronoUnit.NANOS);
+      final Instant instant = endOfMonth.atZone(ZoneId.systemDefault())
+        .toInstant();
+      final Date date = new Date(instant.toEpochMilli());
+      return date;
+    }
+    else
+    {
+      return null;
+    }
+  }
+
+  /**
    * Checks whether the card expiration date is available.
    * 
    * @return True if the card expiration date is available.
@@ -145,6 +174,23 @@ public class ExpirationDate
     result = prime * result
              + (expirationDate == null? 0: expirationDate.hashCode());
     return result;
+  }
+
+  /**
+   * Whether the card has expired.
+   * 
+   * @return True if the the card has expired.
+   */
+  public boolean isExpired()
+  {
+    if (!hasExpirationDate())
+    {
+      return true;
+    }
+    else
+    {
+      return expirationDate.atEndOfMonth().isBefore(LocalDate.now());
+    }
   }
 
   /**
