@@ -60,7 +60,7 @@ public class Track1FormatB
   private static final long serialVersionUID = 3020739300944280022L;
 
   private static final Pattern track1FormatBPattern = Pattern
-    .compile("(%([A-Z])([0-9]{1,19})\\^([^\\^]{2,26})\\^([0-9]{4}|\\^)([0-9]{3}|\\^)?([^\\?]+)?\\?)[\\t\\n\\r ]?.*");
+    .compile("(%?([A-Z])([0-9]{1,19})\\^([^\\^]{2,26})\\^([0-9]{4}|\\^)([0-9]{3}|\\^)?([^\\?]+)?\\??)[\t\n\r ]{0,2}.*");
 
   /**
    * Parses magnetic track 1 format B data into a Track1FormatB object.

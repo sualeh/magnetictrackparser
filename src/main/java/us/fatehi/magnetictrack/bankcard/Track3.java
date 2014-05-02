@@ -37,7 +37,7 @@ public class Track3
   private static final long serialVersionUID = 1469806733607842924L;
 
   private static final Pattern track3Pattern = Pattern
-    .compile(".*[\\t\\n\\r ]?(\\+(.*)\\?)");
+    .compile(".*?[\t\n\r ]{0,2}(\\+(.*)\\?)");
 
   /**
    * Parses magnetic track 3 data into a Track3 object.
