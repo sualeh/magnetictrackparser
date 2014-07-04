@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<document>
+  <properties>
+    <title>Magnetic Track Parser</title>
+    <author email="sualeh@hotmail.com">Sualeh Fatehi</author>
+  </properties>
+  <body>
+    <release version="1.2" date="2014-07-07">
+      <action dev="Sualeh Fatehi" type="update">
+        Creating Magnetic Track Parser website.
+      </action>
+    </release>
+  </body>
+</document>
