@@ -169,6 +169,7 @@
         </dependencies>
         <configuration>
           <generateSitemap>true</generateSitemap>
+          <relativizeDecorationLinks>false</relativizeDecorationLinks>
           <reportPlugins>
             <plugin>
               <groupId>org.apache.maven.plugins</groupId>

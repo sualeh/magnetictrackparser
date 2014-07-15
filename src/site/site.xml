@@ -15,8 +15,11 @@
   <body>
     <links>
       <item
+        name="Project on GitHub"
+        href="https://github.com/sualeh/magnetictrackparser" />    
+      <item
         name="Download"
-        href="http://sourceforge.net/project/showfiles.php?group_id=193171" />
+        href="https://github.com/sualeh/magnetictrackparser/releases" />
     </links>
     <menu name="Magnetic Track Parser">
       <item
