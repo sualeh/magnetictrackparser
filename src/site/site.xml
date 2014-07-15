@@ -13,18 +13,11 @@
     <logo name="Maven" href="http://maven.apache.org/" img="http://maven.apache.org/images/logos/maven-button-1.png" />
   </poweredBy>
   <body>
-    <links>
-      <item
-        name="Project on GitHub"
-        href="https://github.com/sualeh/magnetictrackparser" />    
-      <item
-        name="Download"
-        href="https://github.com/sualeh/magnetictrackparser/releases" />
-    </links>
     <menu name="Magnetic Track Parser">
       <item
         name="About Magnetic Track Parser"
         href="index.html" />
     </menu>
+    <menu ref="reports"/>
   </body>
 </project>
