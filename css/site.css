@@ -1,1 +1,8 @@
-/* You can override this file with your own styles */
+tt {
+  font: monospace;
+  font-size: 1em;
+  line-height: 1.2em;
+  background: #fff7f0;
+  white-space: pre;
+  overflow:auto; 
+}
