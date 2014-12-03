@@ -1,6 +1,6 @@
 # Magnetic Track Parser
 
-*Magnetic Track Parser* is a Java 7 library that can parse magnetic track data from a bank issued credit card, such as might be returned from a USB magnetic card stripe reader. All classes are immutable and thread-safe. The standard `toString()` function formats data in a readable form. Validity is enforced by JUnit tests. Maven is needed for a build.
+*Magnetic Track Parser* is a Java library that can parse magnetic track data from a bank issued credit card, such as might be returned from a USB magnetic card stripe reader. All classes are immutable and thread-safe. The standard `toString()` function formats data in a readable form. Validity is enforced by JUnit tests. Maven is needed for a build. Java 6 or newer is required.
 
 See the article on [Magnetic stripe card] on Wikipedia for information about the format of track data.
 
@@ -17,7 +17,7 @@ To use *Magnetic Track Parser* in your Maven build, include the following depend
 <dependency>
     <groupId>us.fatehi</groupId>
     <artifactId>magnetictrackparser</artifactId>
-    <version>1.0</version>
+    <version>1.2</version>
 </dependency>
 ```
 
