@@ -25,6 +25,10 @@ import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import us.fatehi.creditcardnumber.AccountNumber;
+import us.fatehi.creditcardnumber.ExpirationDate;
+import us.fatehi.creditcardnumber.PrimaryAccountNumber;
+
 /**
  * From <a
  * href="https://en.wikipedia.org/wiki/ISO/IEC_7813#Magnetic_tracks"
@@ -96,7 +100,7 @@ public class Track2
 
     if (matcher.matches())
     {
-      pan = new PrimaryAccountNumber(getGroup(matcher, 2));
+      pan = new AccountNumber(getGroup(matcher, 2));
       expirationDate = new ExpirationDate(getGroup(matcher, 3));
       serviceCode = new ServiceCode(getGroup(matcher, 4));
     }

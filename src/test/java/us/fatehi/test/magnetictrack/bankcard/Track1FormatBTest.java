@@ -24,8 +24,8 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import us.fatehi.magnetictrack.bankcard.CardBrand;
-import us.fatehi.magnetictrack.bankcard.MajorIndustryIdentifier;
+import us.fatehi.creditcardnumber.CardBrand;
+import us.fatehi.creditcardnumber.MajorIndustryIdentifier;
 import us.fatehi.magnetictrack.bankcard.ServiceCode1;
 import us.fatehi.magnetictrack.bankcard.ServiceCode2;
 import us.fatehi.magnetictrack.bankcard.ServiceCode3;

@@ -3,6 +3,11 @@ package us.fatehi.magnetictrack.bankcard;
 
 import org.threeten.bp.format.DateTimeFormatter;
 
+import us.fatehi.creditcardnumber.AccountNumber;
+import us.fatehi.creditcardnumber.ExpirationDate;
+import us.fatehi.creditcardnumber.Name;
+import us.fatehi.creditcardnumber.PrimaryAccountNumber;
+
 /**
  * Parser and representation for all 3 bank card magnetic track
  * information. Has a method to generate bank card information.
@@ -90,7 +95,7 @@ public class BankCardMagneticTrack
    * 
    * @return Bank card information.
    */
-  public BankCard toBankCard()
+  public MagneticStripeBankCard toBankCard()
   {
     final PrimaryAccountNumber pan;
     if (track1.hasPrimaryAccountNumber())
@@ -103,7 +108,7 @@ public class BankCardMagneticTrack
     }
     else
     {
-      pan = new PrimaryAccountNumber();
+      pan = new AccountNumber();
     }
     if (track1.hasPrimaryAccountNumber() && track2.hasPrimaryAccountNumber())
     {
@@ -166,7 +171,7 @@ public class BankCardMagneticTrack
       }
     }
 
-    final BankCard cardInfo = new BankCard(pan,
+    final MagneticStripeBankCard cardInfo = new MagneticStripeBankCard(pan,
                                            expirationDate,
                                            name,
                                            serviceCode);

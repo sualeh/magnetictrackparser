@@ -27,9 +27,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import us.fatehi.magnetictrack.bankcard.BankCard;
+import us.fatehi.creditcardnumber.AccountNumber;
+import us.fatehi.creditcardnumber.BankCard;
+import us.fatehi.creditcardnumber.PrimaryAccountNumber;
 import us.fatehi.magnetictrack.bankcard.BankCardMagneticTrack;
-import us.fatehi.magnetictrack.bankcard.PrimaryAccountNumber;
 
 /**
  * Magnetic Track Parser console application.
@@ -84,7 +85,7 @@ public class Main
       }
       if (!isBlank(line))
       {
-        final PrimaryAccountNumber pan = new PrimaryAccountNumber(line);
+        final PrimaryAccountNumber pan = new AccountNumber(line);
         final BankCard card = new BankCard(pan);
         System.out.println(card);
       }
