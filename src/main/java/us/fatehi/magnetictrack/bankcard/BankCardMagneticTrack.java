@@ -186,9 +186,10 @@ public class BankCardMagneticTrack
   {
     final String NEWLINE = System.getProperty("line.separator");
     final StringBuilder buffer = new StringBuilder();
+
+    buffer.append("Track 1: ");
     if (track1.hasRawTrackData())
     {
-      buffer.append("Track 1: ");
       buffer.append(track1.getRawTrackData()).append(NEWLINE);
       if (track1.hasPrimaryAccountNumber())
       {
@@ -253,12 +254,12 @@ public class BankCardMagneticTrack
     }
     else
     {
-      buffer.append("No Track 1 Data").append(NEWLINE);
+      buffer.append(" Not Available.").append(NEWLINE);
     }
 
+    buffer.append("Track 2: ");
     if (track2.hasRawTrackData())
     {
-      buffer.append("Track 2: ");
       buffer.append(track2.getRawTrackData()).append(NEWLINE);
       if (track2.hasPrimaryAccountNumber())
       {
@@ -314,12 +315,12 @@ public class BankCardMagneticTrack
     }
     else
     {
-      buffer.append("No Track 2 Data").append(NEWLINE);
+      buffer.append(" Not Available.").append(NEWLINE);
     }
 
+    buffer.append("Track 3: ");
     if (track3.hasRawTrackData())
     {
-      buffer.append("Track 3: ");
       buffer.append(track3.getRawTrackData()).append(NEWLINE);
       if (track3.hasDiscretionaryData())
       {
@@ -333,7 +334,7 @@ public class BankCardMagneticTrack
     }
     else
     {
-      buffer.append("No Track 3 Data").append(NEWLINE);
+      buffer.append(" Not Available.").append(NEWLINE);
     }
 
     return buffer.toString();
