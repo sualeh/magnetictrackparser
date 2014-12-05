@@ -6,7 +6,7 @@
   <version>1.3</version>
   <packaging>jar</packaging>
   <name>Magnetic Track Parser</name>
-  <description>Magnetic Track Parser is a Java 6 library that can parse magnetic tracks from a bank issued card. All classes are immutable and thread-safe. The standard `toString()` function formats data in a readable form. Validity is enforced by JUnit tests. Maven is needed for a build.</description>
+  <description>Magnetic Track Parser is a library that can parse magnetic tracks from a bank issued card. All classes are immutable and thread-safe. The standard `toString()` function formats data in a readable form.</description>
   <url>https://github.com/sualeh/magnetictrackparser</url>
   <scm>
     <connection>scm:git:git@github.com:sualeh/magnetictrackparser.git</connection>

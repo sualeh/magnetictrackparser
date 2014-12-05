@@ -1,8 +1,10 @@
 # Magnetic Track Parser
 
-*Magnetic Track Parser* is a Java 6 library that can parse magnetic track data from a bank issued credit card, such as might be returned from a USB magnetic card stripe reader. All classes are immutable and thread-safe. The standard `toString()` function formats data in a readable form. Validity is enforced by JUnit tests. Maven is needed for a build.
+*Magnetic Track Parser* is a Java library that can parse magnetic track data from a bank issued credit card, such as might be returned from a USB magnetic card stripe reader. All classes are immutable and thread-safe. The standard `toString()` function formats data in a readable form. Validity is enforced by JUnit tests. Java 6 or newer is required. Maven is needed for a build.
 
 See the article on [Magnetic stripe card](http://en.wikipedia.org/wiki/Magnetic_stripe_card) on Wikipedia for information about the format of track data.
+
+Magnetic Track Parser depends on the [Credit Card Number](https://github.com/sualeh/credit_card_number) library.
 
 ## Download
 
@@ -73,5 +75,22 @@ Track 2: ;5350290149345177=16042010000056700100?
     0 - Authorization Processing: Normal.
     1 - Allowed Services: No restrictions. PIN Requirements: None.
   Discretionary Data: 0000056700100
-No Track 3 Data
+Track 3:  Not Available.
+
+Bank Card Information: 
+  Primary Account Number: 5350290149345177
+  Primary Account Number (Secure): MasterCard-5177
+    Major Industry Identifier: 5 - Banking and financial
+    Issuer Identification Number: 535029
+    Card Brand: MasterCard
+    Last Four Digits: 5177
+    Passes Luhn Check? Yes
+    Is Primary Account Number Valid? Yes
+  Expiration Date: April 2016
+    Is Expired: No
+  Name: Sualeh Fatehi
+  Service Code: 
+    2 - Interchange: International interchange. Technology: Integrated circuit card.
+    0 - Authorization Processing: Normal.
+    1 - Allowed Services: No restrictions. PIN Requirements: None.
 ```
