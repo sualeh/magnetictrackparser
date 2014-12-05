@@ -1,10 +1,12 @@
 # Magnetic Track Parser
 
-*Magnetic Track Parser* is a Java library that can parse magnetic track data from a bank issued credit card, such as might be returned from a USB magnetic card stripe reader. All classes are immutable and thread-safe. The standard `toString()` function formats data in a readable form. Validity is enforced by JUnit tests. Java 6 or newer is required. Maven is needed for a build.
+*Magnetic Track Parser* is a Java library that can parse magnetic track data from a bank issued credit card, such as might be returned from a USB magnetic card stripe reader. 
+
+All classes are immutable and thread-safe. The standard `toString()` function formats data in a readable form. Validity is enforced by JUnit tests. Java 6 or newer is required. Maven is needed for a build. Magnetic Track Parser depends on the [Credit Card Number](https://github.com/sualeh/credit_card_number) library.
+
+The goal of this project is to use publicly and freely available documentation to create a reliable Java library to provide information about magnetic tracks and credit card numbers.
 
 See the article on [Magnetic stripe card](http://en.wikipedia.org/wiki/Magnetic_stripe_card) on Wikipedia for information about the format of track data.
-
-Magnetic Track Parser depends on the [Credit Card Number](https://github.com/sualeh/credit_card_number) library.
 
 ## Download
 
@@ -45,7 +47,7 @@ Bank Card Information:
 ### How to Parse Magnetic Track Data
 
 To parse a magnetic track, use code like:
-```
+```java
 final BankCardMagneticTrack track = 
     BankCardMagneticTrack.from("%B5350290149345177^FATEHI/SUALEH^16042010000000000000000000000000000567001000?;5350290149345177=16042010000056700100?");
 System.out.println(track);
