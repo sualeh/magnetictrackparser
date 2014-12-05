@@ -29,7 +29,7 @@ To use *Magnetic Track Parser* in your Maven build, include the following depend
 ### How to Get Bank Card Information
 
 To get bank card information, use code like:
-```
+```java
 final PrimaryAccountNumber pan = new PrimaryAccountNumber("371449635398431");
 final BankCard card = new BankCard(pan);
 System.out.println(card);
