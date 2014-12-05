@@ -30,6 +30,7 @@ import us.fatehi.creditcardnumber.AccountNumber;
 import us.fatehi.creditcardnumber.ExpirationDate;
 import us.fatehi.creditcardnumber.Name;
 import us.fatehi.creditcardnumber.PrimaryAccountNumber;
+import us.fatehi.creditcardnumber.ServiceCode;
 
 /**
  * Parses, and represents a card's track 1 data, in format "B". From <a

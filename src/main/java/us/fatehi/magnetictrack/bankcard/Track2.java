@@ -28,6 +28,7 @@ import java.util.regex.Pattern;
 import us.fatehi.creditcardnumber.AccountNumber;
 import us.fatehi.creditcardnumber.ExpirationDate;
 import us.fatehi.creditcardnumber.PrimaryAccountNumber;
+import us.fatehi.creditcardnumber.ServiceCode;
 
 /**
  * From <a

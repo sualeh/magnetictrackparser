@@ -26,9 +26,9 @@ import org.junit.Test;
 
 import us.fatehi.creditcardnumber.CardBrand;
 import us.fatehi.creditcardnumber.MajorIndustryIdentifier;
-import us.fatehi.magnetictrack.bankcard.ServiceCode1;
-import us.fatehi.magnetictrack.bankcard.ServiceCode2;
-import us.fatehi.magnetictrack.bankcard.ServiceCode3;
+import us.fatehi.creditcardnumber.ServiceCode1;
+import us.fatehi.creditcardnumber.ServiceCode2;
+import us.fatehi.creditcardnumber.ServiceCode3;
 import us.fatehi.magnetictrack.bankcard.Track1FormatB;
 
 public class Track1FormatBNoSentinelTest
