@@ -18,14 +18,9 @@ public class BankCardMagneticTrack
   extends BaseBankCardTrackData
 {
 
-  private static final long serialVersionUID = -8703108091852410189L;
-
-  protected static final DateTimeFormatter formatter = DateTimeFormatter
-    .ofPattern("MMMM yyyy");
-
   /**
    * Parses magnetic track data into a BankCardMagneticTrack object.
-   * 
+   *
    * @param rawTrackData
    *        Raw track data as a string. Can include newlines, and all 3
    *        tracks.
@@ -36,6 +31,11 @@ public class BankCardMagneticTrack
   {
     return new BankCardMagneticTrack(rawTrackData);
   }
+
+  private static final long serialVersionUID = -8703108091852410189L;
+
+  protected static final DateTimeFormatter formatter = DateTimeFormatter
+    .ofPattern("MMMM yyyy");
 
   private final Track1FormatB track1;
   private final Track2 track2;
@@ -62,7 +62,7 @@ public class BankCardMagneticTrack
 
   /**
    * Gets track 1 representation.
-   * 
+   *
    * @return Track 1 representation.
    */
   public Track1FormatB getTrack1()
@@ -72,7 +72,7 @@ public class BankCardMagneticTrack
 
   /**
    * Gets track 2 representation.
-   * 
+   *
    * @return Track 2 representation.
    */
   public Track2 getTrack2()
@@ -82,7 +82,7 @@ public class BankCardMagneticTrack
 
   /**
    * Gets track 3 representation.
-   * 
+   *
    * @return Track 3 representation.
    */
   public Track3 getTrack3()
@@ -94,7 +94,7 @@ public class BankCardMagneticTrack
    * Constructs and returns bank card information, if all the track data
    * is consistent. That is, if any bank card information is repeated in
    * track 1 and track 2, it should be the same data.
-   * 
+   *
    * @return Bank card information.
    */
   public BankCard toBankCard()
@@ -338,6 +338,9 @@ public class BankCardMagneticTrack
     {
       buffer.append(" Not Available.").append(NEWLINE);
     }
+
+    final BankCard bankCard = toBankCard();
+    buffer.append(NEWLINE).append(bankCard).append(NEWLINE);
 
     return buffer.toString();
   }
