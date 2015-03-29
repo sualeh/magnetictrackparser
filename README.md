@@ -30,7 +30,7 @@ To use *Magnetic Track Parser* in your Maven build, include the following depend
 
 To get bank card information, use code like:
 ```java
-final PrimaryAccountNumber pan = new PrimaryAccountNumber("371449635398431");
+final PrimaryAccountNumber pan = new  AccountNumber("371449635398431");
 final BankCard card = new BankCard(pan);
 System.out.println(card);
 ```
@@ -38,10 +38,13 @@ and you will get this output:
 ```
 Bank Card Information: 
   Primary Account Number: 371449635398431
-    MII: 3 - Travel and entertainment and banking/financial
-    IIN: 371449
+  Primary Account Number (Secure): AmericanExpress-8431
+    Major Industry Identifier: 3 - Travel and entertainment and banking/financial
+    Issuer Identification Number: 371449
     Card Brand: AmericanExpress
-    Passes Luhn Check: true
+    Last Four Digits: 8431
+    Passes Luhn Check? Yes
+    Is Primary Account Number Valid? Yes
 ```
 
 ### How to Parse Magnetic Track Data
@@ -54,30 +57,18 @@ System.out.println(track);
 ```
 and you will get this output:
 ```
-Track 1: %B5350290149345177^FATEHI/SUALEH^16042010000000000000000000000000000567001000?
+TRACK 1: %B5350290149345177^FATEHI/SUALEH^16042010000000000000000000000000000567001000?
   Primary Account Number: 5350290149345177
-    MII: 5 - Banking and financial
-    IIN: 535029
-    Card Brand: MasterCard
   Expiration Date: April 2016
   Name: Sualeh Fatehi
-  Service Code: 
-    2 - Interchange: International interchange. Technology: Integrated circuit card.
-    0 - Authorization Processing: Normal.
-    1 - Allowed Services: No restrictions. PIN Requirements: None.
+  Service Code: 201
   Discretionary Data: 0000000000000000000000000000567001000
-Track 2: ;5350290149345177=16042010000056700100?
+TRACK 2: ;5350290149345177=16042010000056700100?
   Primary Account Number: 5350290149345177
-    MII: 5 - Banking and financial
-    IIN: 535029
-    Card Brand: MasterCard
   Expiration Date: April 2016
-  Service Code: 
-    2 - Interchange: International interchange. Technology: Integrated circuit card.
-    0 - Authorization Processing: Normal.
-    1 - Allowed Services: No restrictions. PIN Requirements: None.
+  Service Code: 201
   Discretionary Data: 0000056700100
-Track 3:  Not Available.
+TRACK 3:  Not Available.
 
 Bank Card Information: 
   Primary Account Number: 5350290149345177

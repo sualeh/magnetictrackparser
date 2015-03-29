@@ -1,3 +1,22 @@
+/*
+ *
+ * Magnetic Track Parser
+ * https://github.com/sualeh/magnetictrackparser
+ * Copyright (c) 2014-2015, Sualeh Fatehi.
+ *
+ * This library is free software; you can redistribute it and/or modify it under the terms
+ * of the GNU Lesser General Public License as published by the Free Software Foundation;
+ * either version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License along with this
+ * library; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330,
+ * Boston, MA 02111-1307, USA.
+ *
+ */
 package us.fatehi.magnetictrack.bankcard;
 
 
@@ -189,21 +208,14 @@ public class BankCardMagneticTrack
     final String NEWLINE = System.getProperty("line.separator");
     final StringBuilder buffer = new StringBuilder();
 
-    buffer.append("Track 1: ");
+    buffer.append("TRACK 1: ");
     if (track1.hasRawTrackData())
     {
       buffer.append(track1.getRawTrackData()).append(NEWLINE);
       if (track1.hasPrimaryAccountNumber())
       {
         final PrimaryAccountNumber pan = track1.getPrimaryAccountNumber();
-        buffer.append("  Primary Account Number: ");
-        buffer.append(pan).append(NEWLINE);
-        buffer.append("    MII: ");
-        buffer.append(pan.getMajorIndustryIdentifier()).append(NEWLINE);
-        buffer.append("    IIN: ");
-        buffer.append(pan.getIssuerIdentificationNumber()).append(NEWLINE);
-        buffer.append("    Card Brand: ");
-        buffer.append(pan.getCardBrand()).append(NEWLINE);
+        buffer.append("  Primary Account Number: ").append(pan).append(NEWLINE);
       }
       else
       {
@@ -231,14 +243,7 @@ public class BankCardMagneticTrack
       if (track1.hasServiceCode())
       {
         final ServiceCode serviceCode = track1.getServiceCode();
-        buffer.append("  Service Code: ");
-        buffer.append(NEWLINE);
-        buffer.append("    ");
-        buffer.append(serviceCode.getServiceCode1()).append(NEWLINE);
-        buffer.append("    ");
-        buffer.append(serviceCode.getServiceCode2()).append(NEWLINE);
-        buffer.append("    ");
-        buffer.append(serviceCode.getServiceCode3()).append(NEWLINE);
+        buffer.append("  Service Code: ").append(serviceCode).append(NEWLINE);
       }
       else
       {
@@ -259,21 +264,14 @@ public class BankCardMagneticTrack
       buffer.append(" Not Available.").append(NEWLINE);
     }
 
-    buffer.append("Track 2: ");
+    buffer.append("TRACK 2: ");
     if (track2.hasRawTrackData())
     {
       buffer.append(track2.getRawTrackData()).append(NEWLINE);
       if (track2.hasPrimaryAccountNumber())
       {
         final PrimaryAccountNumber pan = track2.getPrimaryAccountNumber();
-        buffer.append("  Primary Account Number: ");
-        buffer.append(pan).append(NEWLINE);
-        buffer.append("    MII: ");
-        buffer.append(pan.getMajorIndustryIdentifier()).append(NEWLINE);
-        buffer.append("    IIN: ");
-        buffer.append(pan.getIssuerIdentificationNumber()).append(NEWLINE);
-        buffer.append("    Card Brand: ");
-        buffer.append(pan.getCardBrand()).append(NEWLINE);
+        buffer.append("  Primary Account Number: ").append(pan).append(NEWLINE);
       }
       else
       {
@@ -287,19 +285,12 @@ public class BankCardMagneticTrack
       }
       else
       {
-        buffer.append("  No Expiration Date").append(NEWLINE);
+        buffer.append("No Expiration Date").append(NEWLINE);
       }
       if (track2.hasServiceCode())
       {
         final ServiceCode serviceCode = track2.getServiceCode();
-        buffer.append("  Service Code: ");
-        buffer.append(NEWLINE);
-        buffer.append("    ");
-        buffer.append(serviceCode.getServiceCode1()).append(NEWLINE);
-        buffer.append("    ");
-        buffer.append(serviceCode.getServiceCode2()).append(NEWLINE);
-        buffer.append("    ");
-        buffer.append(serviceCode.getServiceCode3()).append(NEWLINE);
+        buffer.append("  Service Code: ").append(serviceCode).append(NEWLINE);
       }
       else
       {
@@ -320,7 +311,7 @@ public class BankCardMagneticTrack
       buffer.append(" Not Available.").append(NEWLINE);
     }
 
-    buffer.append("Track 3: ");
+    buffer.append("TRACK 3: ");
     if (track3.hasRawTrackData())
     {
       buffer.append(track3.getRawTrackData()).append(NEWLINE);

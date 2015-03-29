@@ -17,34 +17,18 @@
  * Boston, MA 02111-1307, USA.
  *
  */
-package us.fatehi.magnetictrack;
+package com.example;
 
+import us.fatehi.magnetictrack.bankcard.BankCardMagneticTrack;
 
-import java.io.Serializable;
-
-public interface TrackData
-  extends Serializable
+public class SampleCode2
 {
 
-  /**
-   * Whether the track data exceeds the maximum length allowed.
-   *
-   * @return True if too long
-   */
-  boolean exceedsMaximumLength();
-
-  /**
-   * Raw track data.
-   *
-   * @return Raw track data
-   */
-  String getRawTrackData();
-
-  /**
-   * Whether raw track data is present.
-   *
-   * @return True if raw track data is available.
-   */
-  boolean hasRawTrackData();
-
+  public static void main(String[] args)
+  {
+    final BankCardMagneticTrack track = 
+        BankCardMagneticTrack.from("%B5350290149345177^FATEHI/SUALEH^16042010000000000000000000000000000567001000?;5350290149345177=16042010000056700100?");
+    System.out.println(track);
+  }
+  
 }
