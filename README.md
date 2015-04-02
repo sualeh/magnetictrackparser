@@ -4,7 +4,7 @@
 
 All classes are immutable and thread-safe. The standard `toString()` function formats data in a readable form. Validity is enforced by JUnit tests. Java 6 or newer is required. Magnetic Track Parser depends on the [Credit Card Number](https://github.com/sualeh/credit_card_number) library.
 
->> The goal of this project is to use publicly and freely available documentation to create a reliable Java library to provide information about magnetic tracks and credit card numbers.
+> The goal of this project is to use publicly and freely available documentation to create a reliable Java library to provide information about magnetic tracks and credit card numbers.
 
 See the article on [Magnetic stripe card](http://en.wikipedia.org/wiki/Magnetic_stripe_card) on Wikipedia for information about the format of track data.
 
