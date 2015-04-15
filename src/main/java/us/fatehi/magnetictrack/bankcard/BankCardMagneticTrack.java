@@ -22,7 +22,6 @@ package us.fatehi.magnetictrack.bankcard;
 
 import org.threeten.bp.format.DateTimeFormatter;
 
-import us.fatehi.creditcardnumber.AccountNumber;
 import us.fatehi.creditcardnumber.BankCard;
 import us.fatehi.creditcardnumber.ExpirationDate;
 import us.fatehi.creditcardnumber.Name;
@@ -34,8 +33,13 @@ import us.fatehi.creditcardnumber.ServiceCode;
  * information. Has a method to generate bank card information.
  */
 public class BankCardMagneticTrack
-  extends BaseBankCardTrackData
+  extends BaseTrackData
 {
+
+  private static final long serialVersionUID = -8703108091852410189L;
+
+  protected static final DateTimeFormatter formatter = DateTimeFormatter
+    .ofPattern("MMMM yyyy");
 
   /**
    * Parses magnetic track data into a BankCardMagneticTrack object.
@@ -48,25 +52,26 @@ public class BankCardMagneticTrack
    */
   public static BankCardMagneticTrack from(final String rawTrackData)
   {
-    return new BankCardMagneticTrack(rawTrackData);
+    final Track1FormatB track1 = Track1FormatB.from(rawTrackData);
+    final Track2 track2 = Track2.from(rawTrackData);
+    final Track3 track3 = Track3.from(rawTrackData);
+
+    return new BankCardMagneticTrack(rawTrackData, track1, track2, track3);
   }
-
-  private static final long serialVersionUID = -8703108091852410189L;
-
-  protected static final DateTimeFormatter formatter = DateTimeFormatter
-    .ofPattern("MMMM yyyy");
 
   private final Track1FormatB track1;
   private final Track2 track2;
   private final Track3 track3;
 
-  private BankCardMagneticTrack(final String rawTrackData)
+  private BankCardMagneticTrack(final String rawTrackData,
+                                final Track1FormatB track1,
+                                final Track2 track2,
+                                final Track3 track3)
   {
     super(rawTrackData, "");
-
-    track1 = Track1FormatB.from(rawTrackData);
-    track2 = Track2.from(rawTrackData);
-    track3 = Track3.from(rawTrackData);
+    this.track1 = track1;
+    this.track2 = track2;
+    this.track3 = track3;
   }
 
   /**
@@ -76,7 +81,7 @@ public class BankCardMagneticTrack
   public boolean exceedsMaximumLength()
   {
     return track1.exceedsMaximumLength() || track2.exceedsMaximumLength()
-           || track2.exceedsMaximumLength();
+           || track3.exceedsMaximumLength();
   }
 
   /**
@@ -110,6 +115,44 @@ public class BankCardMagneticTrack
   }
 
   /**
+   * Verifies that the available data is consistent between Track 1 and
+   * Track 2.
+   *
+   * @return True if the data is consistent.
+   */
+  public boolean isConsistent()
+  {
+    boolean isConsistent = true;
+
+    if (track1.hasPrimaryAccountNumber() && track2.hasPrimaryAccountNumber())
+    {
+      if (!track1.getPrimaryAccountNumber()
+        .equals(track2.getPrimaryAccountNumber()))
+      {
+        isConsistent = false;
+      }
+    }
+
+    if (track1.hasExpirationDate() && track2.hasExpirationDate())
+    {
+      if (!track1.getExpirationDate().equals(track2.getExpirationDate()))
+      {
+        isConsistent = false;
+      }
+    }
+
+    if (track1.hasServiceCode() && track2.hasServiceCode())
+    {
+      if (!track1.getServiceCode().equals(track2.getServiceCode()))
+      {
+        isConsistent = false;
+      }
+    }
+
+    return isConsistent;
+  }
+
+  /**
    * Constructs and returns bank card information, if all the track data
    * is consistent. That is, if any bank card information is repeated in
    * track 1 and track 2, it should be the same data.
@@ -123,21 +166,9 @@ public class BankCardMagneticTrack
     {
       pan = track1.getPrimaryAccountNumber();
     }
-    else if (track2.hasPrimaryAccountNumber())
-    {
-      pan = track2.getPrimaryAccountNumber();
-    }
     else
     {
-      pan = new AccountNumber();
-    }
-    if (track1.hasPrimaryAccountNumber() && track2.hasPrimaryAccountNumber())
-    {
-      if (!track1.getPrimaryAccountNumber()
-        .equals(track2.getPrimaryAccountNumber()))
-      {
-        throw new IllegalStateException("Inconsistent primary account number between track 1 and track 2");
-      }
+      pan = track2.getPrimaryAccountNumber();
     }
 
     final Name name;
@@ -155,20 +186,9 @@ public class BankCardMagneticTrack
     {
       expirationDate = track1.getExpirationDate();
     }
-    else if (track2.hasExpirationDate())
-    {
-      expirationDate = track2.getExpirationDate();
-    }
     else
     {
-      expirationDate = new ExpirationDate();
-    }
-    if (track1.hasExpirationDate() && track2.hasExpirationDate())
-    {
-      if (!track1.getExpirationDate().equals(track2.getExpirationDate()))
-      {
-        throw new IllegalStateException("Inconsistent expiration date between track 1 and track 2");
-      }
+      expirationDate = track2.getExpirationDate();
     }
 
     final ServiceCode serviceCode;
@@ -176,20 +196,9 @@ public class BankCardMagneticTrack
     {
       serviceCode = track1.getServiceCode();
     }
-    else if (track2.hasServiceCode())
-    {
-      serviceCode = track2.getServiceCode();
-    }
     else
     {
-      serviceCode = new ServiceCode();
-    }
-    if (track1.hasServiceCode() && track2.hasServiceCode())
-    {
-      if (!track1.getServiceCode().equals(track2.getServiceCode()))
-      {
-        throw new IllegalStateException("Inconsistent service between track 1 and track 2");
-      }
+      serviceCode = track2.getServiceCode();
     }
 
     final BankCard cardInfo = new BankCard(pan,

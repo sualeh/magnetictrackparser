@@ -64,7 +64,7 @@ public class Track2
 
   /**
    * Parses magnetic track 2 data into a Track2 object.
-   * 
+   *
    * @param rawTrackData
    *        Raw track data as a string. Can include newlines, and other
    *        tracks as well.
@@ -75,42 +75,42 @@ public class Track2
     final Matcher matcher = track2Pattern.matcher(trimToEmpty(rawTrackData));
 
     final String rawTrack2Data;
+    final PrimaryAccountNumber pan;
+    final ExpirationDate expirationDate;
+    final ServiceCode serviceCode;
     final String discretionaryData;
+
     if (matcher.matches())
     {
       rawTrack2Data = getGroup(matcher, 1);
+      pan = new AccountNumber(getGroup(matcher, 2));
+      expirationDate = new ExpirationDate(getGroup(matcher, 3));
+      serviceCode = new ServiceCode(getGroup(matcher, 4));
       discretionaryData = getGroup(matcher, 5);
     }
     else
     {
       rawTrack2Data = "";
+      pan = new AccountNumber();
+      expirationDate = new ExpirationDate();
+      serviceCode = new ServiceCode();
       discretionaryData = "";
     }
-    return new Track2(rawTrack2Data, discretionaryData, matcher);
+
+    return new Track2(rawTrack2Data,
+                      pan,
+                      expirationDate,
+                      serviceCode,
+                      discretionaryData);
   }
 
-  private final PrimaryAccountNumber pan;
-  private final ExpirationDate expirationDate;
-  private final ServiceCode serviceCode;
-
-  private Track2(final String rawTrack2Data,
-                 final String discretionaryData,
-                 final Matcher matcher)
+  private Track2(final String rawTrackData,
+                 final PrimaryAccountNumber pan,
+                 final ExpirationDate expirationDate,
+                 final ServiceCode serviceCode,
+                 final String discretionaryData)
   {
-    super(rawTrack2Data, discretionaryData);
-
-    if (matcher.matches())
-    {
-      pan = new AccountNumber(getGroup(matcher, 2));
-      expirationDate = new ExpirationDate(getGroup(matcher, 3));
-      serviceCode = new ServiceCode(getGroup(matcher, 4));
-    }
-    else
-    {
-      pan = null;
-      expirationDate = null;
-      serviceCode = null;
-    }
+    super(rawTrackData, pan, expirationDate, serviceCode, discretionaryData);
   }
 
   /**
@@ -120,68 +120,6 @@ public class Track2
   public boolean exceedsMaximumLength()
   {
     return hasRawTrackData() && getRawTrackData().length() > 40;
-  }
-
-  /**
-   * Gets the primary account number for the card.
-   * 
-   * @return Primary account number.
-   */
-  public ExpirationDate getExpirationDate()
-  {
-    return expirationDate;
-  }
-
-  /**
-   * Gets the primary account number for the card.
-   * 
-   * @return Primary account number.
-   */
-  public PrimaryAccountNumber getPrimaryAccountNumber()
-  {
-    return pan;
-  }
-
-  /**
-   * Gets the card service code.
-   * 
-   * @return Card service code.
-   */
-  public ServiceCode getServiceCode()
-  {
-    return serviceCode;
-  }
-
-  /**
-   * Checks whether the card expiration date is available.
-   * 
-   * @return True if the card expiration date is available.
-   */
-  public boolean hasExpirationDate()
-  {
-    return expirationDate != null && expirationDate.hasExpirationDate();
-  }
-
-  /**
-   * Checks whether the primary account number for the card is
-   * available.
-   * 
-   * @return True if the primary account number for the card is
-   *         available.
-   */
-  public boolean hasPrimaryAccountNumber()
-  {
-    return pan != null && pan.hasPrimaryAccountNumber();
-  }
-
-  /**
-   * Checks whether the card service code is available.
-   * 
-   * @return True if the card service code is available.
-   */
-  public boolean hasServiceCode()
-  {
-    return serviceCode != null && serviceCode.hasServiceCode();
   }
 
 }

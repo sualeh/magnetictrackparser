@@ -54,7 +54,7 @@ import us.fatehi.creditcardnumber.ServiceCode;
  * ISO/IEC 7811-2</li>
  * </ol>
  * The maximum record length is 79 alphanumeric characters.
- * 
+ *
  * @see <a
  *      href="https://en.wikipedia.org/wiki/ISO/IEC_7813#Magnetic_tracks">Wikipedia
  *      - ISO/IEC 7813</a>
@@ -70,7 +70,7 @@ public class Track1FormatB
 
   /**
    * Parses magnetic track 1 format B data into a Track1FormatB object.
-   * 
+   *
    * @param rawTrackData
    *        Raw track data as a string. Can include newlines, and other
    *        tracks as well.
@@ -82,49 +82,57 @@ public class Track1FormatB
       .matcher(trimToEmpty(rawTrackData));
 
     final String rawTrack1Data;
+    final PrimaryAccountNumber pan;
+    final ExpirationDate expirationDate;
+    final Name name;
+    final ServiceCode serviceCode;
+    final String formatCode;
     final String discretionaryData;
+
     if (matcher.matches())
     {
       rawTrack1Data = getGroup(matcher, 1);
-      discretionaryData = getGroup(matcher, 7);
-    }
-    else
-    {
-      rawTrack1Data = "";
-      discretionaryData = "";
-    }
-    return new Track1FormatB(rawTrack1Data, discretionaryData, matcher);
-  }
-
-  private final String formatCode;
-  private final PrimaryAccountNumber pan;
-  private final Name name;
-  private final ExpirationDate expirationDate;
-  private final ServiceCode serviceCode;
-
-  private Track1FormatB(final String rawTrack1Data,
-                        final String discretionaryData,
-                        final Matcher matcher)
-  {
-    super(rawTrack1Data, discretionaryData);
-
-    if (matcher.matches())
-    {
       formatCode = getGroup(matcher, 2);
       pan = new AccountNumber(getGroup(matcher, 3));
       name = new Name(getGroup(matcher, 4));
       expirationDate = new ExpirationDate(getGroup(matcher, 5));
       serviceCode = new ServiceCode(getGroup(matcher, 6));
-
+      discretionaryData = getGroup(matcher, 7);
     }
     else
     {
+      rawTrack1Data = "";
       formatCode = "";
       pan = new AccountNumber();
       name = new Name();
       expirationDate = new ExpirationDate();
       serviceCode = new ServiceCode();
+      discretionaryData = "";
     }
+
+    return new Track1FormatB(rawTrack1Data,
+                             pan,
+                             expirationDate,
+                             name,
+                             serviceCode,
+                             formatCode,
+                             discretionaryData);
+  }
+
+  private final Name name;
+  private final String formatCode;
+
+  private Track1FormatB(final String rawTrackData,
+                        final PrimaryAccountNumber pan,
+                        final ExpirationDate expirationDate,
+                        final Name name,
+                        final ServiceCode serviceCode,
+                        final String formatCode,
+                        final String discretionaryData)
+  {
+    super(rawTrackData, pan, expirationDate, serviceCode, discretionaryData);
+    this.formatCode = formatCode;
+    this.name = name;
   }
 
   /**
@@ -137,18 +145,8 @@ public class Track1FormatB
   }
 
   /**
-   * Gets the card expiration date.
-   * 
-   * @return Card expiration date.
-   */
-  public ExpirationDate getExpirationDate()
-  {
-    return expirationDate;
-  }
-
-  /**
    * Gets the track 1 format code, usually "B".
-   * 
+   *
    * @return Track 1 format code, usually "B"
    */
   public String getFormatCode()
@@ -157,8 +155,8 @@ public class Track1FormatB
   }
 
   /**
-   * Gets the cardholder's name.s
-   * 
+   * Gets the cardholder's name.
+   *
    * @return Cardholder's name
    */
   public Name getName()
@@ -167,38 +165,8 @@ public class Track1FormatB
   }
 
   /**
-   * Gets the primary account number for the card.
-   * 
-   * @return Primary account number.
-   */
-  public PrimaryAccountNumber getPrimaryAccountNumber()
-  {
-    return pan;
-  }
-
-  /**
-   * Gets the card service code.
-   * 
-   * @return Card service code.
-   */
-  public ServiceCode getServiceCode()
-  {
-    return serviceCode;
-  }
-
-  /**
-   * Checks whether the card expiration date is available.
-   * 
-   * @return True if the card expiration date is available.
-   */
-  public boolean hasExpirationDate()
-  {
-    return expirationDate != null && expirationDate.hasExpirationDate();
-  }
-
-  /**
    * Checks whether the format code is available.
-   * 
+   *
    * @return True if the format code is available.
    */
   public boolean hasFormatCode()
@@ -208,34 +176,12 @@ public class Track1FormatB
 
   /**
    * Checks whether the cardholder's name is available.
-   * 
+   *
    * @return True if the cardholder's name is available.
    */
   public boolean hasName()
   {
     return name != null && name.hasName();
-  }
-
-  /**
-   * Checks whether the primary account number for the card is
-   * available.
-   * 
-   * @return True if the primary account number for the card is
-   *         available.
-   */
-  public boolean hasPrimaryAccountNumber()
-  {
-    return pan != null;
-  }
-
-  /**
-   * Checks whether the card service code is available.
-   * 
-   * @return True if the card service code is available.
-   */
-  public boolean hasServiceCode()
-  {
-    return serviceCode != null && serviceCode.hasServiceCode();
   }
 
 }

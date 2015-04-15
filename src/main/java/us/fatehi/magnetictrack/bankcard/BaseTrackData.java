@@ -17,14 +17,17 @@
  * Boston, MA 02111-1307, USA.
  *
  */
-package us.fatehi.magnetictrack;
+package us.fatehi.magnetictrack.bankcard;
 
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public abstract class BaseTrackData
+import us.fatehi.magnetictrack.TrackData;
+
+abstract class BaseTrackData
   implements TrackData
 {
 
@@ -32,11 +35,36 @@ public abstract class BaseTrackData
 
   protected static final Pattern non_digit = Pattern.compile("[^0-9]");
 
-  private final String rawTrackData;
+  protected static String getGroup(final Matcher matcher, final int group)
+  {
+    final int groupCount = matcher.groupCount();
+    if (groupCount > group - 1)
+    {
+      return matcher.group(group);
+    }
+    else
+    {
+      return null;
+    }
+  }
 
-  protected BaseTrackData(final String rawTrackData)
+  private final String rawTrackData;
+  private final String discretionaryData;
+
+  BaseTrackData(final String rawTrackData, final String discretionaryData)
   {
     this.rawTrackData = rawTrackData;
+    this.discretionaryData = discretionaryData;
+  }
+
+  /**
+   * Gets discretionary data on the track.
+   *
+   * @return Discretionary data.
+   */
+  public String getDiscretionaryData()
+  {
+    return discretionaryData;
   }
 
   /**
@@ -46,6 +74,16 @@ public abstract class BaseTrackData
   public String getRawTrackData()
   {
     return rawTrackData;
+  }
+
+  /**
+   * Whether discretionary data is present.
+   *
+   * @return True if discretionary data is available
+   */
+  public boolean hasDiscretionaryData()
+  {
+    return !isBlank(discretionaryData);
   }
 
   /**

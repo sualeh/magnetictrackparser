@@ -31,7 +31,7 @@ import java.util.regex.Pattern;
  *      - ISO/IEC 7813</a>
  */
 public class Track3
-  extends BaseBankCardTrackData
+  extends BaseTrackData
 {
 
   private static final long serialVersionUID = 1469806733607842924L;
@@ -51,19 +51,19 @@ public class Track3
   {
     final Matcher matcher = track3Pattern.matcher(trimToEmpty(rawTrackData));
 
-    final String rawTrack2Data;
+    final String rawTrack3Data;
     final String discretionaryData;
     if (matcher.matches())
     {
-      rawTrack2Data = getGroup(matcher, 1);
+      rawTrack3Data = getGroup(matcher, 1);
       discretionaryData = getGroup(matcher, 2);
     }
     else
     {
-      rawTrack2Data = "";
+      rawTrack3Data = "";
       discretionaryData = "";
     }
-    return new Track3(rawTrack2Data, discretionaryData);
+    return new Track3(rawTrack3Data, discretionaryData);
   }
 
   private Track3(final String rawTrack2Data, final String discretionaryData)

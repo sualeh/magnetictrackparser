@@ -20,63 +20,162 @@
 package us.fatehi.magnetictrack.bankcard;
 
 
-import static org.apache.commons.lang3.StringUtils.isBlank;
-
-import java.util.regex.Matcher;
-
-import us.fatehi.magnetictrack.BaseTrackData;
+import us.fatehi.creditcardnumber.ExpirationDate;
+import us.fatehi.creditcardnumber.PrimaryAccountNumber;
+import us.fatehi.creditcardnumber.ServiceCode;
 
 /**
  * @see <a
  *      href="https://en.wikipedia.org/wiki/ISO/IEC_7813#Magnetic_tracks">Wikipedia
  *      - ISO/IEC 7813</a>
  */
-public abstract class BaseBankCardTrackData
+abstract class BaseBankCardTrackData
   extends BaseTrackData
 {
 
+  @Override
+  public int hashCode()
+  {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result
+             + ((expirationDate == null)? 0: expirationDate.hashCode());
+    result = prime * result + ((pan == null)? 0: pan.hashCode());
+    result = prime * result
+             + ((serviceCode == null)? 0: serviceCode.hashCode());
+    return result;
+  }
+
+  @Override
+  public boolean equals(Object obj)
+  {
+    if (this == obj)
+    {
+      return true;
+    }
+    if (obj == null)
+    {
+      return false;
+    }
+    if (!(obj instanceof BaseBankCardTrackData))
+    {
+      return false;
+    }
+    BaseBankCardTrackData other = (BaseBankCardTrackData) obj;
+    if (expirationDate == null)
+    {
+      if (other.expirationDate != null)
+      {
+        return false;
+      }
+    }
+    else if (!expirationDate.equals(other.expirationDate))
+    {
+      return false;
+    }
+    if (pan == null)
+    {
+      if (other.pan != null)
+      {
+        return false;
+      }
+    }
+    else if (!pan.equals(other.pan))
+    {
+      return false;
+    }
+    if (serviceCode == null)
+    {
+      if (other.serviceCode != null)
+      {
+        return false;
+      }
+    }
+    else if (!serviceCode.equals(other.serviceCode))
+    {
+      return false;
+    }
+    return true;
+  }
+
   private static final long serialVersionUID = 7821463290736676016L;
 
-  protected static String getGroup(final Matcher matcher, final int group)
-  {
-    final int groupCount = matcher.groupCount();
-    if (groupCount > group - 1)
-    {
-      return matcher.group(group);
-    }
-    else
-    {
-      return null;
-    }
-  }
+  private final PrimaryAccountNumber pan;
+  private final ExpirationDate expirationDate;
+  private final ServiceCode serviceCode;
 
-  private final String discretionaryData;
-
-  protected BaseBankCardTrackData(final String rawTrackData,
-                                  final String discretionaryData)
+  BaseBankCardTrackData(final String rawTrackData,
+                        final PrimaryAccountNumber pan,
+                        final ExpirationDate expirationDate,
+                        final ServiceCode serviceCode,
+                        final String discretionaryData)
   {
-    super(rawTrackData);
-    this.discretionaryData = discretionaryData;
+    super(rawTrackData, discretionaryData);
+    this.pan = pan;
+    this.expirationDate = expirationDate;
+    this.serviceCode = serviceCode;
   }
 
   /**
-   * Gets discretionary data on the track.
-   * 
-   * @return Discretionary data.
-   */
-  public String getDiscretionaryData()
-  {
-    return discretionaryData;
-  }
-
-  /**
-   * Whether discretionary data is present.
+   * Gets the primary account number for the card.
    *
-   * @return True if discretionary data is available
+   * @return Primary account number.
    */
-  public boolean hasDiscretionaryData()
+  public ExpirationDate getExpirationDate()
   {
-    return !isBlank(discretionaryData);
+    return expirationDate;
+  }
+
+  /**
+   * Gets the primary account number for the card.
+   *
+   * @return Primary account number.
+   */
+  public PrimaryAccountNumber getPrimaryAccountNumber()
+  {
+    return pan;
+  }
+
+  /**
+   * Gets the card service code.
+   *
+   * @return Card service code.
+   */
+  public ServiceCode getServiceCode()
+  {
+    return serviceCode;
+  }
+
+  /**
+   * Checks whether the card expiration date is available.
+   *
+   * @return True if the card expiration date is available.
+   */
+  public boolean hasExpirationDate()
+  {
+    return expirationDate != null && expirationDate.hasExpirationDate();
+  }
+
+  /**
+   * Checks whether the primary account number for the card is
+   * available.
+   *
+   * @return True if the primary account number for the card is
+   *         available.
+   */
+  public boolean hasPrimaryAccountNumber()
+  {
+    return pan != null && pan.hasPrimaryAccountNumber();
+  }
+
+  /**
+   * Checks whether the card service code is available.
+   *
+   * @return True if the card service code is available.
+   */
+  public boolean hasServiceCode()
+  {
+    return serviceCode != null && serviceCode.hasServiceCode();
   }
 
 }
