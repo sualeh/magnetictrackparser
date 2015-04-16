@@ -90,7 +90,7 @@ public class Track2
     }
     else
     {
-      rawTrack2Data = "";
+      rawTrack2Data = null;
       pan = new AccountNumber();
       expirationDate = new ExpirationDate();
       serviceCode = new ServiceCode();

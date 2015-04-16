@@ -51,51 +51,6 @@ abstract class BaseBankCardTrackData
     this.serviceCode = serviceCode;
   }
 
-  /**
-   * Verifies that the available data is consistent between Track 1 and
-   * Track 2, or any other track.
-   *
-   * @return True if the data is consistent.
-   */
-  public boolean compares(final BaseBankCardTrackData other)
-  {
-    if (this == other)
-    {
-      return true;
-    }
-    if (other == null)
-    {
-      return false;
-    }
-    boolean equals = true;
-
-    if (hasPrimaryAccountNumber() && other.hasPrimaryAccountNumber())
-    {
-      if (!getPrimaryAccountNumber().equals(other.getPrimaryAccountNumber()))
-      {
-        equals = false;
-      }
-    }
-
-    if (hasExpirationDate() && other.hasExpirationDate())
-    {
-      if (!getExpirationDate().equals(other.getExpirationDate()))
-      {
-        equals = false;
-      }
-    }
-
-    if (hasServiceCode() && other.hasServiceCode())
-    {
-      if (!getServiceCode().equals(other.getServiceCode()))
-      {
-        equals = false;
-      }
-    }
-
-    return equals;
-  }
-
   @Override
   public boolean equals(final Object obj)
   {
@@ -220,6 +175,51 @@ abstract class BaseBankCardTrackData
   public boolean hasServiceCode()
   {
     return serviceCode != null && serviceCode.hasServiceCode();
+  }
+
+  /**
+   * Verifies that the available data is consistent between Track 1 and
+   * Track 2, or any other track.
+   *
+   * @return True if the data is consistent.
+   */
+  public boolean isConsistentWith(final BaseBankCardTrackData other)
+  {
+    if (this == other)
+    {
+      return true;
+    }
+    if (other == null)
+    {
+      return false;
+    }
+    boolean equals = true;
+
+    if (hasPrimaryAccountNumber() && other.hasPrimaryAccountNumber())
+    {
+      if (!getPrimaryAccountNumber().equals(other.getPrimaryAccountNumber()))
+      {
+        equals = false;
+      }
+    }
+
+    if (hasExpirationDate() && other.hasExpirationDate())
+    {
+      if (!getExpirationDate().equals(other.getExpirationDate()))
+      {
+        equals = false;
+      }
+    }
+
+    if (hasServiceCode() && other.hasServiceCode())
+    {
+      if (!getServiceCode().equals(other.getServiceCode()))
+      {
+        equals = false;
+      }
+    }
+
+    return equals;
   }
 
 }

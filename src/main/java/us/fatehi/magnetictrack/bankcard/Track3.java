@@ -41,7 +41,7 @@ public class Track3
 
   /**
    * Parses magnetic track 3 data into a Track3 object.
-   * 
+   *
    * @param rawTrackData
    *        Raw track data as a string. Can include newlines, and other
    *        tracks as well.
@@ -60,7 +60,7 @@ public class Track3
     }
     else
     {
-      rawTrack3Data = "";
+      rawTrack3Data = null;
       discretionaryData = "";
     }
     return new Track3(rawTrack3Data, discretionaryData);

@@ -19,16 +19,17 @@
  */
 package com.example;
 
+
 import us.fatehi.magnetictrack.bankcard.BankCardMagneticTrack;
 
 public class SampleCode2
 {
 
-  public static void main(String[] args)
+  public static void main(final String[] args)
   {
-    final BankCardMagneticTrack track = 
-        BankCardMagneticTrack.from("%B5350290149345177^FATEHI/SUALEH^16042010000000000000000000000000000567001000?;5350290149345177=16042010000056700100?");
+    final BankCardMagneticTrack track = BankCardMagneticTrack
+      .from("%B5350290149345177^FATEHI/SUALEH^16042010000000000000000000000000000567001000?;5350290149345177=16042010000056700100?");
     System.out.println(track);
   }
-  
+
 }

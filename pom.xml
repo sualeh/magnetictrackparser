@@ -8,7 +8,7 @@
   </prerequisites>
   <groupId>us.fatehi</groupId>
   <artifactId>magnetictrackparser</artifactId>
-  <version>1.7</version>
+  <version>1.8</version>
   <packaging>jar</packaging>
   <name>Magnetic Track Parser</name>
   <description>Magnetic Track Parser is a library that can parse magnetic tracks from a bank issued card. All classes are immutable and thread-safe. The standard `toString()` function formats data in a readable form.</description>
@@ -61,7 +61,7 @@
     <dependency>
       <groupId>us.fatehi</groupId>
       <artifactId>credit_card_number</artifactId>
-      <version>1.7</version>
+      <version>1.8</version>
     </dependency>
   </dependencies>
   <properties>

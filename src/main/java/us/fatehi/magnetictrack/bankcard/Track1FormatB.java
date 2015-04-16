@@ -101,7 +101,7 @@ public class Track1FormatB
     }
     else
     {
-      rawTrack1Data = "";
+      rawTrack1Data = null;
       formatCode = "";
       pan = new AccountNumber();
       name = new Name();

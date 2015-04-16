@@ -114,34 +114,7 @@ public class BankCardMagneticTrack
    */
   public boolean isConsistent()
   {
-    boolean isConsistent = true;
-
-    if (track1.hasPrimaryAccountNumber() && track2.hasPrimaryAccountNumber())
-    {
-      if (!track1.getPrimaryAccountNumber()
-        .equals(track2.getPrimaryAccountNumber()))
-      {
-        isConsistent = false;
-      }
-    }
-
-    if (track1.hasExpirationDate() && track2.hasExpirationDate())
-    {
-      if (!track1.getExpirationDate().equals(track2.getExpirationDate()))
-      {
-        isConsistent = false;
-      }
-    }
-
-    if (track1.hasServiceCode() && track2.hasServiceCode())
-    {
-      if (!track1.getServiceCode().equals(track2.getServiceCode()))
-      {
-        isConsistent = false;
-      }
-    }
-
-    return isConsistent;
+    return track1.isConsistentWith(track2);
   }
 
   /**
@@ -225,8 +198,7 @@ public class BankCardMagneticTrack
       if (track1.hasExpirationDate())
       {
         buffer.append("  Expiration Date: ");
-        buffer.append(track2.getExpirationDate().getExpirationDateAsString())
-          .append(NEWLINE);
+        buffer.append(track2.getExpirationDate()).append(NEWLINE);
       }
       else
       {
@@ -281,8 +253,7 @@ public class BankCardMagneticTrack
       if (track2.hasExpirationDate())
       {
         buffer.append("  Expiration Date: ");
-        buffer.append(track2.getExpirationDate().getExpirationDateAsString())
-          .append(NEWLINE);
+        buffer.append(track2.getExpirationDate()).append(NEWLINE);
       }
       else
       {

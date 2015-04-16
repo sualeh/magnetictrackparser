@@ -19,19 +19,19 @@
  */
 package com.example;
 
+
 import us.fatehi.creditcardnumber.AccountNumber;
 import us.fatehi.creditcardnumber.BankCard;
 import us.fatehi.creditcardnumber.PrimaryAccountNumber;
 
-
 public class SampleCode1
 {
-  
-  public static void main(String[] args)
+
+  public static void main(final String[] args)
   {
-    final PrimaryAccountNumber pan = new  AccountNumber("371449635398431");
+    final PrimaryAccountNumber pan = new AccountNumber("371449635398431");
     final BankCard card = new BankCard(pan);
     System.out.println(card);
   }
-  
+
 }
