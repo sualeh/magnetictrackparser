@@ -4,7 +4,7 @@
 
 > The goal of this project is to use publicly and freely available documentation to create a reliable Java library to provide information about magnetic tracks and credit card numbers.
 
-All classes are immutable and thread-safe. All getter methods return non-null values. The standard `toString()` function formats data in a readable form. Validity is enforced by JUnit tests. 
+All classes are immutable and thread-safe. The standard `toString()` function formats data in a readable form. Validity is enforced by JUnit tests. 
 
 Magnetic Track Parser depends on the [Credit Card Number](https://github.com/sualeh/credit_card_number) library.
 
