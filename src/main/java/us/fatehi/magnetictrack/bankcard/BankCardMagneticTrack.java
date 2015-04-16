@@ -20,8 +20,6 @@
 package us.fatehi.magnetictrack.bankcard;
 
 
-import org.threeten.bp.format.DateTimeFormatter;
-
 import us.fatehi.creditcardnumber.BankCard;
 import us.fatehi.creditcardnumber.ExpirationDate;
 import us.fatehi.creditcardnumber.Name;
@@ -37,9 +35,6 @@ public class BankCardMagneticTrack
 {
 
   private static final long serialVersionUID = -8703108091852410189L;
-
-  protected static final DateTimeFormatter formatter = DateTimeFormatter
-    .ofPattern("MMMM yyyy");
 
   /**
    * Parses magnetic track data into a BankCardMagneticTrack object.
@@ -74,9 +69,6 @@ public class BankCardMagneticTrack
     this.track3 = track3;
   }
 
-  /**
-   * @see us.fatehi.magnetictrack.TrackData#exceedsMaximumLength()
-   */
   @Override
   public boolean exceedsMaximumLength()
   {
@@ -218,9 +210,9 @@ public class BankCardMagneticTrack
     final StringBuilder buffer = new StringBuilder();
 
     buffer.append("TRACK 1: ");
-    if (track1.hasRawTrackData())
+    if (track1.hasRawData())
     {
-      buffer.append(track1.getRawTrackData()).append(NEWLINE);
+      buffer.append(track1.getRawData()).append(NEWLINE);
       if (track1.hasPrimaryAccountNumber())
       {
         final PrimaryAccountNumber pan = track1.getPrimaryAccountNumber();
@@ -233,8 +225,8 @@ public class BankCardMagneticTrack
       if (track1.hasExpirationDate())
       {
         buffer.append("  Expiration Date: ");
-        buffer.append(formatter.format(track2.getExpirationDate()
-          .getExpirationDate())).append(NEWLINE);
+        buffer.append(track2.getExpirationDate().getExpirationDateAsString())
+          .append(NEWLINE);
       }
       else
       {
@@ -274,9 +266,9 @@ public class BankCardMagneticTrack
     }
 
     buffer.append("TRACK 2: ");
-    if (track2.hasRawTrackData())
+    if (track2.hasRawData())
     {
-      buffer.append(track2.getRawTrackData()).append(NEWLINE);
+      buffer.append(track2.getRawData()).append(NEWLINE);
       if (track2.hasPrimaryAccountNumber())
       {
         final PrimaryAccountNumber pan = track2.getPrimaryAccountNumber();
@@ -289,8 +281,8 @@ public class BankCardMagneticTrack
       if (track2.hasExpirationDate())
       {
         buffer.append("  Expiration Date: ");
-        buffer.append(formatter.format(track2.getExpirationDate()
-          .getExpirationDate())).append(NEWLINE);
+        buffer.append(track2.getExpirationDate().getExpirationDateAsString())
+          .append(NEWLINE);
       }
       else
       {
@@ -321,9 +313,9 @@ public class BankCardMagneticTrack
     }
 
     buffer.append("TRACK 3: ");
-    if (track3.hasRawTrackData())
+    if (track3.hasRawData())
     {
-      buffer.append(track3.getRawTrackData()).append(NEWLINE);
+      buffer.append(track3.getRawData()).append(NEWLINE);
       if (track3.hasDiscretionaryData())
       {
         buffer.append("  Discretionary Data: ");

@@ -61,7 +61,7 @@ public class Track1FormatBTest
   private void checkCardData(final Track1FormatB track1FormatB)
   {
     assertEquals("%B5266092201416174^FATEHI/SUALEH^16042010000000000000000000000000000567001000?",
-                 track1FormatB.getRawTrackData());
+                 track1FormatB.getRawData());
     assertEquals("B", track1FormatB.getFormatCode());
     assertEquals("5266092201416174", track1FormatB.getPrimaryAccountNumber()
       .getAccountNumber());

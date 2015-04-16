@@ -113,13 +113,10 @@ public class Track2
     super(rawTrackData, pan, expirationDate, serviceCode, discretionaryData);
   }
 
-  /**
-   * @see us.fatehi.magnetictrack.TrackData#exceedsMaximumLength()
-   */
   @Override
   public boolean exceedsMaximumLength()
   {
-    return hasRawTrackData() && getRawTrackData().length() > 40;
+    return hasRawData() && getRawData().length() > 40;
   }
 
 }

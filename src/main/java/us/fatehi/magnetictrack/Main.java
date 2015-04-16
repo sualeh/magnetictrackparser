@@ -44,6 +44,7 @@ public class Main
 
     while (true)
     {
+      System.out.println("** Press <Ctrl-C> to quit **");
       parseMagneticTrackData(in);
     }
 
@@ -54,7 +55,6 @@ public class Main
   {
     while (true)
     {
-      System.out.println("** Type <Ctrl-C> to quit **");
       System.out.println("Magnetic Track (followed by a blank line): ");
       final StringBuilder buffer = new StringBuilder();
       while (true)

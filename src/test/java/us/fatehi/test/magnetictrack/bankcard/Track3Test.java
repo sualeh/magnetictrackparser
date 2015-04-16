@@ -48,7 +48,7 @@ public class Track3Test
   private void checkCardData(final Track3 track3)
   {
     assertEquals("+6202408082356005=15046200000010000000000004976?",
-                 track3.getRawTrackData());
+                 track3.getRawData());
     assertEquals("6202408082356005=15046200000010000000000004976",
                  track3.getDiscretionaryData());
   }

@@ -22,18 +22,16 @@ package us.fatehi.magnetictrack.bankcard;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
+import java.io.Serializable;
 import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-import us.fatehi.magnetictrack.TrackData;
+import us.fatehi.creditcardnumber.RawData;
 
 abstract class BaseTrackData
-  implements TrackData
+  implements RawData, Serializable
 {
 
   private static final long serialVersionUID = 7821463290736676016L;
-
-  protected static final Pattern non_digit = Pattern.compile("[^0-9]");
 
   protected static String getGroup(final Matcher matcher, final int group)
   {
@@ -54,7 +52,7 @@ abstract class BaseTrackData
   BaseTrackData(final String rawTrackData, final String discretionaryData)
   {
     this.rawTrackData = rawTrackData;
-    this.discretionaryData = discretionaryData;
+    this.discretionaryData = discretionaryData == null? "": discretionaryData;
   }
 
   /**
@@ -67,11 +65,8 @@ abstract class BaseTrackData
     return discretionaryData;
   }
 
-  /**
-   * @see TrackData#getRawTrackData()
-   */
   @Override
-  public String getRawTrackData()
+  public String getRawData()
   {
     return rawTrackData;
   }
@@ -86,18 +81,12 @@ abstract class BaseTrackData
     return !isBlank(discretionaryData);
   }
 
-  /**
-   * @see TrackData#hasRawTrackData()
-   */
   @Override
-  public boolean hasRawTrackData()
+  public boolean hasRawData()
   {
     return !isBlank(rawTrackData);
   }
 
-  /**
-   * @see java.lang.Object#toString()
-   */
   @Override
   public String toString()
   {

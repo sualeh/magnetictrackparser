@@ -33,21 +33,71 @@ abstract class BaseBankCardTrackData
   extends BaseTrackData
 {
 
-  @Override
-  public int hashCode()
+  private static final long serialVersionUID = 7821463290736676016L;
+
+  private final PrimaryAccountNumber pan;
+  private final ExpirationDate expirationDate;
+  private final ServiceCode serviceCode;
+
+  BaseBankCardTrackData(final String rawTrackData,
+                        final PrimaryAccountNumber pan,
+                        final ExpirationDate expirationDate,
+                        final ServiceCode serviceCode,
+                        final String discretionaryData)
   {
-    final int prime = 31;
-    int result = 1;
-    result = prime * result
-             + ((expirationDate == null)? 0: expirationDate.hashCode());
-    result = prime * result + ((pan == null)? 0: pan.hashCode());
-    result = prime * result
-             + ((serviceCode == null)? 0: serviceCode.hashCode());
-    return result;
+    super(rawTrackData, discretionaryData);
+    this.pan = pan;
+    this.expirationDate = expirationDate;
+    this.serviceCode = serviceCode;
+  }
+
+  /**
+   * Verifies that the available data is consistent between Track 1 and
+   * Track 2, or any other track.
+   *
+   * @return True if the data is consistent.
+   */
+  public boolean compares(final BaseBankCardTrackData other)
+  {
+    if (this == other)
+    {
+      return true;
+    }
+    if (other == null)
+    {
+      return false;
+    }
+    boolean equals = true;
+
+    if (hasPrimaryAccountNumber() && other.hasPrimaryAccountNumber())
+    {
+      if (!getPrimaryAccountNumber().equals(other.getPrimaryAccountNumber()))
+      {
+        equals = false;
+      }
+    }
+
+    if (hasExpirationDate() && other.hasExpirationDate())
+    {
+      if (!getExpirationDate().equals(other.getExpirationDate()))
+      {
+        equals = false;
+      }
+    }
+
+    if (hasServiceCode() && other.hasServiceCode())
+    {
+      if (!getServiceCode().equals(other.getServiceCode()))
+      {
+        equals = false;
+      }
+    }
+
+    return equals;
   }
 
   @Override
-  public boolean equals(Object obj)
+  public boolean equals(final Object obj)
   {
     if (this == obj)
     {
@@ -61,7 +111,7 @@ abstract class BaseBankCardTrackData
     {
       return false;
     }
-    BaseBankCardTrackData other = (BaseBankCardTrackData) obj;
+    final BaseBankCardTrackData other = (BaseBankCardTrackData) obj;
     if (expirationDate == null)
     {
       if (other.expirationDate != null)
@@ -96,24 +146,6 @@ abstract class BaseBankCardTrackData
       return false;
     }
     return true;
-  }
-
-  private static final long serialVersionUID = 7821463290736676016L;
-
-  private final PrimaryAccountNumber pan;
-  private final ExpirationDate expirationDate;
-  private final ServiceCode serviceCode;
-
-  BaseBankCardTrackData(final String rawTrackData,
-                        final PrimaryAccountNumber pan,
-                        final ExpirationDate expirationDate,
-                        final ServiceCode serviceCode,
-                        final String discretionaryData)
-  {
-    super(rawTrackData, discretionaryData);
-    this.pan = pan;
-    this.expirationDate = expirationDate;
-    this.serviceCode = serviceCode;
   }
 
   /**
@@ -154,6 +186,18 @@ abstract class BaseBankCardTrackData
   public boolean hasExpirationDate()
   {
     return expirationDate != null && expirationDate.hasExpirationDate();
+  }
+
+  @Override
+  public int hashCode()
+  {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result
+             + (expirationDate == null? 0: expirationDate.hashCode());
+    result = prime * result + (pan == null? 0: pan.hashCode());
+    result = prime * result + (serviceCode == null? 0: serviceCode.hashCode());
+    return result;
   }
 
   /**

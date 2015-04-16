@@ -135,13 +135,10 @@ public class Track1FormatB
     this.name = name;
   }
 
-  /**
-   * @see us.fatehi.magnetictrack.TrackData#exceedsMaximumLength()
-   */
   @Override
   public boolean exceedsMaximumLength()
   {
-    return hasRawTrackData() && getRawTrackData().length() > 79;
+    return hasRawData() && getRawData().length() > 79;
   }
 
   /**

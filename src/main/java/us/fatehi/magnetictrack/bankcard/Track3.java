@@ -71,9 +71,6 @@ public class Track3
     super(rawTrack2Data, discretionaryData);
   }
 
-  /**
-   * @see us.fatehi.magnetictrack.TrackData#exceedsMaximumLength()
-   */
   @Override
   public boolean exceedsMaximumLength()
   {

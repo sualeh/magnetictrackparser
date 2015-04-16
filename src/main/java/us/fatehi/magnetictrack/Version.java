@@ -20,22 +20,55 @@
 package us.fatehi.magnetictrack;
 
 
+import static org.apache.commons.lang3.StringUtils.isBlank;
+import static org.apache.commons.lang3.StringUtils.trimToEmpty;
+
 /**
  * Prints version information.
  */
 public class Version
 {
 
+  private static final String implementationTitle;
+  private static final String implementationVersion;
+  private static final String implementationVendor;
+
+  static
+  {
+    final Package pkg = Version.class.getPackage();
+    implementationTitle = trimToEmpty(pkg.getImplementationTitle());
+    implementationVersion = trimToEmpty(pkg.getImplementationVersion());
+    implementationVendor = trimToEmpty(pkg.getImplementationVendor());
+  }
+
+  public static String getImplementationtitle()
+  {
+    return implementationTitle;
+  }
+
+  public static String getImplementationvendor()
+  {
+    return implementationVendor;
+  }
+
+  public static String getImplementationversion()
+  {
+    return implementationVersion;
+  }
+
   public static void main(final String[] arguments)
   {
-    final Package pkg = Package.getPackage("us.fatehi.magnetictrack");
-    if (pkg != null)
+    if (!isBlank(implementationTitle) && !isBlank(implementationVersion))
     {
       System.out.println(String.format("%s, v%s%n%s",
-                                       pkg.getImplementationTitle(),
-                                       pkg.getImplementationVersion(),
-                                       pkg.getImplementationVendor()));
+                                       implementationTitle,
+                                       implementationVersion,
+                                       implementationVendor));
     }
+  }
+
+  private Version()
+  {
   }
 
 }
