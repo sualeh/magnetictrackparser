@@ -24,10 +24,9 @@ To use *Magnetic Track Parser* in your Maven build, include the following depend
 <dependency>
     <groupId>us.fatehi</groupId>
     <artifactId>magnetictrackparser</artifactId>
-    <version>1.7</version>
+    <version>1.8</version>
 </dependency>
 ```
-
 
 ## Examples
 
