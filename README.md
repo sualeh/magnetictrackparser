@@ -1,6 +1,6 @@
-# Magnetic Track Parser
-
 [![Build Status](https://travis-ci.org/sualeh/magnetictrackparser.svg?branch=master)](https://travis-ci.org/sualeh/magnetictrackparser)
+
+# Magnetic Track Parser
 
 *Magnetic Track Parser* is a Java library that can parse magnetic track data from a bank issued credit card, such as might be returned from a USB magnetic card stripe reader. 
 
