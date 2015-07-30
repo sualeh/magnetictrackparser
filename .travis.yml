@@ -8,4 +8,5 @@ sudo: false
 notifications:
     on_success: [change] # default: change [always|never|change] 
     on_failure: [change] # default: always [always|never|change] 
-
+after_success:
+  - mvn clean test jacoco:report coveralls:report    
