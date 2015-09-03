@@ -3,7 +3,6 @@ jdk:
   - openjdk6
 os:
   - linux
-  - osx
 sudo: false
 notifications:
     on_success: [change] # default: change [always|never|change] 
