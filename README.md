@@ -1,5 +1,4 @@
 [![Build Status](https://travis-ci.org/sualeh/magnetictrackparser.svg?branch=master)](https://travis-ci.org/sualeh/magnetictrackparser)
-[![Coverage Status](http://img.shields.io/coveralls/sualeh/magnetictrackparser/master.svg)](https://coveralls.io/r/sualeh/magnetictrackparser?branch=master)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/us.fatehi/magnetictrackparser/badge.svg)](http://search.maven.org/#search%7Cga%7C1%7Cg%3Aus.fatehi%20a%3Amagnetictrackparser)
 
 # Magnetic Track Parser
