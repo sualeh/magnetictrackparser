@@ -3,15 +3,21 @@
 
 # Magnetic Track Parser
 
-*Magnetic Track Parser* is a Java library that can parse magnetic track data from a bank issued credit card, such as might be returned from a USB magnetic card stripe reader. 
+*Magnetic Track Parser* is a Java library that can parse magnetic track data from a 
+bank issued credit card, such as might be returned from a USB magnetic card stripe 
+reader. 
 
-> The goal of this project is to use publicly and freely available documentation to create a reliable Java library to provide information about magnetic tracks and credit card numbers.
+> **The goal of this project is to use publicly and freely available documentation 
+to create a reliable Java library to provide information about magnetic tracks and 
+credit card numbers.**
 
-All classes are immutable and thread-safe. The standard `toString()` function formats data in a readable form. Validity is enforced by JUnit tests. 
+All classes are immutable and thread-safe. The standard `toString()` function 
+formats data in a readable form. Validity is enforced by JUnit tests. 
 
 Magnetic Track Parser depends on the [Credit Card Number](https://github.com/sualeh/credit_card_number) library.
 
-Java 6 or newer is required. This library deliberately supports Java 6, to make it usable in Android apps.
+Java 6 or newer is required. This library deliberately supports Java 6, to make it 
+usable in Android apps.
 
 Some resources consulted are:
 * [Magnetic stripe card](http://en.wikipedia.org/wiki/Magnetic_stripe_card) on Wikipedia for information about the format of track data.
@@ -22,12 +28,14 @@ You can download the [jar on the Maven Central Repository](http://search.maven.o
 
 ## Maven Build
 
-To use *Magnetic Track Parser* in your Maven build, include the following dependency. No repositories references are needed, since the jars are in the Maven Central Repository.
+To use *Magnetic Track Parser* in your Maven build, include the following 
+dependency. No repositories references are needed, since the jars are in the Maven 
+Central Repository.
 ```xml
 <dependency>
     <groupId>us.fatehi</groupId>
     <artifactId>magnetictrackparser</artifactId>
-    <version>1.8</version>
+    <version>1.10.01</version>
 </dependency>
 ```
 
