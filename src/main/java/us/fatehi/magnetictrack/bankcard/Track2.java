@@ -27,12 +27,11 @@ import java.util.regex.Pattern;
 
 import us.fatehi.creditcardnumber.AccountNumber;
 import us.fatehi.creditcardnumber.ExpirationDate;
-import us.fatehi.creditcardnumber.PrimaryAccountNumber;
 import us.fatehi.creditcardnumber.ServiceCode;
 
 /**
- * From <a
- * href="https://en.wikipedia.org/wiki/ISO/IEC_7813#Magnetic_tracks"
+ * From
+ * <a href="https://en.wikipedia.org/wiki/ISO/IEC_7813#Magnetic_tracks"
  * >Wikipedia - ISO/IEC 7813</a><br/>
  * The Track 2 structure is specified as:
  * <ol>
@@ -49,8 +48,8 @@ import us.fatehi.creditcardnumber.ServiceCode;
  * </ol>
  * The maximum record length is 40 numeric digits. e.g.5095700000000
  *
- * @see <a
- *      href="https://en.wikipedia.org/wiki/ISO/IEC_7813#Magnetic_tracks">Wikipedia
+ * @see <a href=
+ *      "https://en.wikipedia.org/wiki/ISO/IEC_7813#Magnetic_tracks">Wikipedia
  *      - ISO/IEC 7813</a>
  */
 public class Track2
@@ -75,7 +74,7 @@ public class Track2
     final Matcher matcher = track2Pattern.matcher(trimToEmpty(rawTrackData));
 
     final String rawTrack2Data;
-    final PrimaryAccountNumber pan;
+    final AccountNumber pan;
     final ExpirationDate expirationDate;
     final ServiceCode serviceCode;
     final String discretionaryData;
@@ -105,7 +104,7 @@ public class Track2
   }
 
   private Track2(final String rawTrackData,
-                 final PrimaryAccountNumber pan,
+                 final AccountNumber pan,
                  final ExpirationDate expirationDate,
                  final ServiceCode serviceCode,
                  final String discretionaryData)
@@ -113,7 +112,6 @@ public class Track2
     super(rawTrackData, pan, expirationDate, serviceCode, discretionaryData);
   }
 
-  @Override
   public boolean exceedsMaximumLength()
   {
     return hasRawData() && getRawData().length() > 40;

@@ -20,13 +20,13 @@
 package us.fatehi.magnetictrack.bankcard;
 
 
+import us.fatehi.creditcardnumber.AccountNumber;
 import us.fatehi.creditcardnumber.ExpirationDate;
-import us.fatehi.creditcardnumber.PrimaryAccountNumber;
 import us.fatehi.creditcardnumber.ServiceCode;
 
 /**
- * @see <a
- *      href="https://en.wikipedia.org/wiki/ISO/IEC_7813#Magnetic_tracks">Wikipedia
+ * @see <a href=
+ *      "https://en.wikipedia.org/wiki/ISO/IEC_7813#Magnetic_tracks">Wikipedia
  *      - ISO/IEC 7813</a>
  */
 abstract class BaseBankCardTrackData
@@ -35,12 +35,12 @@ abstract class BaseBankCardTrackData
 
   private static final long serialVersionUID = 7821463290736676016L;
 
-  private final PrimaryAccountNumber pan;
+  private final AccountNumber pan;
   private final ExpirationDate expirationDate;
   private final ServiceCode serviceCode;
 
   BaseBankCardTrackData(final String rawTrackData,
-                        final PrimaryAccountNumber pan,
+                        final AccountNumber pan,
                         final ExpirationDate expirationDate,
                         final ServiceCode serviceCode,
                         final String discretionaryData)
@@ -108,9 +108,9 @@ abstract class BaseBankCardTrackData
    *
    * @return Primary account number.
    */
-  public ExpirationDate getExpirationDate()
+  public AccountNumber getAccountNumber()
   {
-    return expirationDate;
+    return pan;
   }
 
   /**
@@ -118,9 +118,9 @@ abstract class BaseBankCardTrackData
    *
    * @return Primary account number.
    */
-  public PrimaryAccountNumber getPrimaryAccountNumber()
+  public ExpirationDate getExpirationDate()
   {
-    return pan;
+    return expirationDate;
   }
 
   /**
@@ -131,6 +131,18 @@ abstract class BaseBankCardTrackData
   public ServiceCode getServiceCode()
   {
     return serviceCode;
+  }
+
+  /**
+   * Checks whether the primary account number for the card is
+   * available.
+   *
+   * @return True if the primary account number for the card is
+   *         available.
+   */
+  public boolean hasAccountNumber()
+  {
+    return pan != null && pan.hasAccountNumber();
   }
 
   /**
@@ -153,18 +165,6 @@ abstract class BaseBankCardTrackData
     result = prime * result + (pan == null? 0: pan.hashCode());
     result = prime * result + (serviceCode == null? 0: serviceCode.hashCode());
     return result;
-  }
-
-  /**
-   * Checks whether the primary account number for the card is
-   * available.
-   *
-   * @return True if the primary account number for the card is
-   *         available.
-   */
-  public boolean hasPrimaryAccountNumber()
-  {
-    return pan != null && pan.hasPrimaryAccountNumber();
   }
 
   /**
@@ -195,9 +195,9 @@ abstract class BaseBankCardTrackData
     }
     boolean equals = true;
 
-    if (hasPrimaryAccountNumber() && other.hasPrimaryAccountNumber())
+    if (hasAccountNumber() && other.hasAccountNumber())
     {
-      if (!getPrimaryAccountNumber().equals(other.getPrimaryAccountNumber()))
+      if (!getAccountNumber().equals(other.getAccountNumber()))
       {
         equals = false;
       }

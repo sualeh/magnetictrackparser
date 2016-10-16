@@ -20,10 +20,10 @@
 package us.fatehi.magnetictrack.bankcard;
 
 
+import us.fatehi.creditcardnumber.AccountNumber;
 import us.fatehi.creditcardnumber.BankCard;
 import us.fatehi.creditcardnumber.ExpirationDate;
 import us.fatehi.creditcardnumber.Name;
-import us.fatehi.creditcardnumber.PrimaryAccountNumber;
 import us.fatehi.creditcardnumber.ServiceCode;
 
 /**
@@ -69,7 +69,9 @@ public class BankCardMagneticTrack
     this.track3 = track3;
   }
 
-  @Override
+  /**
+   * {@inheritDoc}
+   */
   public boolean exceedsMaximumLength()
   {
     return track1.exceedsMaximumLength() || track2.exceedsMaximumLength()
@@ -126,14 +128,14 @@ public class BankCardMagneticTrack
    */
   public BankCard toBankCard()
   {
-    final PrimaryAccountNumber pan;
-    if (track1.hasPrimaryAccountNumber())
+    final AccountNumber pan;
+    if (track1.hasAccountNumber())
     {
-      pan = track1.getPrimaryAccountNumber();
+      pan = track1.getAccountNumber();
     }
     else
     {
-      pan = track2.getPrimaryAccountNumber();
+      pan = track2.getAccountNumber();
     }
 
     final Name name;
@@ -186,9 +188,9 @@ public class BankCardMagneticTrack
     if (track1.hasRawData())
     {
       buffer.append(track1.getRawData()).append(NEWLINE);
-      if (track1.hasPrimaryAccountNumber())
+      if (track1.hasAccountNumber())
       {
-        final PrimaryAccountNumber pan = track1.getPrimaryAccountNumber();
+        final AccountNumber pan = track1.getAccountNumber();
         buffer.append("  Primary Account Number: ").append(pan).append(NEWLINE);
       }
       else
@@ -241,9 +243,9 @@ public class BankCardMagneticTrack
     if (track2.hasRawData())
     {
       buffer.append(track2.getRawData()).append(NEWLINE);
-      if (track2.hasPrimaryAccountNumber())
+      if (track2.hasAccountNumber())
       {
-        final PrimaryAccountNumber pan = track2.getPrimaryAccountNumber();
+        final AccountNumber pan = track2.getAccountNumber();
         buffer.append("  Primary Account Number: ").append(pan).append(NEWLINE);
       }
       else

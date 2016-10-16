@@ -52,13 +52,14 @@ public class Track2Test
 
   private void checkCardData(final Track2 track2)
   {
-    assertEquals(";5266092201416174=16042010000056700100?", track2.getRawData());
-    assertEquals("5266092201416174", track2.getPrimaryAccountNumber()
-      .getAccountNumber());
-    assertEquals(CardBrand.MasterCard, track2.getPrimaryAccountNumber()
-      .getCardBrand());
-    assertEquals(MajorIndustryIdentifier.mii_5, track2
-      .getPrimaryAccountNumber().getMajorIndustryIdentifier());
+    assertEquals(";5266092201416174=16042010000056700100?",
+                 track2.getRawData());
+    assertEquals("5266092201416174",
+                 track2.getAccountNumber().getAccountNumber());
+    assertEquals(CardBrand.MasterCard,
+                 track2.getAccountNumber().getCardBrand());
+    assertEquals(MajorIndustryIdentifier.mii_5,
+                 track2.getAccountNumber().getMajorIndustryIdentifier());
     assertEquals("2016-04", track2.getExpirationDate().toString());
     assertEquals("201", track2.getServiceCode().toString());
     assertEquals(ServiceCode1.v_2, track2.getServiceCode().getServiceCode1());

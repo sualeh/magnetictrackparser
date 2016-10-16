@@ -72,8 +72,8 @@ public class Main
         }
         else
         {
-          final BankCardMagneticTrack track = BankCardMagneticTrack.from(buffer
-            .toString());
+          final BankCardMagneticTrack track = BankCardMagneticTrack
+            .from(buffer.toString());
           System.out.println(track);
           break;
         }

@@ -63,23 +63,23 @@ public class Track1FormatBTest
     assertEquals("%B5266092201416174^FATEHI/SUALEH^16042010000000000000000000000000000567001000?",
                  track1FormatB.getRawData());
     assertEquals("B", track1FormatB.getFormatCode());
-    assertEquals("5266092201416174", track1FormatB.getPrimaryAccountNumber()
-      .getAccountNumber());
-    assertEquals(CardBrand.MasterCard, track1FormatB.getPrimaryAccountNumber()
-      .getCardBrand());
-    assertEquals(MajorIndustryIdentifier.mii_5, track1FormatB
-      .getPrimaryAccountNumber().getMajorIndustryIdentifier());
+    assertEquals("5266092201416174",
+                 track1FormatB.getAccountNumber().getAccountNumber());
+    assertEquals(CardBrand.MasterCard,
+                 track1FormatB.getAccountNumber().getCardBrand());
+    assertEquals(MajorIndustryIdentifier.mii_5,
+                 track1FormatB.getAccountNumber().getMajorIndustryIdentifier());
     assertEquals("Sualeh Fatehi", track1FormatB.getName().toString());
     assertEquals("Sualeh", track1FormatB.getName().getFirstName());
     assertEquals("Fatehi", track1FormatB.getName().getLastName());
     assertEquals("2016-04", track1FormatB.getExpirationDate().toString());
     assertEquals("201", track1FormatB.getServiceCode().toString());
-    assertEquals(ServiceCode1.v_2, track1FormatB.getServiceCode()
-      .getServiceCode1());
-    assertEquals(ServiceCode2.v_0, track1FormatB.getServiceCode()
-      .getServiceCode2());
-    assertEquals(ServiceCode3.v_1, track1FormatB.getServiceCode()
-      .getServiceCode3());
+    assertEquals(ServiceCode1.v_2,
+                 track1FormatB.getServiceCode().getServiceCode1());
+    assertEquals(ServiceCode2.v_0,
+                 track1FormatB.getServiceCode().getServiceCode2());
+    assertEquals(ServiceCode3.v_1,
+                 track1FormatB.getServiceCode().getServiceCode3());
     assertEquals("0000000000000000000000000000567001000",
                  track1FormatB.getDiscretionaryData());
   }

@@ -25,9 +25,12 @@ import static org.apache.commons.lang3.StringUtils.isBlank;
 import java.io.Serializable;
 import java.util.regex.Matcher;
 
+import us.fatehi.creditcardnumber.BaseRawData;
+import us.fatehi.creditcardnumber.ClearableStringData;
 import us.fatehi.creditcardnumber.RawData;
 
 abstract class BaseTrackData
+  extends BaseRawData
   implements RawData, Serializable
 {
 
@@ -46,13 +49,12 @@ abstract class BaseTrackData
     }
   }
 
-  private final String rawTrackData;
-  private final String discretionaryData;
+  private final ClearableStringData discretionaryData;
 
   BaseTrackData(final String rawTrackData, final String discretionaryData)
   {
-    this.rawTrackData = rawTrackData;
-    this.discretionaryData = discretionaryData == null? "": discretionaryData;
+    super(rawTrackData);
+    this.discretionaryData = new ClearableStringData(discretionaryData);
   }
 
   /**
@@ -62,13 +64,18 @@ abstract class BaseTrackData
    */
   public String getDiscretionaryData()
   {
-    return discretionaryData;
+    return discretionaryData.getData();
   }
 
-  @Override
-  public String getRawData()
+  /**
+   * Clears discretionary data. Following recommendations from the
+   * <a href=
+   * "http://docs.oracle.com/javase/6/docs/technotes/guides/security/crypto/CryptoSpec.html#PBEEx">Java
+   * Cryptography Architecture (JCA) Reference Guide</a>
+   */
+  public void clearDiscretionaryData()
   {
-    return rawTrackData;
+    discretionaryData.clearData();
   }
 
   /**
@@ -78,19 +85,13 @@ abstract class BaseTrackData
    */
   public boolean hasDiscretionaryData()
   {
-    return !isBlank(discretionaryData);
-  }
-
-  @Override
-  public boolean hasRawData()
-  {
-    return !isBlank(rawTrackData);
+    return discretionaryData.hasData() && !isBlank(discretionaryData);
   }
 
   @Override
   public String toString()
   {
-    return rawTrackData;
+    return getRawData();
   }
 
 }

@@ -11,7 +11,9 @@ reader.
 to create a reliable Java library to provide information about magnetic tracks and 
 credit card numbers.**
 
-All classes are immutable and thread-safe. The standard `toString()` function 
+All classes are immutable and thread-safe. Secure data follows standards in the 
+[Java Cryptography Architecture (JCA) Reference Guide](http://docs.oracle.com/javase/6/docs/technotes/guides/security/crypto/CryptoSpec.html#PBEEx).
+The standard `toString()` function 
 formats data in a readable form. Validity is enforced by JUnit tests. 
 
 Magnetic Track Parser depends on the [Credit Card Number](https://github.com/sualeh/credit_card_number) library.
@@ -35,7 +37,7 @@ Central Repository.
 <dependency>
     <groupId>us.fatehi</groupId>
     <artifactId>magnetictrackparser</artifactId>
-    <version>1.10.01</version>
+    <version>2.01.01</version>
 </dependency>
 ```
 
@@ -45,15 +47,15 @@ Central Repository.
 
 To get bank card information, use code like:
 ```java
-final PrimaryAccountNumber pan = new  AccountNumber("371449635398431");
-final BankCard card = new BankCard(pan);
+AccountNumber pan = new AccountNumber("371449635398431");
+BankCard card = new BankCard(pan);
 System.out.println(card);
 ```
 and you will get this output:
 ```
 Bank Card Information: 
+  Raw Account Number: 371449635398431
   Primary Account Number: 371449635398431
-  Primary Account Number (Secure): AmericanExpress-8431
     Major Industry Identifier: 3 - Travel and entertainment and banking/financial
     Issuer Identification Number: 371449
     Card Brand: AmericanExpress
@@ -66,36 +68,36 @@ Bank Card Information:
 
 To parse a magnetic track, use code like:
 ```java
-final BankCardMagneticTrack track = 
-    BankCardMagneticTrack.from("%B5350290149345177^FATEHI/SUALEH^16042010000000000000000000000000000567001000?;5350290149345177=16042010000056700100?");
+BankCardMagneticTrack track = 
+  BankCardMagneticTrack.from("%B5350290149345177^FATEHI/SUALEH^16042010000000000000000000000000000567001000?;5350290149345177=16042010000056700100?");
 System.out.println(track);
 ```
 and you will get this output:
 ```
 TRACK 1: %B5350290149345177^FATEHI/SUALEH^16042010000000000000000000000000000567001000?
   Primary Account Number: 5350290149345177
-  Expiration Date: April 2016
+  Expiration Date: 2016-04
   Name: Sualeh Fatehi
   Service Code: 201
   Discretionary Data: 0000000000000000000000000000567001000
 TRACK 2: ;5350290149345177=16042010000056700100?
   Primary Account Number: 5350290149345177
-  Expiration Date: April 2016
+  Expiration Date: 2016-04
   Service Code: 201
   Discretionary Data: 0000056700100
 TRACK 3:  Not Available.
 
 Bank Card Information: 
+  Raw Account Number: 5350290149345177
   Primary Account Number: 5350290149345177
-  Primary Account Number (Secure): MasterCard-5177
     Major Industry Identifier: 5 - Banking and financial
     Issuer Identification Number: 535029
     Card Brand: MasterCard
     Last Four Digits: 5177
     Passes Luhn Check? Yes
     Is Primary Account Number Valid? Yes
-  Expiration Date: April 2016
-    Is Expired: No
+  Expiration Date: 2016-04
+    Is Expired: Yes
   Name: Sualeh Fatehi
   Service Code: 
     2 - Interchange: International interchange. Technology: Integrated circuit card.

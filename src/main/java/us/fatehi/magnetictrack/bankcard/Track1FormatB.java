@@ -29,12 +29,11 @@ import java.util.regex.Pattern;
 import us.fatehi.creditcardnumber.AccountNumber;
 import us.fatehi.creditcardnumber.ExpirationDate;
 import us.fatehi.creditcardnumber.Name;
-import us.fatehi.creditcardnumber.PrimaryAccountNumber;
 import us.fatehi.creditcardnumber.ServiceCode;
 
 /**
- * Parses, and represents a card's track 1 data, in format "B". From <a
- * href="https://en.wikipedia.org/wiki/ISO/IEC_7813#Magnetic_tracks"
+ * Parses, and represents a card's track 1 data, in format "B". From
+ * <a href="https://en.wikipedia.org/wiki/ISO/IEC_7813#Magnetic_tracks"
  * >Wikipedia - ISO/IEC 7813</a><br/>
  * The Track 1 structure is specified as:
  * <ol>
@@ -55,8 +54,8 @@ import us.fatehi.creditcardnumber.ServiceCode;
  * </ol>
  * The maximum record length is 79 alphanumeric characters.
  *
- * @see <a
- *      href="https://en.wikipedia.org/wiki/ISO/IEC_7813#Magnetic_tracks">Wikipedia
+ * @see <a href=
+ *      "https://en.wikipedia.org/wiki/ISO/IEC_7813#Magnetic_tracks">Wikipedia
  *      - ISO/IEC 7813</a>
  */
 public class Track1FormatB
@@ -82,7 +81,7 @@ public class Track1FormatB
       .matcher(trimToEmpty(rawTrackData));
 
     final String rawTrack1Data;
-    final PrimaryAccountNumber pan;
+    final AccountNumber pan;
     final ExpirationDate expirationDate;
     final Name name;
     final ServiceCode serviceCode;
@@ -123,7 +122,7 @@ public class Track1FormatB
   private final String formatCode;
 
   private Track1FormatB(final String rawTrackData,
-                        final PrimaryAccountNumber pan,
+                        final AccountNumber pan,
                         final ExpirationDate expirationDate,
                         final Name name,
                         final ServiceCode serviceCode,
@@ -135,7 +134,6 @@ public class Track1FormatB
     this.name = name;
   }
 
-  @Override
   public boolean exceedsMaximumLength()
   {
     return hasRawData() && getRawData().length() > 79;

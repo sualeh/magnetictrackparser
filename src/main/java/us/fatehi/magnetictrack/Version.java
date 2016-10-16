@@ -60,10 +60,11 @@ public class Version
   {
     if (!isBlank(implementationTitle) && !isBlank(implementationVersion))
     {
-      System.out.println(String.format("%s, v%s%n%s",
-                                       implementationTitle,
-                                       implementationVersion,
-                                       implementationVendor));
+      System.out
+        .println(String.format("%s, v%s%n%s",
+                               implementationTitle,
+                               implementationVersion,
+                               implementationVendor));
     }
   }
 

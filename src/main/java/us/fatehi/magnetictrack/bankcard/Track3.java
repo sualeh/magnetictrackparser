@@ -26,8 +26,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * @see <a
- *      href="https://en.wikipedia.org/wiki/ISO/IEC_7813#Magnetic_tracks">Wikipedia
+ * @see <a href=
+ *      "https://en.wikipedia.org/wiki/ISO/IEC_7813#Magnetic_tracks">Wikipedia
  *      - ISO/IEC 7813</a>
  */
 public class Track3
@@ -71,7 +71,6 @@ public class Track3
     super(rawTrack2Data, discretionaryData);
   }
 
-  @Override
   public boolean exceedsMaximumLength()
   {
     return false;
