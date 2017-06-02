@@ -37,7 +37,7 @@ Central Repository.
 <dependency>
     <groupId>us.fatehi</groupId>
     <artifactId>magnetictrackparser</artifactId>
-    <version>2.01.01</version>
+    <version>2.01.02</version>
 </dependency>
 ```
 

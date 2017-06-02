@@ -26,7 +26,7 @@ import java.io.Serializable;
 import java.util.regex.Matcher;
 
 import us.fatehi.creditcardnumber.BaseRawData;
-import us.fatehi.creditcardnumber.ClearableStringData;
+import us.fatehi.creditcardnumber.DisposableStringData;
 import us.fatehi.creditcardnumber.RawData;
 
 abstract class BaseTrackData
@@ -49,12 +49,32 @@ abstract class BaseTrackData
     }
   }
 
-  private final ClearableStringData discretionaryData;
+  private final DisposableStringData discretionaryData;
 
   BaseTrackData(final String rawTrackData, final String discretionaryData)
   {
     super(rawTrackData);
-    this.discretionaryData = new ClearableStringData(discretionaryData);
+    this.discretionaryData = new DisposableStringData(discretionaryData);
+  }
+
+  /**
+   * @see {@link #disposeDiscretionaryData}
+   */
+  @Deprecated
+  public void clearDiscretionaryData()
+  {
+    disposeDiscretionaryData();
+  }
+
+  /**
+   * Disposes discretionary data from memory. Following recommendations
+   * from the <a href=
+   * "http://docs.oracle.com/javase/6/docs/technotes/guides/security/crypto/CryptoSpec.html#PBEEx">Java
+   * Cryptography Architecture (JCA) Reference Guide</a>
+   */
+  public void disposeDiscretionaryData()
+  {
+    discretionaryData.disposeData();
   }
 
   /**
@@ -65,17 +85,6 @@ abstract class BaseTrackData
   public String getDiscretionaryData()
   {
     return discretionaryData.getData();
-  }
-
-  /**
-   * Clears discretionary data. Following recommendations from the
-   * <a href=
-   * "http://docs.oracle.com/javase/6/docs/technotes/guides/security/crypto/CryptoSpec.html#PBEEx">Java
-   * Cryptography Architecture (JCA) Reference Guide</a>
-   */
-  public void clearDiscretionaryData()
-  {
-    discretionaryData.clearData();
   }
 
   /**
