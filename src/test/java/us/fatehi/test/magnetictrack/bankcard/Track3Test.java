@@ -20,10 +20,10 @@
 package us.fatehi.test.magnetictrack.bankcard;
 
 
-import static org.junit.Assert.assertEquals;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 
-import org.junit.Test;
-
+import org.junit.jupiter.api.Test;
 import us.fatehi.magnetictrack.bankcard.Track3;
 
 public class Track3Test
@@ -47,10 +47,10 @@ public class Track3Test
 
   private void checkCardData(final Track3 track3)
   {
-    assertEquals("+6202408082356005=15046200000010000000000004976?",
-                 track3.getRawData());
-    assertEquals("6202408082356005=15046200000010000000000004976",
-                 track3.getDiscretionaryData());
+    assertThat(track3.getRawData(),
+               is("+6202408082356005=15046200000010000000000004976?"));
+    assertThat(track3.getDiscretionaryData(),
+               is("6202408082356005=15046200000010000000000004976"));
   }
 
 }

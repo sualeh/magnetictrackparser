@@ -13,9 +13,8 @@ repositories {
 
 dependencies {
   compile 'us.fatehi:credit_card_number:2.2.3'
-	testCompile 'junit:junit:4.12'
-  // testCompile 'org.junit.jupiter:junit-jupiter-engine:5.4.2'
-  // testCompile 'org.hamcrest:hamcrest:2.1'
+  testCompile 'org.junit.jupiter:junit-jupiter-engine:5.4.2'
+  testCompile 'org.hamcrest:hamcrest:2.1'
 }
 
 group = 'us.fatehi'

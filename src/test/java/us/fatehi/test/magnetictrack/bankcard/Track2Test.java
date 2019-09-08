@@ -20,15 +20,11 @@
 package us.fatehi.test.magnetictrack.bankcard;
 
 
-import static org.junit.Assert.assertEquals;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 
-import org.junit.Test;
-
-import us.fatehi.creditcardnumber.CardBrand;
-import us.fatehi.creditcardnumber.MajorIndustryIdentifier;
-import us.fatehi.creditcardnumber.ServiceCode1;
-import us.fatehi.creditcardnumber.ServiceCode2;
-import us.fatehi.creditcardnumber.ServiceCode3;
+import org.junit.jupiter.api.Test;
+import us.fatehi.creditcardnumber.*;
 import us.fatehi.magnetictrack.bankcard.Track2;
 
 public class Track2Test
@@ -52,20 +48,20 @@ public class Track2Test
 
   private void checkCardData(final Track2 track2)
   {
-    assertEquals(";5266092201416174=16042010000056700100?",
-                 track2.getRawData());
-    assertEquals("5266092201416174",
-                 track2.getAccountNumber().getAccountNumber());
-    assertEquals(CardBrand.MasterCard,
-                 track2.getAccountNumber().getCardBrand());
-    assertEquals(MajorIndustryIdentifier.mii_5,
-                 track2.getAccountNumber().getMajorIndustryIdentifier());
-    assertEquals("2016-04", track2.getExpirationDate().toString());
-    assertEquals("201", track2.getServiceCode().toString());
-    assertEquals(ServiceCode1.v_2, track2.getServiceCode().getServiceCode1());
-    assertEquals(ServiceCode2.v_0, track2.getServiceCode().getServiceCode2());
-    assertEquals(ServiceCode3.v_1, track2.getServiceCode().getServiceCode3());
-    assertEquals("0000056700100", track2.getDiscretionaryData());
+    assertThat(track2.getRawData(),
+               is(";5266092201416174=16042010000056700100?"));
+    assertThat(track2.getAccountNumber().getAccountNumber(),
+               is("5266092201416174"));
+    assertThat(track2.getAccountNumber().getCardBrand(),
+               is(CardBrand.MasterCard));
+    assertThat(track2.getAccountNumber().getMajorIndustryIdentifier(),
+               is(MajorIndustryIdentifier.mii_5));
+    assertThat(track2.getExpirationDate().toString(), is("2016-04"));
+    assertThat(track2.getServiceCode().toString(), is("201"));
+    assertThat(track2.getServiceCode().getServiceCode1(), is(ServiceCode1.v_2));
+    assertThat(track2.getServiceCode().getServiceCode2(), is(ServiceCode2.v_0));
+    assertThat(track2.getServiceCode().getServiceCode3(), is(ServiceCode3.v_1));
+    assertThat(track2.getDiscretionaryData(), is("0000056700100"));
   }
 
 }
