@@ -4,10 +4,12 @@
 bank issued credit card, such as might be returned from a USB magnetic card stripe 
 reader. 
 
+Magnetic Track Parser depends on the [Credit Card Number](https://github.com/sualeh/credit_card_number) library.
+
 ## Resources
 
 > **The goal of this project is to use publicly and freely available documentation 
-to create a reliable Java library to provide information about credit card numbers.**
+to create a reliable Java library to provide information about credit cards.**
 
 Some resources consulted are:
 * [Magnetic stripe card](http://en.wikipedia.org/wiki/Magnetic_stripe_card) on Wikipedia for information about the format of track data.
@@ -22,8 +24,6 @@ Some resources consulted are:
 - Internationalization of card numbers is supported
 - Validity is enforced by JUnit 5 tests
 - Java 8 or newer is required
-
-Magnetic Track Parser depends on the [Credit Card Number](https://github.com/sualeh/credit_card_number) library.
 
 
 ## Download and Use in Projects
