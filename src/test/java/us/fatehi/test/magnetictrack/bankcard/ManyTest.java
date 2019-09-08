@@ -22,9 +22,10 @@ package us.fatehi.test.magnetictrack.bankcard;
 
 import static org.junit.Assert.assertEquals;
 
+import java.time.YearMonth;
+
 import org.junit.Ignore;
 import org.junit.Test;
-import org.threeten.bp.YearMonth;
 
 import us.fatehi.creditcardnumber.BankCard;
 import us.fatehi.creditcardnumber.CardBrand;

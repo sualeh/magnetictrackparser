@@ -1,68 +1,39 @@
-[![Build Status](https://travis-ci.org/sualeh/magnetictrackparser.svg?branch=master)](https://travis-ci.org/sualeh/magnetictrackparser)
-[![Maven Central](https://img.shields.io/maven-central/v/us.fatehi/magnetictrackparser.svg)](http://search.maven.org/#search%7Cga%7C1%7Cg%3Aus.fatehi%20magnetictrackparser)
-
 # Magnetic Track Parser
 
 *Magnetic Track Parser* is a Java library that can parse magnetic track data from a 
 bank issued credit card, such as might be returned from a USB magnetic card stripe 
 reader. 
 
+## Resources
+
 > **The goal of this project is to use publicly and freely available documentation 
-to create a reliable Java library to provide information about magnetic tracks and 
-credit card numbers.**
-
-All classes are immutable and thread-safe. Secure data follows standards in the 
-[Java Cryptography Architecture (JCA) Reference Guide](http://docs.oracle.com/javase/6/docs/technotes/guides/security/crypto/CryptoSpec.html#PBEEx).
-The standard `toString()` function 
-formats data in a readable form. Validity is enforced by JUnit tests. 
-
-Magnetic Track Parser depends on the [Credit Card Number](https://github.com/sualeh/credit_card_number) library.
-
-Java 6 or newer is required. This library deliberately supports Java 6, to make it 
-usable in Android apps.
+to create a reliable Java library to provide information about credit card numbers.**
 
 Some resources consulted are:
 * [Magnetic stripe card](http://en.wikipedia.org/wiki/Magnetic_stripe_card) on Wikipedia for information about the format of track data.
 
-## Download
 
-You can download the [jar on the Maven Central Repository](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22magnetictrackparser%22).
+## Design Principles
 
-## Maven Build
+- All classes are immutable and thread-safe
+- Secure data follows standards in the 
+[Java Cryptography Architecture (JCA) Reference Guide](https://docs.oracle.com/javase/8/docs/technotes/guides/security/crypto/CryptoSpec.html#PBEEx)
+- The standard `toString()` function formats data in a readable form
+- Internationalization of card numbers is supported
+- Validity is enforced by JUnit 5 tests
+- Java 8 or newer is required
 
-To use *Magnetic Track Parser* in your Maven build, include the following 
-dependency. No repositories references are needed, since the jars are in the Maven 
-Central Repository.
-```xml
-<dependency>
-    <groupId>us.fatehi</groupId>
-    <artifactId>magnetictrackparser</artifactId>
-    <version>2.01.02</version>
-</dependency>
-```
+Magnetic Track Parser depends on the [Credit Card Number](https://github.com/sualeh/credit_card_number) library.
+
+
+## Download and Use in Projects
+
+You can [download the jar on the Maven Central Repository](https://search.maven.org/artifact/us.fatehi/magnetictrackparser). 
+The [download page](https://search.maven.org/artifact/us.fatehi/magnetictrackparser) 
+has instructions on how to use the library in your Maven or Gradle build.
+
 
 ## Examples
-
-### How to Get Bank Card Information
-
-To get bank card information, use code like:
-```java
-AccountNumber pan = new AccountNumber("371449635398431");
-BankCard card = new BankCard(pan);
-System.out.println(card);
-```
-and you will get this output:
-```
-Bank Card Information: 
-  Raw Account Number: 371449635398431
-  Primary Account Number: 371449635398431
-    Major Industry Identifier: 3 - Travel and entertainment and banking/financial
-    Issuer Identification Number: 371449
-    Card Brand: AmericanExpress
-    Last Four Digits: 8431
-    Passes Luhn Check? Yes
-    Is Primary Account Number Valid? Yes
-```
 
 ### How to Parse Magnetic Track Data
 
@@ -97,7 +68,7 @@ Bank Card Information:
     Passes Luhn Check? Yes
     Is Primary Account Number Valid? Yes
   Expiration Date: 2016-04
-    Is Expired: Yes
+    Is Expired? Yes
   Name: Sualeh Fatehi
   Service Code: 
     2 - Interchange: International interchange. Technology: Integrated circuit card.

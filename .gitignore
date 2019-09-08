@@ -1,7 +1,10 @@
-.settings/
-.project
-.classpath
+*.iml
 *.launch
-/target
-src/main/java/com
-/bin
+.classpath
+.gradle/
+.idea/
+.project
+.settings/
+build/
+out/
+target/

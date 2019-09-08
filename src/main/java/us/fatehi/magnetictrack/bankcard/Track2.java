@@ -32,7 +32,8 @@ import us.fatehi.creditcardnumber.ServiceCode;
 /**
  * From
  * <a href="https://en.wikipedia.org/wiki/ISO/IEC_7813#Magnetic_tracks"
- * >Wikipedia - ISO/IEC 7813</a><br/>
+ * >Wikipedia - ISO/IEC 7813</a>
+ *
  * The Track 2 structure is specified as:
  * <ol>
  * <li>STX : Start sentinel ";"</li>
