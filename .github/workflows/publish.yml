@@ -1,6 +1,6 @@
 name: Publish Artifacts
 
-on: push:
+on: [push]
 
 jobs:
   build:
