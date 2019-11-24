@@ -1,6 +1,9 @@
 name: Publish Artifacts
 
-on: [push]
+on: 
+  push:
+    tags:
+      - v*
 
 jobs:
   build:
