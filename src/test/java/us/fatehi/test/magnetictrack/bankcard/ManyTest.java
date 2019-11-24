@@ -22,6 +22,7 @@ package us.fatehi.test.magnetictrack.bankcard;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.nullValue;
 
 import java.time.YearMonth;
 
@@ -166,7 +167,7 @@ public class ManyTest
     assertThat(cardInfo.getPrimaryAccountNumber().getCardBrand(),
                is(CardBrand.Visa));
     assertThat(cardInfo.getName().toString(), is("Sualeh Fatehi"));
-    assertThat(cardInfo.getExpirationDate().getExpirationDate(), is(null));
+    assertThat(cardInfo.getExpirationDate().getExpirationDate(), is(nullValue()));
   }
 
   @Ignore
@@ -179,11 +180,11 @@ public class ManyTest
     debugPrint(trackI);
     final BankCard cardInfo = trackI.toBankCard();
     assertThat(cardInfo.getPrimaryAccountNumber().getAccountNumber(),
-               is("636294169881005271827"));
+               is(nullValue()));
     assertThat(cardInfo.getPrimaryAccountNumber().getCardBrand(),
                is(CardBrand.Unknown));
     assertThat(cardInfo.getName().toString(), is(""));
-    assertThat(cardInfo.getExpirationDate().getExpirationDate(), is(null));
+    assertThat(cardInfo.getExpirationDate().getExpirationDate(), is(nullValue()));
   }
 
   @Test
@@ -199,7 +200,7 @@ public class ManyTest
     assertThat(cardInfo.getPrimaryAccountNumber().getCardBrand(),
                is(CardBrand.Unknown));
     assertThat(cardInfo.getName().toString(), is("Michaels Open Value Card"));
-    assertThat(cardInfo.getExpirationDate().getExpirationDate(), is(null));
+    assertThat(cardInfo.getExpirationDate().getExpirationDate(), is(nullValue()));
   }
 
   private void debugPrint(final BankCardMagneticTrack track)
