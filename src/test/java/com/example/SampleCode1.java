@@ -7,15 +7,14 @@
  */
 package com.example;
 
-import us.fatehi.creditcardnumber.AccountNumber;
-import us.fatehi.creditcardnumber.AccountNumbers;
-import us.fatehi.creditcardnumber.BankCard;
+import us.fatehi.magnetictrack.BankCardMagneticTrack;
 
 public class SampleCode1 {
 
   public static void main(final String[] args) {
-    final AccountNumber pan = AccountNumbers.accountNumber("371449635398431");
-    final BankCard card = new BankCard(pan);
-    System.out.println(card);
+    final BankCardMagneticTrack track =
+        BankCardMagneticTrack.from(
+            "%B5350290149345177^FATEHI/SUALEH^16042010000000000000000000000000000567001000?;5350290149345177=16042010000056700100?");
+    System.out.println(track);
   }
 }
