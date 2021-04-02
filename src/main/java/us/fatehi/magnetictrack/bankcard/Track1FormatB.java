@@ -59,7 +59,7 @@ import us.fatehi.creditcardnumber.ServiceCode;
  * @see <a href= "https://en.wikipedia.org/wiki/ISO/IEC_7813#Magnetic_tracks">Wikipedia - ISO/IEC
  *     7813</a>
  */
-public class Track1FormatB extends BaseBankCardTrackData {
+public final class Track1FormatB extends BaseBankCardTrackData {
 
   private static final long serialVersionUID = 3020739300944280022L;
 

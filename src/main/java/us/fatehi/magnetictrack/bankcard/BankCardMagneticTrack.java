@@ -98,15 +98,6 @@ public class BankCardMagneticTrack extends BaseTrackData {
   }
 
   /**
-   * Verifies that the available data is consistent between Track 1 and Track 2.
-   *
-   * @return True if the data is consistent.
-   */
-  public boolean isConsistent() {
-    return track1.isConsistentWith(track2);
-  }
-
-  /**
    * Constructs and returns bank card information, if all the track data is consistent. That is, if
    * any bank card information is repeated in track 1 and track 2, it should be the same data.
    *

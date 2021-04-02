@@ -48,12 +48,6 @@ abstract class BaseTrackData extends BaseRawData implements RawData, Serializabl
     this.discretionaryData = new DisposableStringData(discretionaryData);
   }
 
-  /** See {@link #disposeDiscretionaryData} */
-  @Deprecated
-  public void clearDiscretionaryData() {
-    disposeDiscretionaryData();
-  }
-
   /**
    * Disposes discretionary data from memory. Following recommendations from the <a href=
    * "http://docs.oracle.com/javase/6/docs/technotes/guides/security/crypto/CryptoSpec.html#PBEEx">Java

@@ -19,6 +19,8 @@
  */
 package us.fatehi.magnetictrack.bankcard;
 
+import java.util.Objects;
+
 import us.fatehi.creditcardnumber.AccountNumber;
 import us.fatehi.creditcardnumber.ExpirationDate;
 import us.fatehi.creditcardnumber.ServiceCode;
@@ -59,25 +61,13 @@ abstract class BaseBankCardTrackData extends BaseTrackData {
       return false;
     }
     final BaseBankCardTrackData other = (BaseBankCardTrackData) obj;
-    if (expirationDate == null) {
-      if (other.expirationDate != null) {
-        return false;
-      }
-    } else if (!expirationDate.equals(other.expirationDate)) {
+    if (!Objects.equals(expirationDate, other.expirationDate)) {
       return false;
     }
-    if (pan == null) {
-      if (other.pan != null) {
-        return false;
-      }
-    } else if (!pan.equals(other.pan)) {
+    if (!Objects.equals(pan, other.pan)) {
       return false;
     }
-    if (serviceCode == null) {
-      if (other.serviceCode != null) {
-        return false;
-      }
-    } else if (!serviceCode.equals(other.serviceCode)) {
+    if (!Objects.equals(serviceCode, other.serviceCode)) {
       return false;
     }
     return true;
@@ -145,40 +135,5 @@ abstract class BaseBankCardTrackData extends BaseTrackData {
    */
   public boolean hasServiceCode() {
     return serviceCode != null && serviceCode.hasServiceCode();
-  }
-
-  /**
-   * Verifies that the available data is consistent between Track 1 and Track 2, or any other track.
-   *
-   * @return True if the data is consistent.
-   */
-  public boolean isConsistentWith(final BaseBankCardTrackData other) {
-    if (this == other) {
-      return true;
-    }
-    if (other == null) {
-      return false;
-    }
-    boolean equals = true;
-
-    if (hasAccountNumber() && other.hasAccountNumber()) {
-      if (!getAccountNumber().equals(other.getAccountNumber())) {
-        equals = false;
-      }
-    }
-
-    if (hasExpirationDate() && other.hasExpirationDate()) {
-      if (!getExpirationDate().equals(other.getExpirationDate())) {
-        equals = false;
-      }
-    }
-
-    if (hasServiceCode() && other.hasServiceCode()) {
-      if (!getServiceCode().equals(other.getServiceCode())) {
-        equals = false;
-      }
-    }
-
-    return equals;
   }
 }

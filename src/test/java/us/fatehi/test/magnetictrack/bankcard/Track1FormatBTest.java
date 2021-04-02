@@ -24,6 +24,7 @@ import static org.hamcrest.Matchers.is;
 
 import org.junit.jupiter.api.Test;
 
+import nl.jqno.equalsverifier.EqualsVerifier;
 import us.fatehi.creditcardnumber.CardBrand;
 import us.fatehi.creditcardnumber.MajorIndustryIdentifier;
 import us.fatehi.creditcardnumber.ServiceCode1;
@@ -32,6 +33,13 @@ import us.fatehi.creditcardnumber.ServiceCode3;
 import us.fatehi.magnetictrack.bankcard.Track1FormatB;
 
 public class Track1FormatBTest {
+
+  @Test
+  public void track1BEquals() {
+    EqualsVerifier.forClass(Track1FormatB.class)
+        .withIgnoredFields("name", "formatCode", "discretionaryData", "rawData")
+        .verify();
+  }
 
   @Test
   public void track1FormatB_1() {
