@@ -1,0 +1,30 @@
+TRACK 1: %B6011460477609366^FATEHI/SUALEH             ^15101011000606818102?
+  Primary Account Number: 6011460477609366
+  Expiration Date: 2015-10
+  Name: Sualeh Fatehi
+  Service Code: 101
+  Discretionary Data: 1000606818102
+TRACK 2: ;6011460477609366=15101011000606818102?
+  Primary Account Number: 6011460477609366
+  Expiration Date: 2015-10
+  Service Code: 101
+  Discretionary Data: 1000606818102
+TRACK 3:  Not Available.
+
+Bank Card Information: 
+  Raw Account Number: 6011460477609366
+  Primary Account Number: 6011460477609366
+    Major Industry Identifier: 6 - Merchandising and banking/financial
+    Issuer Identification Number: 60114604
+    Card Brand: Discover
+    Last Four Digits: 9366
+    Passes Luhn Check? Yes
+    Is Primary Account Number Valid? Yes
+  Expiration Date: 2015-10
+    Is Expired? Yes
+  Name: Sualeh Fatehi
+  Service Code: 
+    1 - Interchange: International interchange. Technology: None.
+    0 - Authorization Processing: Normal.
+    1 - Allowed Services: No restrictions. PIN Requirements: None.
+

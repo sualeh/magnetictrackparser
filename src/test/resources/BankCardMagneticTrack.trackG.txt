@@ -1,0 +1,30 @@
+TRACK 1: %B379580832431161^ /                        ^1508121140165241?
+  Primary Account Number: 379580832431161
+  Expiration Date: 2015-08
+  No Name
+  Service Code: 121
+  Discretionary Data: 140165241
+TRACK 2: ;379580832431161=150812114016524100000?+6202408082356005=15046200000010000000000004976?
+  Primary Account Number: 379580832431161
+  Expiration Date: 2015-08
+  Service Code: 121
+  Discretionary Data: 14016524100000?+6202408082356005=15046200000010000000000004976
+TRACK 3: +6202408082356005=15046200000010000000000004976?
+  Discretionary Data: 6202408082356005=15046200000010000000000004976
+
+Bank Card Information: 
+  Raw Account Number: 379580832431161
+  Primary Account Number: 379580832431161
+    Major Industry Identifier: 3 - Travel and entertainment and banking/financial
+    Issuer Identification Number: 37958083
+    Card Brand: AmericanExpress
+    Last Four Digits: 1161
+    Passes Luhn Check? Yes
+    Is Primary Account Number Valid? Yes
+  Expiration Date: 2015-08
+    Is Expired? Yes
+  Service Code: 
+    1 - Interchange: International interchange. Technology: None.
+    2 - Authorization Processing: By issuer.
+    1 - Allowed Services: No restrictions. PIN Requirements: None.
+

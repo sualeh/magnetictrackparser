@@ -1,0 +1,30 @@
+TRACK 1: %B4181887684889366^FATEHI/SUALEH^1502101072560000000000019000000?
+  Primary Account Number: 4181887684889366
+  Expiration Date: 2015-02
+  Name: Sualeh Fatehi
+  Service Code: 101
+  Discretionary Data: 072560000000000019000000
+TRACK 2: ;4181887684889366=150210100190007256?
+  Primary Account Number: 4181887684889366
+  Expiration Date: 2015-02
+  Service Code: 101
+  Discretionary Data: 00190007256
+TRACK 3:  Not Available.
+
+Bank Card Information: 
+  Raw Account Number: 4181887684889366
+  Primary Account Number: 4181887684889366
+    Major Industry Identifier: 4 - Banking and financial
+    Issuer Identification Number: 41818876
+    Card Brand: Visa
+    Last Four Digits: 9366
+    Passes Luhn Check? Yes
+    Is Primary Account Number Valid? Yes
+  Expiration Date: 2015-02
+    Is Expired? Yes
+  Name: Sualeh Fatehi
+  Service Code: 
+    1 - Interchange: International interchange. Technology: None.
+    0 - Authorization Processing: Normal.
+    1 - Allowed Services: No restrictions. PIN Requirements: None.
+
