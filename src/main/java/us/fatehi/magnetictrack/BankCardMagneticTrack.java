@@ -161,7 +161,7 @@ public final class BankCardMagneticTrack extends BaseTrackData {
         buffer.append("  Discretionary Data: ");
         buffer.append(track1.getDiscretionaryData()).append(NEWLINE);
       } else {
-        buffer.append("  No Discretionary Data");
+        buffer.append("  No Discretionary Data").append(NEWLINE);
       }
     } else {
       buffer.append(" Not Available.").append(NEWLINE);
@@ -192,7 +192,7 @@ public final class BankCardMagneticTrack extends BaseTrackData {
         buffer.append("  Discretionary Data: ");
         buffer.append(track2.getDiscretionaryData()).append(NEWLINE);
       } else {
-        buffer.append("  No Discretionary Data");
+        buffer.append("  No Discretionary Data").append(NEWLINE);
       }
     } else {
       buffer.append(" Not Available.").append(NEWLINE);
@@ -200,13 +200,11 @@ public final class BankCardMagneticTrack extends BaseTrackData {
 
     buffer.append("TRACK 3: ");
     if (track3.hasRawData()) {
+      // NOTE: The only data in track 3 is discretionary,
+      // so no need to check if there is any
       buffer.append(track3.getRawData()).append(NEWLINE);
-      if (track3.hasDiscretionaryData()) {
-        buffer.append("  Discretionary Data: ");
-        buffer.append(track3.getDiscretionaryData()).append(NEWLINE);
-      } else {
-        buffer.append("  No Discretionary Data");
-      }
+      buffer.append("  Discretionary Data: ");
+      buffer.append(track3.getDiscretionaryData()).append(NEWLINE);
     } else {
       buffer.append(" Not Available.").append(NEWLINE);
     }
