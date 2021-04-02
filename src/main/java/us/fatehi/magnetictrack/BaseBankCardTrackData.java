@@ -19,6 +19,8 @@
  */
 package us.fatehi.magnetictrack;
 
+import static us.fatehi.creditcardnumber.AccountNumbers.emptyAccountNumber;
+
 import java.util.Objects;
 
 import us.fatehi.creditcardnumber.AccountNumber;
@@ -44,9 +46,24 @@ abstract class BaseBankCardTrackData extends BaseTrackData {
       final ServiceCode serviceCode,
       final String discretionaryData) {
     super(rawTrackData, discretionaryData);
-    this.pan = pan;
-    this.expirationDate = expirationDate;
-    this.serviceCode = serviceCode;
+
+    if (pan == null) {
+      this.pan = emptyAccountNumber();
+    } else {
+      this.pan = pan;
+    }
+
+    if (expirationDate == null) {
+      this.expirationDate = new ExpirationDate();
+    } else {
+      this.expirationDate = expirationDate;
+    }
+
+    if (serviceCode == null) {
+      this.serviceCode = new ServiceCode();
+    } else {
+      this.serviceCode = serviceCode;
+    }
   }
 
   @Override
@@ -106,7 +123,7 @@ abstract class BaseBankCardTrackData extends BaseTrackData {
    * @return True if the primary account number for the card is available.
    */
   public boolean hasAccountNumber() {
-    return pan != null && pan.hasAccountNumber();
+    return pan.hasAccountNumber();
   }
 
   /**
@@ -115,7 +132,7 @@ abstract class BaseBankCardTrackData extends BaseTrackData {
    * @return True if the card expiration date is available.
    */
   public boolean hasExpirationDate() {
-    return expirationDate != null && expirationDate.hasExpirationDate();
+    return expirationDate.hasExpirationDate();
   }
 
   @Override
@@ -134,6 +151,6 @@ abstract class BaseBankCardTrackData extends BaseTrackData {
    * @return True if the card service code is available.
    */
   public boolean hasServiceCode() {
-    return serviceCode != null && serviceCode.hasServiceCode();
+    return serviceCode.hasServiceCode();
   }
 }

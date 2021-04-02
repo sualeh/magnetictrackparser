@@ -59,6 +59,7 @@ public class Track2Test {
 
   private void checkCardData(final Track2 track2) {
     assertThat(track2.getRawData(), is(";5266092201416174=16042010000056700100?"));
+    assertThat(track2.toString(), is(track2.getRawData()));
     assertThat(track2.getAccountNumber().getAccountNumber(), is("5266092201416174"));
     assertThat(track2.getAccountNumber().getCardBrand(), is(CardBrand.MasterCard));
     assertThat(

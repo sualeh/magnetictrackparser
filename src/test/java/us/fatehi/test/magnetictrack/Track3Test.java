@@ -45,6 +45,7 @@ public class Track3Test {
 
   private void checkCardData(final Track3 track3) {
     assertThat(track3.getRawData(), is("+6202408082356005=15046200000010000000000004976?"));
+    assertThat(track3.toString(), is(track3.getRawData()));
     assertThat(track3.getDiscretionaryData(), is("6202408082356005=15046200000010000000000004976"));
     assertThat(track3.exceedsMaximumLength(), is(false));
   }

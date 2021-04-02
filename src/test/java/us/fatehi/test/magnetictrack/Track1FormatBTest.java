@@ -84,6 +84,7 @@ public class Track1FormatBTest {
     assertThat(
         track1FormatB.getRawData(),
         is("%B5266092201416174^FATEHI/SUALEH^16042010000000000000000000000000000567001000?"));
+    assertThat(track1FormatB.toString(), is(track1FormatB.getRawData()));
     assertThat(track1FormatB.getFormatCode(), is("B"));
     assertThat(track1FormatB.getAccountNumber().getAccountNumber(), is("5266092201416174"));
     assertThat(track1FormatB.getAccountNumber().getCardBrand(), is(CardBrand.MasterCard));

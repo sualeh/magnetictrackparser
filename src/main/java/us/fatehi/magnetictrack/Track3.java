@@ -28,7 +28,7 @@ import java.util.regex.Pattern;
  * @see <a href= "https://en.wikipedia.org/wiki/ISO/IEC_7813#Magnetic_tracks">Wikipedia - ISO/IEC
  *     7813</a>
  */
-public class Track3 extends BaseTrackData {
+public final class Track3 extends BaseTrackData {
 
   private static final long serialVersionUID = 1469806733607842924L;
 
