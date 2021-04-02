@@ -16,12 +16,24 @@ import java.time.YearMonth;
 
 import org.junit.jupiter.api.Test;
 
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import us.fatehi.creditcardnumber.BankCard;
 import us.fatehi.creditcardnumber.CardBrand;
 import us.fatehi.magnetictrack.BankCardMagneticTrack;
 
 public class ManyTest {
+
+  @Test
+  public void track_1() throws Exception {
+    final BankCardMagneticTrack track_1 = BankCardMagneticTrack.from("");
+    debugPrint(track_1);
+
+    assertThat(track_1.exceedsMaximumLength(), is(false));
+    assertThat(track_1.getTrack1(), is(not(nullValue())));
+    assertThat(track_1.getTrack1().hasAccountNumber(), is(false));
+    assertThat(track_1.getTrack2(), is(not(nullValue())));
+    assertThat(track_1.getTrack2().hasAccountNumber(), is(false));
+    assertThat(track_1.getTrack3(), is(not(nullValue())));
+  }
 
   @Test
   public void trackA() throws Exception {
@@ -151,11 +163,18 @@ public class ManyTest {
     assertThat(cardInfo.getExpirationDate().getExpirationDate(), is(nullValue()));
   }
 
-  @Ignore
   @Test
   public void trackI() throws Exception {
     final BankCardMagneticTrack trackI = BankCardMagneticTrack.from(";636294169881005271827?");
     debugPrint(trackI);
+
+    assertThat(trackI.exceedsMaximumLength(), is(false));
+    assertThat(trackI.getTrack1(), is(not(nullValue())));
+    assertThat(trackI.getTrack1().hasAccountNumber(), is(false));
+    assertThat(trackI.getTrack2(), is(not(nullValue())));
+    assertThat(trackI.getTrack2().hasAccountNumber(), is(false));
+    assertThat(trackI.getTrack3(), is(not(nullValue())));
+
     final BankCard cardInfo = trackI.toBankCard();
     assertThat(cardInfo.getAccountNumber().getAccountNumber(), is(nullValue()));
     assertThat(cardInfo.getAccountNumber().getCardBrand(), is(CardBrand.Unknown));
@@ -194,7 +213,7 @@ public class ManyTest {
   }
 
   private void debugPrint(final BankCardMagneticTrack track) {
-    if (false) {
+    if (true) {
       System.out.println(track);
     }
   }
