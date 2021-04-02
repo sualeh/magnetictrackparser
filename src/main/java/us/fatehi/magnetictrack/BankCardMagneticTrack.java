@@ -17,7 +17,7 @@ import us.fatehi.creditcardnumber.ServiceCode;
  * Parser and representation for all 3 bank card magnetic track information. Has a method to
  * generate bank card information.
  */
-public class BankCardMagneticTrack extends BaseTrackData {
+public final class BankCardMagneticTrack extends BaseTrackData {
 
   private static final long serialVersionUID = -8703108091852410189L;
 
