@@ -30,11 +30,7 @@ public class ManyTest {
             "%B5350290149345177^FATEHI/SUALEH^16042010000000000000000000000000000567001000?;5350290149345177=16042010000056700100?");
     debugPrint(trackA);
 
-    assertThat(trackA.getTrack1(), is(not(nullValue())));
-    assertThat(trackA.getTrack1().hasAccountNumber(), is(true));
-    assertThat(trackA.getTrack2(), is(not(nullValue())));
-    assertThat(trackA.getTrack2().hasAccountNumber(), is(true));
-    assertThat(trackA.getTrack3(), is(not(nullValue())));
+    checkTrackHealth(trackA);
 
     final BankCard cardInfo = trackA.toBankCard();
     assertThat(cardInfo.getAccountNumber().getAccountNumber(), is("5350290149345177"));
@@ -50,11 +46,7 @@ public class ManyTest {
             "%B4181887684889366^FATEHI/SUALEH^1605101097670000000000120000000?;4181887684889366=160510101200009767?");
     debugPrint(trackB);
 
-    assertThat(trackB.getTrack1(), is(not(nullValue())));
-    assertThat(trackB.getTrack1().hasAccountNumber(), is(true));
-    assertThat(trackB.getTrack2(), is(not(nullValue())));
-    assertThat(trackB.getTrack2().hasAccountNumber(), is(true));
-    assertThat(trackB.getTrack3(), is(not(nullValue())));
+    checkTrackHealth(trackB);
 
     final BankCard cardInfo = trackB.toBankCard();
     assertThat(cardInfo.getAccountNumber().getAccountNumber(), is("4181887684889366"));
@@ -70,11 +62,7 @@ public class ManyTest {
             "%B5391285197433215^FATEHI/SUALEH             ^1701101000001540000000154000000?;5391285197433215=17011010000015400000?");
     debugPrint(trackC);
 
-    assertThat(trackC.getTrack1(), is(not(nullValue())));
-    assertThat(trackC.getTrack1().hasAccountNumber(), is(true));
-    assertThat(trackC.getTrack2(), is(not(nullValue())));
-    assertThat(trackC.getTrack2().hasAccountNumber(), is(true));
-    assertThat(trackC.getTrack3(), is(not(nullValue())));
+    checkTrackHealth(trackC);
 
     final BankCard cardInfo = trackC.toBankCard();
     assertThat(cardInfo.getAccountNumber().getAccountNumber(), is("5391285197433215"));
@@ -90,11 +78,7 @@ public class ManyTest {
             "%B6011460477609366^FATEHI/SUALEH             ^15101011000606818102?;6011460477609366=15101011000606818102?");
     debugPrint(trackD);
 
-    assertThat(trackD.getTrack1(), is(not(nullValue())));
-    assertThat(trackD.getTrack1().hasAccountNumber(), is(true));
-    assertThat(trackD.getTrack2(), is(not(nullValue())));
-    assertThat(trackD.getTrack2().hasAccountNumber(), is(true));
-    assertThat(trackD.getTrack3(), is(not(nullValue())));
+    checkTrackHealth(trackD);
 
     final BankCard cardInfo = trackD.toBankCard();
     assertThat(cardInfo.getAccountNumber().getAccountNumber(), is("6011460477609366"));
@@ -110,11 +94,7 @@ public class ManyTest {
             "%B6035320294113574^FATEHI/SUALEH^491210100316000000?;6035320294113574=491210110000316?");
     debugPrint(trackE);
 
-    assertThat(trackE.getTrack1(), is(not(nullValue())));
-    assertThat(trackE.getTrack1().hasAccountNumber(), is(true));
-    assertThat(trackE.getTrack2(), is(not(nullValue())));
-    assertThat(trackE.getTrack2().hasAccountNumber(), is(true));
-    assertThat(trackE.getTrack3(), is(not(nullValue())));
+    checkTrackHealth(trackE);
 
     final BankCard cardInfo = trackE.toBankCard();
     assertThat(cardInfo.getAccountNumber().getAccountNumber(), is("6035320294113574"));
@@ -130,11 +110,7 @@ public class ManyTest {
             "%B4181887684889366^FATEHI/SUALEH^1502101072560000000000019000000?;4181887684889366=150210100190007256?");
     debugPrint(trackF);
 
-    assertThat(trackF.getTrack1(), is(not(nullValue())));
-    assertThat(trackF.getTrack1().hasAccountNumber(), is(true));
-    assertThat(trackF.getTrack2(), is(not(nullValue())));
-    assertThat(trackF.getTrack2().hasAccountNumber(), is(true));
-    assertThat(trackF.getTrack3(), is(not(nullValue())));
+    checkTrackHealth(trackF);
 
     final BankCard cardInfo = trackF.toBankCard();
     assertThat(cardInfo.getAccountNumber().getAccountNumber(), is("4181887684889366"));
@@ -150,11 +126,7 @@ public class ManyTest {
             "%B379580832431161^ /                        ^1508121140165241?;379580832431161=150812114016524100000?+6202408082356005=15046200000010000000000004976?");
     debugPrint(trackG);
 
-    assertThat(trackG.getTrack1(), is(not(nullValue())));
-    assertThat(trackG.getTrack1().hasAccountNumber(), is(true));
-    assertThat(trackG.getTrack2(), is(not(nullValue())));
-    assertThat(trackG.getTrack2().hasAccountNumber(), is(true));
-    assertThat(trackG.getTrack3(), is(not(nullValue())));
+    checkTrackHealth(trackG);
 
     final BankCard cardInfo = trackG.toBankCard();
     assertThat(cardInfo.getAccountNumber().getAccountNumber(), is("379580832431161"));
@@ -170,11 +142,7 @@ public class ManyTest {
             "%B455618692574^FATEHI/SUALEH             ^888809010299211?;455618692574=888809010299211?");
     debugPrint(trackH);
 
-    assertThat(trackH.getTrack1(), is(not(nullValue())));
-    assertThat(trackH.getTrack1().hasAccountNumber(), is(true));
-    assertThat(trackH.getTrack2(), is(not(nullValue())));
-    assertThat(trackH.getTrack2().hasAccountNumber(), is(true));
-    assertThat(trackH.getTrack3(), is(not(nullValue())));
+    checkTrackHealth(trackH);
 
     final BankCard cardInfo = trackH.toBankCard();
     assertThat(cardInfo.getAccountNumber().getAccountNumber(), is("455618692574"));
@@ -202,6 +170,7 @@ public class ManyTest {
             "%B7083560000013710910^MICHAELS OPEN VALUE CARD  ^8551?;7083560000013710910=8551?");
     debugPrint(trackJ);
 
+    assertThat(trackJ.exceedsMaximumLength(), is(false));
     assertThat(trackJ.getTrack1(), is(not(nullValue())));
     assertThat(trackJ.getTrack1().hasAccountNumber(), is(true));
     assertThat(trackJ.getTrack2(), is(not(nullValue())));
@@ -213,6 +182,15 @@ public class ManyTest {
     assertThat(cardInfo.getAccountNumber().getCardBrand(), is(CardBrand.Unknown));
     assertThat(cardInfo.getName().toString(), is("Michaels Open Value Card"));
     assertThat(cardInfo.getExpirationDate().getExpirationDate(), is(nullValue()));
+  }
+
+  private void checkTrackHealth(final BankCardMagneticTrack track) {
+    assertThat(track.exceedsMaximumLength(), is(false));
+    assertThat(track.getTrack1(), is(not(nullValue())));
+    assertThat(track.getTrack1().hasAccountNumber(), is(true));
+    assertThat(track.getTrack2(), is(not(nullValue())));
+    assertThat(track.getTrack2().hasAccountNumber(), is(true));
+    assertThat(track.getTrack3(), is(not(nullValue())));
   }
 
   private void debugPrint(final BankCardMagneticTrack track) {
