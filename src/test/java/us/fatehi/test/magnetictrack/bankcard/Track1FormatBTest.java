@@ -34,11 +34,23 @@ import us.fatehi.magnetictrack.bankcard.Track1FormatB;
 public class Track1FormatBTest {
 
   @Test
+  public void track1FormatB_1() {
+    final String track1FormatBData =
+        "%B5266092201416174999999999999999999^FATEHI/SUALEH^16042010000000000000000000000000000567001000?";
+    final Track1FormatB track1FormatB = Track1FormatB.from(track1FormatBData);
+
+    assertThat(track1FormatB.hasRawData(), is(false));
+    assertThat(track1FormatB.hasFormatCode(), is(false));
+    assertThat(track1FormatB.hasName(), is(false));
+  }
+
+  @Test
   public void track1FormatB1() {
     final String track1FormatBData =
         "%B5266092201416174^FATEHI/SUALEH^16042010000000000000000000000000000567001000?";
     final Track1FormatB track1FormatB = Track1FormatB.from(track1FormatBData);
-    checkCardData(track1FormatB);
+
+    assertThat(track1FormatB.exceedsMaximumLength(), is(false));
   }
 
   @Test
@@ -58,6 +70,9 @@ public class Track1FormatBTest {
   }
 
   private void checkCardData(final Track1FormatB track1FormatB) {
+    assertThat(track1FormatB.hasRawData(), is(true));
+    assertThat(track1FormatB.hasFormatCode(), is(true));
+    assertThat(track1FormatB.hasName(), is(true));
     assertThat(
         track1FormatB.getRawData(),
         is("%B5266092201416174^FATEHI/SUALEH^16042010000000000000000000000000000567001000?"));
@@ -76,5 +91,6 @@ public class Track1FormatBTest {
     assertThat(track1FormatB.getServiceCode().getServiceCode2(), is(ServiceCode2.v_0));
     assertThat(track1FormatB.getServiceCode().getServiceCode3(), is(ServiceCode3.v_1));
     assertThat(track1FormatB.getDiscretionaryData(), is("0000000000000000000000000000567001000"));
+    assertThat(track1FormatB.exceedsMaximumLength(), is(false));
   }
 }
