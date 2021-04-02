@@ -100,8 +100,9 @@ public class Track2 extends BaseBankCardTrackData {
     super(rawTrackData, pan, expirationDate, serviceCode, discretionaryData);
   }
 
+  /** The regular expression prevents the maximum length from being exceeded. */
   @Override
   public boolean exceedsMaximumLength() {
-    return hasRawData() && getRawData().length() > 40;
+    return false;
   }
 }

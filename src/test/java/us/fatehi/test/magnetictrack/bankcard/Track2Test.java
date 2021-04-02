@@ -48,6 +48,15 @@ public class Track2Test {
     checkCardData(track2);
   }
 
+  @Test
+  public void track2_dispose() {
+    final String track2Data = ";5266092201416174=16042010000056700100somelong12345678901234567890";
+    final Track2 track2 = Track2.from(track2Data);
+    track2.disposeRawData();
+
+    assertThat(track2.exceedsMaximumLength(), is(false));
+  }
+
   private void checkCardData(final Track2 track2) {
     assertThat(track2.getRawData(), is(";5266092201416174=16042010000056700100?"));
     assertThat(track2.getAccountNumber().getAccountNumber(), is("5266092201416174"));
@@ -60,5 +69,6 @@ public class Track2Test {
     assertThat(track2.getServiceCode().getServiceCode2(), is(ServiceCode2.v_0));
     assertThat(track2.getServiceCode().getServiceCode3(), is(ServiceCode3.v_1));
     assertThat(track2.getDiscretionaryData(), is("0000056700100"));
+    assertThat(track2.exceedsMaximumLength(), is(false));
   }
 }

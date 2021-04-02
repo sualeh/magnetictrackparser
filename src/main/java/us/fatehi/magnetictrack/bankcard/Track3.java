@@ -59,6 +59,7 @@ public class Track3 extends BaseTrackData {
     super(rawTrack2Data, discretionaryData);
   }
 
+  /** The regular expression prevents the maximum length from being exceeded. */
   @Override
   public boolean exceedsMaximumLength() {
     return false;
