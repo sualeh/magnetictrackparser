@@ -11,6 +11,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
 
+import java.util.regex.Pattern;
+
 import org.junit.jupiter.api.Test;
 
 public class BaseTrackDataTest {
@@ -27,6 +29,19 @@ public class BaseTrackDataTest {
     public boolean exceedsMaximumLength() {
       return false;
     }
+  }
+
+  @Test
+  public void group() {
+    assertThat(BaseTrackData.getGroup(null, 0), is(nullValue()));
+    assertThat(BaseTrackData.getGroup(Pattern.compile("abc").matcher("xyz"), 0), is(nullValue()));
+    assertThat(BaseTrackData.getGroup(Pattern.compile("abc").matcher("xyz"), 1), is(nullValue()));
+
+    final Pattern twoGroups = Pattern.compile("(abc)(xyz)");
+    assertThat(BaseTrackData.getGroup(twoGroups.matcher("abcxyz"), 0), is(nullValue()));
+    assertThat(BaseTrackData.getGroup(twoGroups.matcher("abcxyz"), 1), is("abc"));
+    assertThat(BaseTrackData.getGroup(twoGroups.matcher("abcxyz"), 2), is("xyz"));
+    assertThat(BaseTrackData.getGroup(twoGroups.matcher("abcxyz"), 3), is(nullValue()));
   }
 
   @Test

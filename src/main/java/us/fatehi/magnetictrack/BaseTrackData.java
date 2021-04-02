@@ -31,12 +31,13 @@ abstract class BaseTrackData extends BaseRawData implements RawData, Serializabl
   private static final long serialVersionUID = 7821463290736676016L;
 
   protected static String getGroup(final Matcher matcher, final int group) {
-    final int groupCount = matcher.groupCount();
-    if (groupCount > group - 1) {
-      return matcher.group(group);
-    } else {
+    if (matcher == null || !matcher.matches()) {
       return null;
     }
+    if (group <= 0 || matcher.groupCount() <= group - 1) {
+      return null;
+    }
+    return matcher.group(group);
   }
 
   private final DisposableStringData discretionaryData;
