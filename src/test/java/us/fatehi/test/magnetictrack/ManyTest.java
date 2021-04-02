@@ -17,7 +17,7 @@
  * Boston, MA 02111-1307, USA.
  *
  */
-package us.fatehi.test.magnetictrack.bankcard;
+package us.fatehi.test.magnetictrack;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -30,7 +30,7 @@ import org.junit.jupiter.api.Test;
 import jdk.nashorn.internal.ir.annotations.Ignore;
 import us.fatehi.creditcardnumber.BankCard;
 import us.fatehi.creditcardnumber.CardBrand;
-import us.fatehi.magnetictrack.bankcard.BankCardMagneticTrack;
+import us.fatehi.magnetictrack.BankCardMagneticTrack;
 
 public class ManyTest {
 

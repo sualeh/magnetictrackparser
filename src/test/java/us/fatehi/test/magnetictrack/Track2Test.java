@@ -17,7 +17,7 @@
  * Boston, MA 02111-1307, USA.
  *
  */
-package us.fatehi.test.magnetictrack.bankcard;
+package us.fatehi.test.magnetictrack;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -29,7 +29,7 @@ import us.fatehi.creditcardnumber.MajorIndustryIdentifier;
 import us.fatehi.creditcardnumber.ServiceCode1;
 import us.fatehi.creditcardnumber.ServiceCode2;
 import us.fatehi.creditcardnumber.ServiceCode3;
-import us.fatehi.magnetictrack.bankcard.Track2;
+import us.fatehi.magnetictrack.Track2;
 
 public class Track2Test {
 

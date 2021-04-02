@@ -17,7 +17,7 @@
  * Boston, MA 02111-1307, USA.
  *
  */
-package us.fatehi.magnetictrack.bankcard;
+package us.fatehi.magnetictrack;
 
 import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 import static us.fatehi.creditcardnumber.AccountNumbers.accountNumber;

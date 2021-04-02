@@ -19,7 +19,7 @@
  */
 package com.example;
 
-import us.fatehi.magnetictrack.bankcard.BankCardMagneticTrack;
+import us.fatehi.magnetictrack.BankCardMagneticTrack;
 
 public class SampleCode2 {
 

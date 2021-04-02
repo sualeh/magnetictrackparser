@@ -26,7 +26,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import us.fatehi.magnetictrack.bankcard.BankCardMagneticTrack;
+import us.fatehi.magnetictrack.BankCardMagneticTrack;
 
 /** Magnetic Track Parser console application. */
 public class Main {
