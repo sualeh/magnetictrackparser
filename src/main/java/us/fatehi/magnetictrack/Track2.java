@@ -2,22 +2,10 @@
  *
  * Magnetic Track Parser
  * https://github.com/sualeh/magnetictrackparser
- * Copyright (c) 2014-2016, Sualeh Fatehi.
- *
- * This library is free software; you can redistribute it and/or modify it under the terms
- * of the GNU Lesser General Public License as published by the Free Software Foundation;
- * either version 2.1 of the License, or (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public License along with this
- * library; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330,
- * Boston, MA 02111-1307, USA.
+ * Copyright (c) 2014-2021, Sualeh Fatehi.
  *
  */
-package us.fatehi.magnetictrack.bankcard;
+package us.fatehi.magnetictrack;
 
 import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 import static us.fatehi.creditcardnumber.AccountNumbers.accountNumber;
@@ -52,7 +40,7 @@ import us.fatehi.creditcardnumber.ServiceCode;
  * @see <a href= "https://en.wikipedia.org/wiki/ISO/IEC_7813#Magnetic_tracks">Wikipedia - ISO/IEC
  *     7813</a>
  */
-public class Track2 extends BaseBankCardTrackData {
+public final class Track2 extends BaseBankCardTrackData {
 
   private static final long serialVersionUID = 2209024303926876386L;
 
@@ -100,8 +88,9 @@ public class Track2 extends BaseBankCardTrackData {
     super(rawTrackData, pan, expirationDate, serviceCode, discretionaryData);
   }
 
+  /** The regular expression prevents the maximum length from being exceeded. */
   @Override
   public boolean exceedsMaximumLength() {
-    return hasRawData() && getRawData().length() > 40;
+    return false;
   }
 }

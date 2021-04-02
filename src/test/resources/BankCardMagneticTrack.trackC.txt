@@ -1,0 +1,30 @@
+TRACK 1: %B5391285197433215^FATEHI/SUALEH             ^1701101000001540000000154000000?
+  Primary Account Number: 5391285197433215
+  Expiration Date: 2017-01
+  Name: Sualeh Fatehi
+  Service Code: 101
+  Discretionary Data: 000001540000000154000000
+TRACK 2: ;5391285197433215=17011010000015400000?
+  Primary Account Number: 5391285197433215
+  Expiration Date: 2017-01
+  Service Code: 101
+  Discretionary Data: 0000015400000
+TRACK 3:  Not Available.
+
+Bank Card Information: 
+  Raw Account Number: 5391285197433215
+  Primary Account Number: 5391285197433215
+    Major Industry Identifier: 5 - Banking and financial
+    Issuer Identification Number: 53912851
+    Card Brand: MasterCard
+    Last Four Digits: 3215
+    Passes Luhn Check? Yes
+    Is Primary Account Number Valid? Yes
+  Expiration Date: 2017-01
+    Is Expired? Yes
+  Name: Sualeh Fatehi
+  Service Code: 
+    1 - Interchange: International interchange. Technology: None.
+    0 - Authorization Processing: Normal.
+    1 - Allowed Services: No restrictions. PIN Requirements: None.
+

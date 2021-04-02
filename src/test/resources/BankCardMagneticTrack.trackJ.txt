@@ -1,0 +1,17 @@
+TRACK 1: %B7083560000013710910^MICHAELS OPEN VALUE CARD  ^8551?
+  Primary Account Number: 7083560000013710910
+  No Expiration Date
+  Name: Michaels Open Value Card
+  No Service Code  No Discretionary DataTRACK 2:  Not Available.
+TRACK 3:  Not Available.
+
+Bank Card Information: 
+  Raw Account Number: 7083560000013710910
+  Primary Account Number: 7083560000013710910
+    Major Industry Identifier: 7 - Petroleum and other future industry assignments
+    Issuer Identification Number: 70835600
+    Card Brand: Unknown
+    Last Four Digits: 0910
+    Passes Luhn Check? No
+    Is Primary Account Number Valid? No
+  Name: Michaels Open Value Card

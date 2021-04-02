@@ -2,23 +2,10 @@
  *
  * Magnetic Track Parser
  * https://github.com/sualeh/magnetictrackparser
- * Copyright (c) 2014-2016, Sualeh Fatehi.
- *
- * This library is free software; you can redistribute it and/or modify it under the terms
- * of the GNU Lesser General Public License as published by the Free Software Foundation;
- * either version 2.1 of the License, or (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public License along with this
- * library; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330,
- * Boston, MA 02111-1307, USA.
+ * Copyright (c) 2014-2021, Sualeh Fatehi.
  *
  */
-package us.fatehi.magnetictrack.bankcard;
-
+package us.fatehi.magnetictrack;
 
 import us.fatehi.creditcardnumber.AccountNumber;
 import us.fatehi.creditcardnumber.BankCard;
@@ -27,26 +14,20 @@ import us.fatehi.creditcardnumber.Name;
 import us.fatehi.creditcardnumber.ServiceCode;
 
 /**
- * Parser and representation for all 3 bank card magnetic track
- * information. Has a method to generate bank card information.
+ * Parser and representation for all 3 bank card magnetic track information. Has a method to
+ * generate bank card information.
  */
-public class BankCardMagneticTrack
-  extends BaseTrackData
-{
+public final class BankCardMagneticTrack extends BaseTrackData {
 
   private static final long serialVersionUID = -8703108091852410189L;
 
   /**
    * Parses magnetic track data into a BankCardMagneticTrack object.
    *
-   * @param rawTrackData
-   *        Raw track data as a string. Can include newlines, and all 3
-   *        tracks.
-   * @return A BankCardMagneticTrack instance, corresponding to the
-   *         parsed data.
+   * @param rawTrackData Raw track data as a string. Can include newlines, and all 3 tracks.
+   * @return A BankCardMagneticTrack instance, corresponding to the parsed data.
    */
-  public static BankCardMagneticTrack from(final String rawTrackData)
-  {
+  public static BankCardMagneticTrack from(final String rawTrackData) {
     final Track1FormatB track1 = Track1FormatB.from(rawTrackData);
     final Track2 track2 = Track2.from(rawTrackData);
     final Track3 track3 = Track3.from(rawTrackData);
@@ -58,24 +39,23 @@ public class BankCardMagneticTrack
   private final Track2 track2;
   private final Track3 track3;
 
-  private BankCardMagneticTrack(final String rawTrackData,
-                                final Track1FormatB track1,
-                                final Track2 track2,
-                                final Track3 track3)
-  {
+  private BankCardMagneticTrack(
+      final String rawTrackData,
+      final Track1FormatB track1,
+      final Track2 track2,
+      final Track3 track3) {
     super(rawTrackData, "");
     this.track1 = track1;
     this.track2 = track2;
     this.track3 = track3;
   }
 
-  /**
-   * {@inheritDoc}
-   */
-  public boolean exceedsMaximumLength()
-  {
-    return track1.exceedsMaximumLength() || track2.exceedsMaximumLength()
-           || track3.exceedsMaximumLength();
+  /** {@inheritDoc} */
+  @Override
+  public boolean exceedsMaximumLength() {
+    return track1.exceedsMaximumLength()
+        || track2.exceedsMaximumLength()
+        || track3.exceedsMaximumLength();
   }
 
   /**
@@ -83,8 +63,7 @@ public class BankCardMagneticTrack
    *
    * @return Track 1 representation.
    */
-  public Track1FormatB getTrack1()
-  {
+  public Track1FormatB getTrack1() {
     return track1;
   }
 
@@ -93,8 +72,7 @@ public class BankCardMagneticTrack
    *
    * @return Track 2 representation.
    */
-  public Track2 getTrack2()
-  {
+  public Track2 getTrack2() {
     return track2;
   }
 
@@ -103,204 +81,131 @@ public class BankCardMagneticTrack
    *
    * @return Track 3 representation.
    */
-  public Track3 getTrack3()
-  {
+  public Track3 getTrack3() {
     return track3;
   }
 
   /**
-   * Verifies that the available data is consistent between Track 1 and
-   * Track 2.
-   *
-   * @return True if the data is consistent.
-   */
-  public boolean isConsistent()
-  {
-    return track1.isConsistentWith(track2);
-  }
-
-  /**
-   * Constructs and returns bank card information, if all the track data
-   * is consistent. That is, if any bank card information is repeated in
-   * track 1 and track 2, it should be the same data.
+   * Constructs and returns bank card information, if all the track data is consistent. That is, if
+   * any bank card information is repeated in track 1 and track 2, it should be the same data.
    *
    * @return Bank card information.
    */
-  public BankCard toBankCard()
-  {
+  public BankCard toBankCard() {
     final AccountNumber pan;
-    if (track1.hasAccountNumber())
-    {
+    if (track1.hasAccountNumber()) {
       pan = track1.getAccountNumber();
-    }
-    else
-    {
+    } else {
       pan = track2.getAccountNumber();
     }
 
     final Name name;
-    if (track1.hasName())
-    {
+    if (track1.hasName()) {
       name = track1.getName();
-    }
-    else
-    {
+    } else {
       name = new Name();
     }
 
     final ExpirationDate expirationDate;
-    if (track1.hasExpirationDate())
-    {
+    if (track1.hasExpirationDate()) {
       expirationDate = track1.getExpirationDate();
-    }
-    else
-    {
+    } else {
       expirationDate = track2.getExpirationDate();
     }
 
     final ServiceCode serviceCode;
-    if (track1.hasServiceCode())
-    {
+    if (track1.hasServiceCode()) {
       serviceCode = track1.getServiceCode();
-    }
-    else
-    {
+    } else {
       serviceCode = track2.getServiceCode();
     }
 
-    final BankCard cardInfo = new BankCard(pan,
-                                           expirationDate,
-                                           name,
-                                           serviceCode);
+    final BankCard cardInfo = new BankCard(pan, expirationDate, name, serviceCode);
     return cardInfo;
   }
 
-  /**
-   * @see java.lang.Object#toString()
-   */
+  /** @see java.lang.Object#toString() */
   @Override
-  public String toString()
-  {
+  public String toString() {
     final String NEWLINE = System.getProperty("line.separator");
     final StringBuilder buffer = new StringBuilder();
 
     buffer.append("TRACK 1: ");
-    if (track1.hasRawData())
-    {
+    if (track1.hasRawData()) {
       buffer.append(track1.getRawData()).append(NEWLINE);
-      if (track1.hasAccountNumber())
-      {
+      if (track1.hasAccountNumber()) {
         final AccountNumber pan = track1.getAccountNumber();
         buffer.append("  Primary Account Number: ").append(pan).append(NEWLINE);
-      }
-      else
-      {
+      } else {
         buffer.append("  No Primary Account Number").append(NEWLINE);
       }
-      if (track1.hasExpirationDate())
-      {
+      if (track1.hasExpirationDate()) {
         buffer.append("  Expiration Date: ");
         buffer.append(track2.getExpirationDate()).append(NEWLINE);
-      }
-      else
-      {
+      } else {
         buffer.append("  No Expiration Date").append(NEWLINE);
       }
-      if (track1.hasName())
-      {
+      if (track1.hasName()) {
         buffer.append("  Name: ");
         buffer.append(track1.getName()).append(NEWLINE);
-      }
-      else
-      {
+      } else {
         buffer.append("  No Name").append(NEWLINE);
       }
-      if (track1.hasServiceCode())
-      {
+      if (track1.hasServiceCode()) {
         final ServiceCode serviceCode = track1.getServiceCode();
         buffer.append("  Service Code: ").append(serviceCode).append(NEWLINE);
-      }
-      else
-      {
+      } else {
         buffer.append("  No Service Code");
       }
-      if (track1.hasDiscretionaryData())
-      {
+      if (track1.hasDiscretionaryData()) {
         buffer.append("  Discretionary Data: ");
         buffer.append(track1.getDiscretionaryData()).append(NEWLINE);
+      } else {
+        buffer.append("  No Discretionary Data").append(NEWLINE);
       }
-      else
-      {
-        buffer.append("  No Discretionary Data");
-      }
-    }
-    else
-    {
+    } else {
       buffer.append(" Not Available.").append(NEWLINE);
     }
 
     buffer.append("TRACK 2: ");
-    if (track2.hasRawData())
-    {
+    if (track2.hasRawData()) {
       buffer.append(track2.getRawData()).append(NEWLINE);
-      if (track2.hasAccountNumber())
-      {
+      if (track2.hasAccountNumber()) {
         final AccountNumber pan = track2.getAccountNumber();
         buffer.append("  Primary Account Number: ").append(pan).append(NEWLINE);
-      }
-      else
-      {
+      } else {
         buffer.append("  No Primary Account Number").append(NEWLINE);
       }
-      if (track2.hasExpirationDate())
-      {
+      if (track2.hasExpirationDate()) {
         buffer.append("  Expiration Date: ");
         buffer.append(track2.getExpirationDate()).append(NEWLINE);
-      }
-      else
-      {
+      } else {
         buffer.append("No Expiration Date").append(NEWLINE);
       }
-      if (track2.hasServiceCode())
-      {
+      if (track2.hasServiceCode()) {
         final ServiceCode serviceCode = track2.getServiceCode();
         buffer.append("  Service Code: ").append(serviceCode).append(NEWLINE);
-      }
-      else
-      {
+      } else {
         buffer.append("  No Service Code");
       }
-      if (track2.hasDiscretionaryData())
-      {
+      if (track2.hasDiscretionaryData()) {
         buffer.append("  Discretionary Data: ");
         buffer.append(track2.getDiscretionaryData()).append(NEWLINE);
+      } else {
+        buffer.append("  No Discretionary Data").append(NEWLINE);
       }
-      else
-      {
-        buffer.append("  No Discretionary Data");
-      }
-    }
-    else
-    {
+    } else {
       buffer.append(" Not Available.").append(NEWLINE);
     }
 
     buffer.append("TRACK 3: ");
-    if (track3.hasRawData())
-    {
+    if (track3.hasRawData()) {
+      // NOTE: The only data in track 3 is discretionary,
+      // so no need to check if there is any
       buffer.append(track3.getRawData()).append(NEWLINE);
-      if (track3.hasDiscretionaryData())
-      {
-        buffer.append("  Discretionary Data: ");
-        buffer.append(track3.getDiscretionaryData()).append(NEWLINE);
-      }
-      else
-      {
-        buffer.append("  No Discretionary Data");
-      }
-    }
-    else
-    {
+      buffer.append("  Discretionary Data: ");
+      buffer.append(track3.getDiscretionaryData()).append(NEWLINE);
+    } else {
       buffer.append(" Not Available.").append(NEWLINE);
     }
 
@@ -309,5 +214,4 @@ public class BankCardMagneticTrack
 
     return buffer.toString();
   }
-
 }

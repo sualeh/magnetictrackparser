@@ -1,0 +1,22 @@
+TRACK 1: %B455618692574^FATEHI/SUALEH             ^888809010299211?
+  Primary Account Number: 455618692574
+  No Expiration Date
+  Name: Sualeh Fatehi
+  No Service Code  Discretionary Data: 10299211
+TRACK 2: ;455618692574=888809010299211?
+  Primary Account Number: 455618692574
+No Expiration Date
+  No Service Code  Discretionary Data: 10299211
+TRACK 3:  Not Available.
+
+Bank Card Information: 
+  Raw Account Number: 455618692574
+  Primary Account Number: 455618692574
+    Major Industry Identifier: 4 - Banking and financial
+    Issuer Identification Number: 45561869
+    Card Brand: Visa
+    Last Four Digits: 2574
+    Passes Luhn Check? Yes
+    Is Primary Account Number Valid? No
+  Name: Sualeh Fatehi
+

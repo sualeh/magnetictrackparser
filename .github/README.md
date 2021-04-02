@@ -1,10 +1,15 @@
+<!-- markdownlint-disable MD041 -->
+[![Quick Build](https://github.com/sualeh/creditcardnumber/workflows/Quick%20Build/badge.svg)](https://github.com/sualeh/magnetictrackparser/actions?query=workflow%3A%22Quick+Build%22)
+[![The Central Repository](https://img.shields.io/maven-central/v/us.fatehi/magnetictrackparser.svg)](https://search.maven.org/search?q=g:us.fatehi%20magnetictrackparser*)
+
+
 # Magnetic Track Parser
 
 *Magnetic Track Parser* is a Java library that can parse magnetic track data from a 
 bank issued credit card, such as might be returned from a USB magnetic card stripe 
 reader. 
 
-Magnetic Track Parser depends on the [Credit Card Number](https://github.com/sualeh/credit_card_number) library.
+Magnetic Track Parser depends on the [Credit Card Number](https://github.com/sualeh/creditcardnumber) library.
 
 ## Resources
 
@@ -62,7 +67,7 @@ Bank Card Information:
   Raw Account Number: 5350290149345177
   Primary Account Number: 5350290149345177
     Major Industry Identifier: 5 - Banking and financial
-    Issuer Identification Number: 535029
+    Issuer Identification Number: 53502901
     Card Brand: MasterCard
     Last Four Digits: 5177
     Passes Luhn Check? Yes
@@ -79,4 +84,4 @@ Bank Card Information:
 ## Who Uses
 
 - Dmitry Holodov's excellent Android app, [SwipeYours](https://play.google.com/store/apps/details?id=to.noc.android.swipeyours) uses   _magnetictrackparser_. See details in [SetCardActivity.java](
-https://github.com/dimalinux/SwipeYours/blob/master/src/main/java/to/noc/android/swipeyours/SetCardActivity.java#L34-L71). This Android app helps developers understand the new Android Host Card Emulation feature for payments, and is written with open source, in the same spirit as _magnetictrackparser_.
+https://github.com/dimalinux/SwipeYours/blob/master/src/main/java/to/noc/android/swipeyours/SetCardActivity.java#L34-L37). This Android app helps developers understand the new Android Host Card Emulation feature for payments, and is written with open source, in the same spirit as _magnetictrackparser_.
