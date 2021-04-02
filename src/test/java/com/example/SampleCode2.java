@@ -2,7 +2,7 @@
  *
  * Magnetic Track Parser
  * https://github.com/sualeh/magnetictrackparser
- * Copyright (c) 2014-2016, Sualeh Fatehi.
+ * Copyright (c) 2014-2021, Sualeh Fatehi.
  *
  * This library is free software; you can redistribute it and/or modify it under the terms
  * of the GNU Lesser General Public License as published by the Free Software Foundation;
@@ -19,17 +19,14 @@
  */
 package com.example;
 
-
 import us.fatehi.magnetictrack.bankcard.BankCardMagneticTrack;
 
-public class SampleCode2
-{
+public class SampleCode2 {
 
-  public static void main(final String[] args)
-  {
-    final BankCardMagneticTrack track = BankCardMagneticTrack
-      .from("%B5350290149345177^FATEHI/SUALEH^16042010000000000000000000000000000567001000?;5350290149345177=16042010000056700100?");
+  public static void main(final String[] args) {
+    final BankCardMagneticTrack track =
+        BankCardMagneticTrack.from(
+            "%B5350290149345177^FATEHI/SUALEH^16042010000000000000000000000000000567001000?;5350290149345177=16042010000056700100?");
     System.out.println(track);
   }
-
 }

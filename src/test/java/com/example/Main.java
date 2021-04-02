@@ -2,7 +2,7 @@
  *
  * Magnetic Track Parser
  * https://github.com/sualeh/magnetictrackparser
- * Copyright (c) 2014-2016, Sualeh Fatehi.
+ * Copyright (c) 2014-2021, Sualeh Fatehi.
  *
  * This library is free software; you can redistribute it and/or modify it under the terms
  * of the GNU Lesser General Public License as published by the Free Software Foundation;
@@ -17,8 +17,7 @@
  * Boston, MA 02111-1307, USA.
  *
  */
-package us.fatehi.magnetictrack;
-
+package com.example;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.apache.commons.lang3.math.NumberUtils.toInt;
@@ -29,56 +28,38 @@ import java.io.InputStreamReader;
 
 import us.fatehi.magnetictrack.bankcard.BankCardMagneticTrack;
 
-/**
- * Magnetic Track Parser console application.
- */
-public class Main
-{
+/** Magnetic Track Parser console application. */
+public class Main {
 
-  public static void main(final String[] args)
-    throws Exception
-  {
-    Version.main(new String[0]);
+  public static void main(final String[] args) throws Exception {
 
     final BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 
-    while (true)
-    {
+    while (true) {
       System.out.println("** Press <Ctrl-C> to quit **");
       parseMagneticTrackData(in);
     }
-
   }
 
-  private static void parseMagneticTrackData(final BufferedReader in)
-    throws IOException
-  {
-    while (true)
-    {
+  private static void parseMagneticTrackData(final BufferedReader in) throws IOException {
+    while (true) {
       System.out.println("Magnetic Track (followed by a blank line): ");
       final StringBuilder buffer = new StringBuilder();
-      while (true)
-      {
+      while (true) {
         final String line = in.readLine();
         final int choice = toInt(line, -1);
-        if (choice == 0)
-        {
+        if (choice == 0) {
           return;
         }
 
-        if (!isBlank(line))
-        {
+        if (!isBlank(line)) {
           buffer.append(line);
-        }
-        else
-        {
-          final BankCardMagneticTrack track = BankCardMagneticTrack
-            .from(buffer.toString());
+        } else {
+          final BankCardMagneticTrack track = BankCardMagneticTrack.from(buffer.toString());
           System.out.println(track);
           break;
         }
       }
     }
   }
-
 }

@@ -2,7 +2,7 @@
  *
  * Magnetic Track Parser
  * https://github.com/sualeh/magnetictrackparser
- * Copyright (c) 2014-2016, Sualeh Fatehi.
+ * Copyright (c) 2014-2021, Sualeh Fatehi.
  *
  * This library is free software; you can redistribute it and/or modify it under the terms
  * of the GNU Lesser General Public License as published by the Free Software Foundation;
@@ -19,7 +19,6 @@
  */
 package us.fatehi.magnetictrack.bankcard;
 
-
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
 import java.io.Serializable;
@@ -29,51 +28,38 @@ import us.fatehi.creditcardnumber.BaseRawData;
 import us.fatehi.creditcardnumber.DisposableStringData;
 import us.fatehi.creditcardnumber.RawData;
 
-abstract class BaseTrackData
-  extends BaseRawData
-  implements RawData, Serializable
-{
+abstract class BaseTrackData extends BaseRawData implements RawData, Serializable {
 
   private static final long serialVersionUID = 7821463290736676016L;
 
-  protected static String getGroup(final Matcher matcher, final int group)
-  {
+  protected static String getGroup(final Matcher matcher, final int group) {
     final int groupCount = matcher.groupCount();
-    if (groupCount > group - 1)
-    {
+    if (groupCount > group - 1) {
       return matcher.group(group);
-    }
-    else
-    {
+    } else {
       return null;
     }
   }
 
   private final DisposableStringData discretionaryData;
 
-  BaseTrackData(final String rawTrackData, final String discretionaryData)
-  {
+  BaseTrackData(final String rawTrackData, final String discretionaryData) {
     super(rawTrackData);
     this.discretionaryData = new DisposableStringData(discretionaryData);
   }
 
-  /**
-   * See {@link #disposeDiscretionaryData}
-   */
+  /** See {@link #disposeDiscretionaryData} */
   @Deprecated
-  public void clearDiscretionaryData()
-  {
+  public void clearDiscretionaryData() {
     disposeDiscretionaryData();
   }
 
   /**
-   * Disposes discretionary data from memory. Following recommendations
-   * from the <a href=
+   * Disposes discretionary data from memory. Following recommendations from the <a href=
    * "http://docs.oracle.com/javase/6/docs/technotes/guides/security/crypto/CryptoSpec.html#PBEEx">Java
    * Cryptography Architecture (JCA) Reference Guide</a>
    */
-  public void disposeDiscretionaryData()
-  {
+  public void disposeDiscretionaryData() {
     discretionaryData.disposeData();
   }
 
@@ -82,8 +68,7 @@ abstract class BaseTrackData
    *
    * @return Discretionary data.
    */
-  public String getDiscretionaryData()
-  {
+  public String getDiscretionaryData() {
     return discretionaryData.getData();
   }
 
@@ -92,15 +77,12 @@ abstract class BaseTrackData
    *
    * @return True if discretionary data is available
    */
-  public boolean hasDiscretionaryData()
-  {
+  public boolean hasDiscretionaryData() {
     return discretionaryData.hasData() && !isBlank(discretionaryData);
   }
 
   @Override
-  public String toString()
-  {
+  public String toString() {
     return getRawData();
   }
-
 }
