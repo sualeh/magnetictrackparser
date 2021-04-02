@@ -19,8 +19,6 @@
  */
 package us.fatehi.magnetictrack;
 
-import static org.apache.commons.lang3.StringUtils.isBlank;
-
 import java.io.Serializable;
 import java.util.regex.Matcher;
 
@@ -72,7 +70,7 @@ abstract class BaseTrackData extends BaseRawData implements RawData, Serializabl
    * @return True if discretionary data is available
    */
   public boolean hasDiscretionaryData() {
-    return discretionaryData.hasData() && !isBlank(discretionaryData);
+    return discretionaryData.hasData();
   }
 
   @Override
