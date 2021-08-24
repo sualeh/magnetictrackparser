@@ -1,17 +1,18 @@
 {
-	"folders": [
-		{
-			"path": "..",
-		}
-	],
-	"settings": {
-		"files.exclude": {
-			"workspace": true,
-		},
-		"java.configuration.updateBuildConfiguration": "interactive",
-		"java.format.settings.profile": "GoogleStyle",
-		"java.format.settings.url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
-		"editor.tabSize": 2,
-		"files.trimTrailingWhitespace": true,
-	}
+  "folders":[
+    {
+      "path":".."
+    }
+  ],
+  "settings":{
+    "files.exclude":{
+      "workspace":true
+    },
+    "java.configuration.updateBuildConfiguration":"automatic",
+    "java.format.settings.profile":"GoogleStyle",
+    "java.format.settings.url":"https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
+    "editor.tabSize":2,
+    "files.trimTrailingWhitespace":true,
+    "git.enableCommitSigning":true
+  }
 }
