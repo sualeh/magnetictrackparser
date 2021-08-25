@@ -1,5 +1,5 @@
 {
-  "name":"Java 8",
+  "name":"Magnetic Track Parser",
   "build":{
     "dockerfile":"Dockerfile",
     "args":{
@@ -25,6 +25,7 @@
     "java.format.settings.profile":"GoogleStyle",
     "java.format.settings.url":"https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
     "editor.tabSize":2,
+    "editor.foldingImportsByDefault": true,
     "files.trimTrailingWhitespace":true,
     "git.enableCommitSigning":true
   },
@@ -38,6 +39,5 @@
     "jebbs.markdown-extended",
     "davidanson.vscode-markdownlint"
   ],
-  "postCreateCommand":"java -version",
   "remoteUser":"vscode"
 }
