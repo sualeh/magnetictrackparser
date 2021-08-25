@@ -7,7 +7,7 @@ RUN \
 RUN \
   apt-get update && \
   export DEBIAN_FRONTEND=noninteractive && \
-  apt-get -y install --no-install-recommends gnupg2 \
+  apt-get -y install --no-install-recommends gnupg2 && \
   apt-get clean && \
   apt-get autoremove --purge && \
   rm -rf /var/lib/apt/lists/*
