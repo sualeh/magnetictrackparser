@@ -1,8 +1,3 @@
-> I really appreciate your interest in Magnetic Track Parser. At this point, I am not accepting any pull requests or contributions, since I am trying to figure out copyright and/ or patent issues.
->
-> Please feel free to file bug reports and enhancement requests, though, and I will do my best to address them quickly.
->
+> I really appreciate your interest in Magnetic Track Parser. If you would like to make a contribution, please sign the Contributor Agreement first. Please read ".github/CLA.md" carefully, and put your name in the table at the bottom as a signatory. Please commit this change as a verified commit, and submit a pull request.
+
 > **Sualeh Fatehi** <sualeh@hotmail.com>
-
-
-
