@@ -83,5 +83,5 @@ Bank Card Information:
 
 ## Who Uses
 
-- Dmitry Holodov's excellent Android app, [SwipeYours](https://play.google.com/store/apps/details?id=to.noc.android.swipeyours) uses   _magnetictrackparser_. See details in [SetCardActivity.java](
+- Dmitry Holodov's excellent Android app, [SwipeYours](https://github.com/dimalinux/SwipeYours) uses   _magnetictrackparser_. See details in [SetCardActivity.java](
 https://github.com/dimalinux/SwipeYours/blob/master/src/main/java/to/noc/android/swipeyours/SetCardActivity.java#L34-L37). This Android app helps developers understand the new Android Host Card Emulation feature for payments, and is written with open source, in the same spirit as _magnetictrackparser_.
