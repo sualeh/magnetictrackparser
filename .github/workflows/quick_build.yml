@@ -11,7 +11,7 @@ jobs:
 # SETUP BUILD ENVIRONMENT
     - id: prepare-maven-build
       name: Prepare Maven build
-      uses: sualeh/prepare-maven-build@v0.0.3
+      uses: sualeh/prepare-maven-build@v1.2.1
 
 # BUILD AND TEST
     - id: build-test
