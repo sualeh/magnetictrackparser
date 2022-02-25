@@ -9,7 +9,7 @@ package us.fatehi.magnetictrack;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.apache.commons.lang3.StringUtils.trimToEmpty;
-import static us.fatehi.creditcardnumber.AccountNumbers.accountNumber;
+import static us.fatehi.creditcardnumber.AccountNumbers.completeAccountNumber;
 import static us.fatehi.creditcardnumber.AccountNumbers.emptyAccountNumber;
 
 import java.util.regex.Matcher;
@@ -75,7 +75,7 @@ public final class Track1FormatB extends BaseBankCardTrackData {
     if (matcher.matches()) {
       rawTrack1Data = getGroup(matcher, 1);
       formatCode = getGroup(matcher, 2);
-      pan = accountNumber(getGroup(matcher, 3));
+      pan = completeAccountNumber(getGroup(matcher, 3));
       name = new Name(getGroup(matcher, 4));
       expirationDate = new ExpirationDate(getGroup(matcher, 5));
       serviceCode = new ServiceCode(getGroup(matcher, 6));
