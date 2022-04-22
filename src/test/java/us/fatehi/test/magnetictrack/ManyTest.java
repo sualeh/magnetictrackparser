@@ -50,7 +50,7 @@ public class ManyTest {
     track_2.getTrack2().disposeDiscretionaryData();
     track_2.getTrack3().disposeDiscretionaryData();
 
-    checkToString(track_2, testInfo, true);
+    checkToString(track_2, testInfo, false);
 
     assertThat(track_2.exceedsMaximumLength(), is(false));
     assertThat(track_2.getTrack1(), is(not(nullValue())));
