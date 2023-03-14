@@ -1,5 +1,5 @@
 <!-- markdownlint-disable MD041 -->
-[![Quick Build](https://github.com/sualeh/creditcardnumber/workflows/Quick%20Build/badge.svg)](https://github.com/sualeh/magnetictrackparser/actions?query=workflow%3A%22Quick+Build%22)
+[![Quick Build](https://github.com/sualeh/magnetictrackparser/actions/workflows/quick_build.yml/badge.svg)](https://github.com/sualeh/magnetictrackparser/actions/workflows/quick_build.yml)
 [![The Central Repository](https://img.shields.io/maven-central/v/us.fatehi/magnetictrackparser.svg)](https://search.maven.org/search?q=g:us.fatehi%20magnetictrackparser*)
 
 
