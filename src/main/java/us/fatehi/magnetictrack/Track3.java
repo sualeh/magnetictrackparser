@@ -2,7 +2,7 @@
  *
  * Magnetic Track Parser
  * https://github.com/sualeh/magnetictrackparser
- * Copyright (c) 2014-2023, Sualeh Fatehi.
+ * Copyright (c) 2014-2024, Sualeh Fatehi.
  *
  */
 package us.fatehi.magnetictrack;
