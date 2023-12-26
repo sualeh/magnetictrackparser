@@ -1,7 +1,7 @@
 TRACK 1: %B455618692574^FATEHI/SUALEH             ^888809010299211?
   Primary Account Number: 455618692574
-  No Expiration Date
   Name: Sualeh Fatehi
+  No Expiration Date
   No Service Code  Discretionary Data: 10299211
 TRACK 2: ;455618692574=888809010299211?
   Primary Account Number: 455618692574

@@ -1,7 +1,7 @@
 TRACK 1: %B4181887684889366^FATEHI/SUALEH^1502101072560000000000019000000?
   Primary Account Number: 4181887684889366
-  Expiration Date: 2015-02
   Name: Sualeh Fatehi
+  Expiration Date: 2015-02
   Service Code: 101
   Discretionary Data: 072560000000000019000000
 TRACK 2: ;4181887684889366=150210100190007256?
@@ -20,9 +20,9 @@ Bank Card Information:
     Last Four Digits: 9366
     Passes Luhn Check? Yes
     Is Primary Account Number Valid? Yes
+  Name: Sualeh Fatehi
   Expiration Date: 2015-02
     Is Expired? Yes
-  Name: Sualeh Fatehi
   Service Code: 
     1 - Interchange: International interchange. Technology: None.
     0 - Authorization Processing: Normal.

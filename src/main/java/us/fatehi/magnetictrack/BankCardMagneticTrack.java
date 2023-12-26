@@ -136,19 +136,14 @@ public final class BankCardMagneticTrack extends BaseTrackData {
     buffer.append("TRACK 1: ");
     if (track1.hasRawData()) {
       buffer.append(track1.getRawData()).append(NEWLINE);
-      toStringAccountInfo(track1, buffer);
+      toStringAccountNumber(track1, buffer);
       if (track1.hasName()) {
         buffer.append("  Name: ");
         buffer.append(track1.getName()).append(NEWLINE);
       } else {
         buffer.append("  No Name").append(NEWLINE);
       }
-      if (track1.hasServiceCode()) {
-        final ServiceCode serviceCode = track1.getServiceCode();
-        buffer.append("  Service Code: ").append(serviceCode).append(NEWLINE);
-      } else {
-        buffer.append("  No Service Code");
-      }
+      toStringAccountInfo(track1, buffer);
       toStringDiscretionaryData(track1, buffer);
     } else {
       buffer.append(" Not Available.").append(NEWLINE);
@@ -157,13 +152,8 @@ public final class BankCardMagneticTrack extends BaseTrackData {
     buffer.append("TRACK 2: ");
     if (track2.hasRawData()) {
       buffer.append(track2.getRawData()).append(NEWLINE);
+      toStringAccountNumber(track1, buffer);
       toStringAccountInfo(track2, buffer);
-      if (track2.hasServiceCode()) {
-        final ServiceCode serviceCode = track2.getServiceCode();
-        buffer.append("  Service Code: ").append(serviceCode).append(NEWLINE);
-      } else {
-        buffer.append("  No Service Code");
-      }
       toStringDiscretionaryData(track2, buffer);
     } else {
       buffer.append(" Not Available.").append(NEWLINE);
@@ -184,17 +174,27 @@ public final class BankCardMagneticTrack extends BaseTrackData {
   }
 
   private void toStringAccountInfo(final BaseBankCardTrackData track, final StringBuilder buffer) {
-    if (track.hasAccountNumber()) {
-      final AccountNumber pan = track.getAccountNumber();
-      buffer.append("  Primary Account Number: ").append(pan).append(NEWLINE);
-    } else {
-      buffer.append("  No Primary Account Number").append(NEWLINE);
-    }
     if (track.hasExpirationDate()) {
       buffer.append("  Expiration Date: ");
       buffer.append(track2.getExpirationDate()).append(NEWLINE);
     } else {
       buffer.append("  No Expiration Date").append(NEWLINE);
+    }
+    if (track.hasServiceCode()) {
+      final ServiceCode serviceCode = track.getServiceCode();
+      buffer.append("  Service Code: ").append(serviceCode).append(NEWLINE);
+    } else {
+      buffer.append("  No Service Code");
+    }
+  }
+
+  private void toStringAccountNumber(
+      final BaseBankCardTrackData track, final StringBuilder buffer) {
+    if (track.hasAccountNumber()) {
+      final AccountNumber pan = track.getAccountNumber();
+      buffer.append("  Primary Account Number: ").append(pan).append(NEWLINE);
+    } else {
+      buffer.append("  No Primary Account Number").append(NEWLINE);
     }
   }
 

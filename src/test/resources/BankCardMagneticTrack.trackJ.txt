@@ -1,7 +1,7 @@
 TRACK 1: %B7083560000013710910^MICHAELS OPEN VALUE CARD  ^8551?
   Primary Account Number: 7083560000013710910
-  No Expiration Date
   Name: Michaels Open Value Card
+  No Expiration Date
   No Service Code  No Discretionary DataTRACK 2:  Not Available.
 TRACK 3:  Not Available.
 
