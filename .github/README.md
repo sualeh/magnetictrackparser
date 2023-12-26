@@ -54,8 +54,8 @@ and you will get this output:
 ```
 TRACK 1: %B5350290149345177^FATEHI/SUALEH^16042010000000000000000000000000000567001000?
   Primary Account Number: 5350290149345177
-  Expiration Date: 2016-04
   Name: Sualeh Fatehi
+  Expiration Date: 2016-04
   Service Code: 201
   Discretionary Data: 0000000000000000000000000000567001000
 TRACK 2: ;5350290149345177=16042010000056700100?
@@ -74,9 +74,9 @@ Bank Card Information:
     Last Four Digits: 5177
     Passes Luhn Check? Yes
     Is Primary Account Number Valid? Yes
+  Name: Sualeh Fatehi
   Expiration Date: 2016-04
     Is Expired? Yes
-  Name: Sualeh Fatehi
   Service Code: 
     2 - Interchange: International interchange. Technology: Integrated circuit card.
     0 - Authorization Processing: Normal.
