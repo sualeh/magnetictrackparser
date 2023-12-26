@@ -124,7 +124,9 @@ public final class BankCardMagneticTrack extends BaseTrackData {
     return cardInfo;
   }
 
-  /** @see java.lang.Object#toString() */
+  /**
+   * @see java.lang.Object#toString()
+   */
   @Override
   public String toString() {
     final String NEWLINE = System.getProperty("line.separator");
