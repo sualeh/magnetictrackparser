@@ -149,12 +149,7 @@ public final class BankCardMagneticTrack extends BaseTrackData {
       } else {
         buffer.append("  No Service Code");
       }
-      if (track1.hasDiscretionaryData()) {
-        buffer.append("  Discretionary Data: ");
-        buffer.append(track1.getDiscretionaryData()).append(NEWLINE);
-      } else {
-        buffer.append("  No Discretionary Data").append(NEWLINE);
-      }
+      toStringDiscretionaryData(track1, buffer);
     } else {
       buffer.append(" Not Available.").append(NEWLINE);
     }
@@ -169,23 +164,15 @@ public final class BankCardMagneticTrack extends BaseTrackData {
       } else {
         buffer.append("  No Service Code");
       }
-      if (track2.hasDiscretionaryData()) {
-        buffer.append("  Discretionary Data: ");
-        buffer.append(track2.getDiscretionaryData()).append(NEWLINE);
-      } else {
-        buffer.append("  No Discretionary Data").append(NEWLINE);
-      }
+      toStringDiscretionaryData(track2, buffer);
     } else {
       buffer.append(" Not Available.").append(NEWLINE);
     }
 
     buffer.append("TRACK 3: ");
     if (track3.hasRawData()) {
-      // NOTE: The only data in track 3 is discretionary,
-      // so no need to check if there is any
       buffer.append(track3.getRawData()).append(NEWLINE);
-      buffer.append("  Discretionary Data: ");
-      buffer.append(track3.getDiscretionaryData()).append(NEWLINE);
+      toStringDiscretionaryData(track3, buffer);
     } else {
       buffer.append(" Not Available.").append(NEWLINE);
     }
@@ -208,6 +195,15 @@ public final class BankCardMagneticTrack extends BaseTrackData {
       buffer.append(track2.getExpirationDate()).append(NEWLINE);
     } else {
       buffer.append("  No Expiration Date").append(NEWLINE);
+    }
+  }
+
+  private void toStringDiscretionaryData(final BaseTrackData track, final StringBuilder buffer) {
+    if (track.hasDiscretionaryData()) {
+      buffer.append("  Discretionary Data: ");
+      buffer.append(track.getDiscretionaryData()).append(NEWLINE);
+    } else {
+      buffer.append("  No Discretionary Data").append(NEWLINE);
     }
   }
 }
