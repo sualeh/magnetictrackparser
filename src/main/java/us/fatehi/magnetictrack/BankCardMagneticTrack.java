@@ -21,6 +21,8 @@ public final class BankCardMagneticTrack extends BaseTrackData {
 
   private static final long serialVersionUID = -8703108091852410189L;
 
+  private static final String NEWLINE = System.getProperty("line.separator");
+
   /**
    * Parses magnetic track data into a BankCardMagneticTrack object.
    *
@@ -37,6 +39,7 @@ public final class BankCardMagneticTrack extends BaseTrackData {
 
   private final Track1FormatB track1;
   private final Track2 track2;
+
   private final Track3 track3;
 
   private BankCardMagneticTrack(
@@ -120,8 +123,7 @@ public final class BankCardMagneticTrack extends BaseTrackData {
       serviceCode = track2.getServiceCode();
     }
 
-    final BankCard cardInfo = new BankCard(pan, expirationDate, name, serviceCode);
-    return cardInfo;
+    return new BankCard(pan, expirationDate, name, serviceCode);
   }
 
   /**
@@ -129,24 +131,12 @@ public final class BankCardMagneticTrack extends BaseTrackData {
    */
   @Override
   public String toString() {
-    final String NEWLINE = System.getProperty("line.separator");
     final StringBuilder buffer = new StringBuilder();
 
     buffer.append("TRACK 1: ");
     if (track1.hasRawData()) {
       buffer.append(track1.getRawData()).append(NEWLINE);
-      if (track1.hasAccountNumber()) {
-        final AccountNumber pan = track1.getAccountNumber();
-        buffer.append("  Primary Account Number: ").append(pan).append(NEWLINE);
-      } else {
-        buffer.append("  No Primary Account Number").append(NEWLINE);
-      }
-      if (track1.hasExpirationDate()) {
-        buffer.append("  Expiration Date: ");
-        buffer.append(track2.getExpirationDate()).append(NEWLINE);
-      } else {
-        buffer.append("  No Expiration Date").append(NEWLINE);
-      }
+      toStringAccountInfo(track1, buffer);
       if (track1.hasName()) {
         buffer.append("  Name: ");
         buffer.append(track1.getName()).append(NEWLINE);
@@ -172,18 +162,7 @@ public final class BankCardMagneticTrack extends BaseTrackData {
     buffer.append("TRACK 2: ");
     if (track2.hasRawData()) {
       buffer.append(track2.getRawData()).append(NEWLINE);
-      if (track2.hasAccountNumber()) {
-        final AccountNumber pan = track2.getAccountNumber();
-        buffer.append("  Primary Account Number: ").append(pan).append(NEWLINE);
-      } else {
-        buffer.append("  No Primary Account Number").append(NEWLINE);
-      }
-      if (track2.hasExpirationDate()) {
-        buffer.append("  Expiration Date: ");
-        buffer.append(track2.getExpirationDate()).append(NEWLINE);
-      } else {
-        buffer.append("No Expiration Date").append(NEWLINE);
-      }
+      toStringAccountInfo(track2, buffer);
       if (track2.hasServiceCode()) {
         final ServiceCode serviceCode = track2.getServiceCode();
         buffer.append("  Service Code: ").append(serviceCode).append(NEWLINE);
@@ -215,5 +194,20 @@ public final class BankCardMagneticTrack extends BaseTrackData {
     buffer.append(NEWLINE).append(bankCard).append(NEWLINE);
 
     return buffer.toString();
+  }
+
+  private void toStringAccountInfo(final BaseBankCardTrackData track, final StringBuilder buffer) {
+    if (track.hasAccountNumber()) {
+      final AccountNumber pan = track.getAccountNumber();
+      buffer.append("  Primary Account Number: ").append(pan).append(NEWLINE);
+    } else {
+      buffer.append("  No Primary Account Number").append(NEWLINE);
+    }
+    if (track.hasExpirationDate()) {
+      buffer.append("  Expiration Date: ");
+      buffer.append(track2.getExpirationDate()).append(NEWLINE);
+    } else {
+      buffer.append("  No Expiration Date").append(NEWLINE);
+    }
   }
 }
