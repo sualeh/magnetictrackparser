@@ -12,9 +12,10 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
+  release:
     name: Create Release
     runs-on: ubuntu-latest
+
     steps:
 
 # SETUP BUILD ENVIRONMENT
