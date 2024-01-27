@@ -13,6 +13,8 @@ reader.
 
 Magnetic Track Parser depends on the [Credit Card Number](https://github.com/sualeh/creditcardnumber) library.
 
+> **:star: Star it :arrow_heading_up: if you love it!**
+
 > **The goal of this project is to use publicly and freely available documentation 
 to create a reliable Java library to provide information about credit cards.**
 
