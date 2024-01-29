@@ -4,6 +4,7 @@
 [![Code Coverage](https://img.shields.io/codeclimate/coverage/sualeh/magnetictrackparser)](https://codeclimate.com/github/sualeh/magnetictrackparser)
 [![The Central Repository](https://img.shields.io/maven-central/v/us.fatehi/magnetictrackparser.svg)](https://search.maven.org/search?q=g:us.fatehi%20magnetictrackparser*)
 
+> **:star: Star it :arrow_heading_up: if you love it!**
 
 # Magnetic Track Parser
 
@@ -12,8 +13,6 @@ bank issued credit card, such as might be returned from a USB magnetic card stri
 reader. 
 
 Magnetic Track Parser depends on the [Credit Card Number](https://github.com/sualeh/creditcardnumber) library.
-
-> **:star: Star it :arrow_heading_up: if you love it!**
 
 > **The goal of this project is to use publicly and freely available documentation 
 to create a reliable Java library to provide information about credit cards.**
