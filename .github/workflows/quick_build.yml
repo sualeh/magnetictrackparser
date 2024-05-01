@@ -33,7 +33,7 @@ jobs:
           package
     - id: code-climate
       name: Test and publish code coverage to Code Climate
-      uses: paambaati/codeclimate-action@v5.0.0
+      uses: paambaati/codeclimate-action@v6.0.0
       if: github.ref == 'refs/heads/main'
       env:
         CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
