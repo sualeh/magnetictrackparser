@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>us.fatehi</groupId>
-  <artifactId>magnetictrackparser</artifactId>
+  <artifactId>creditcardnumber</artifactId>
   <version>4.0.4</version>
   <packaging>jar</packaging>
   <name>Magnetic Track Parser</name>
-  <description>Magnetic Track Parser is a library that can parse magnetic tracks from a bank issued card. All classes are immutable and thread-safe. The standard `toString()` function formats data in a readable form.</description>
+  <description>Magnetic Track Parser is a library that can parse magnetic tracks from a 
+    bank issued credit card. All classes are immutable and thread-safe. 
+    The standard `toString()` function formats data in a readable form.</description>
   <url>https://github.com/sualeh/magnetictrackparser</url>
   <licenses>
     <license>
@@ -177,9 +181,7 @@
         <configuration>
           <source>8</source>
           <target>8</target>
-          <compilerArgs>
-            <arg>-Werror</arg>
-          </compilerArgs>
+          <encoding>UTF-8</encoding>
         </configuration>
       </plugin>
       <plugin>

@@ -5,20 +5,15 @@
     }
   ],
   "settings":{
-    "workbench.startupEditor": "none",
     "files.exclude":{
       "workspace":true
     },
     "java.configuration.updateBuildConfiguration":"automatic",
     "java.format.settings.profile":"GoogleStyle",
     "java.format.settings.url":"https://gist.github.com/sualeh/470c0954b597f1c717baa1ae64a80013",
-    "editor.tabSize": 2,
+    "editor.tabSize":2,
     "editor.foldingImportsByDefault": true,
-    "files.trimTrailingWhitespace": true,
-    "git.enableCommitSigning": true,
-    "git.autofetch": true,
-    "workbench.editorAssociations": {
-      "*.md": "vscode.markdown.preview.editor"
-    },
+    "files.trimTrailingWhitespace":true,
+    "git.enableCommitSigning":true
   }
 }

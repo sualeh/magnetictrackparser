@@ -1,0 +1,10 @@
+{
+    "scm.showInputActionButton": false,
+    "git.showActionButton": {
+        "commit": false,
+        "publish": false,
+        "sync": false
+    },
+    "git.postCommitCommand": "sync",
+    "java.configuration.updateBuildConfiguration": "automatic"
+}
