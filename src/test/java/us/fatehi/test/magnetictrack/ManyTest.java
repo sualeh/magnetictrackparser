@@ -2,7 +2,7 @@
  *
  * Magnetic Track Parser
  * https://github.com/sualeh/magnetictrackparser
- * Copyright (c) 2014-2024, Sualeh Fatehi.
+ * Copyright (c) 2014-2025, Sualeh Fatehi.
  *
  */
 package us.fatehi.test.magnetictrack;
@@ -11,15 +11,12 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
-
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.time.YearMonth;
-
 import org.apache.commons.io.IOUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
-
 import us.fatehi.creditcardnumber.BankCard;
 import us.fatehi.creditcardnumber.CardBrand;
 import us.fatehi.magnetictrack.BankCardMagneticTrack;
