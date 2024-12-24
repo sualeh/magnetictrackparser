@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="https://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>us.fatehi</groupId>
   <artifactId>magnetictrackparser</artifactId>
-  <version>4.0.4</version>
+  <version>4.0.5</version>
   <packaging>jar</packaging>
   <name>Magnetic Track Parser</name>
   <description>Magnetic Track Parser is a library that can parse magnetic tracks from a 
@@ -58,7 +57,7 @@
     <dependency>
       <groupId>us.fatehi</groupId>
       <artifactId>creditcardnumber</artifactId>
-      <version>4.0.4</version>
+      <version>4.0.5</version>
     </dependency>
 
     <dependency>
@@ -190,6 +189,7 @@
         <artifactId>maven-source-plugin</artifactId>
         <executions>
           <execution>
+            <id>attach-sources</id>
             <goals>
               <goal>jar-no-fork</goal>
             </goals>
@@ -218,9 +218,9 @@
               <additionalOptions>
                 <additionalOption>-Xdoclint:none</additionalOption>
               </additionalOptions>
-              <bottom>Copyright © 2014-2024 {organizationName}. All
+              <bottom>Copyright © 2014-2025 {organizationName}. All
                 rights reserved.</bottom>
-              <doctitle>Credit Card Number ${project.version}</doctitle>
+              <doctitle>${project.name} ${project.version}</doctitle>
             </configuration>
           </execution>
         </executions>
@@ -266,13 +266,21 @@
         </executions>
       </plugin>
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-deploy-plugin</artifactId>
+      </plugin>
+      <plugin>
         <groupId>org.sonatype.plugins</groupId>
         <artifactId>nexus-staging-maven-plugin</artifactId>
         <extensions>true</extensions>
         <configuration>
           <serverId>sonatype-nexus</serverId>
-          <nexusUrl>https://oss.sonatype.org</nexusUrl>
+          <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
           <autoReleaseAfterClose>true</autoReleaseAfterClose>
+          <keepStagingRepositoryOnFailure>true</keepStagingRepositoryOnFailure>
+          <keepStagingRepositoryOnCloseRuleFailure>true</keepStagingRepositoryOnCloseRuleFailure>
+          <stagingProgressTimeoutMinutes>10</stagingProgressTimeoutMinutes>
+          <stagingProgressPauseDurationSeconds>10</stagingProgressPauseDurationSeconds>
         </configuration>
       </plugin>
     </plugins>
