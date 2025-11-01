@@ -1,7 +1,5 @@
 <!-- markdownlint-disable MD041 -->
 [![Quick Build](https://github.com/sualeh/magnetictrackparser/actions/workflows/quick_build.yml/badge.svg)](https://github.com/sualeh/magnetictrackparser/actions/workflows/quick_build.yml)
-[![Code Climate](https://codeclimate.com/github/sualeh/magnetictrackparser.png)](https://codeclimate.com/github/sualeh/magnetictrackparser)
-[![Code Coverage](https://img.shields.io/codeclimate/coverage/sualeh/magnetictrackparser)](https://codeclimate.com/github/sualeh/magnetictrackparser)
 [![The Central Repository](https://img.shields.io/maven-central/v/us.fatehi/magnetictrackparser.svg)](https://search.maven.org/search?q=g:us.fatehi%20magnetictrackparser*)
 
 > **:star: Star it :arrow_heading_up: if you love it!**
