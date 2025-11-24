@@ -4,9 +4,6 @@ updates:
     directory: "/"
     schedule:
       interval: "monthly"
-    ignore: # Ignore Java 21 only dependency updates
-      - dependency-name: "nl.jqno.equalsverifier:equalsverifier"
-        update-types: ["version-update:semver-major"]        
     labels:
       - "dependencies"
       - ":children_crossing: dependencies"
@@ -17,3 +14,7 @@ updates:
     labels:
       - "dependencies"
       - ":children_crossing: dependencies"
+  - package-ecosystem: "devcontainers"
+    directory: "/"
+    schedule:
+      interval: weekly
