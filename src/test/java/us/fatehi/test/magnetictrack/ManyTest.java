@@ -11,6 +11,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
+
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.time.YearMonth;
@@ -93,7 +94,8 @@ public class ManyTest {
   public void trackC(final TestInfo testInfo) throws Exception {
     final BankCardMagneticTrack trackC =
         BankCardMagneticTrack.from(
-            "%B5391285197433215^FATEHI/SUALEH             ^1701101000001540000000154000000?;5391285197433215=17011010000015400000?");
+            "%B5391285197433215^FATEHI/SUALEH            "
+                + " ^1701101000001540000000154000000?;5391285197433215=17011010000015400000?");
     checkToString(trackC, testInfo, false);
 
     checkTrackHealth(trackC);
@@ -109,7 +111,8 @@ public class ManyTest {
   public void trackD(final TestInfo testInfo) throws Exception {
     final BankCardMagneticTrack trackD =
         BankCardMagneticTrack.from(
-            "%B6011460477609366^FATEHI/SUALEH             ^15101011000606818102?;6011460477609366=15101011000606818102?");
+            "%B6011460477609366^FATEHI/SUALEH            "
+                + " ^15101011000606818102?;6011460477609366=15101011000606818102?");
     checkToString(trackD, testInfo, false);
 
     checkTrackHealth(trackD);
@@ -157,7 +160,8 @@ public class ManyTest {
   public void trackG(final TestInfo testInfo) throws Exception {
     final BankCardMagneticTrack trackG =
         BankCardMagneticTrack.from(
-            "%B379580832431161^ /                        ^1508121140165241?;379580832431161=150812114016524100000?+6202408082356005=15046200000010000000000004976?");
+            "%B379580832431161^ /                       "
+                + " ^1508121140165241?;379580832431161=150812114016524100000?+6202408082356005=15046200000010000000000004976?");
     checkToString(trackG, testInfo, false);
 
     checkTrackHealth(trackG);
@@ -173,7 +177,8 @@ public class ManyTest {
   public void trackH(final TestInfo testInfo) throws Exception {
     final BankCardMagneticTrack trackH =
         BankCardMagneticTrack.from(
-            "%B455618692574^FATEHI/SUALEH             ^888809010299211?;455618692574=888809010299211?");
+            "%B455618692574^FATEHI/SUALEH            "
+                + " ^888809010299211?;455618692574=888809010299211?");
     checkToString(trackH, testInfo, false);
 
     checkTrackHealth(trackH);
@@ -235,8 +240,7 @@ public class ManyTest {
 
     final String trackToString =
         IOUtils.resourceToString(
-            String.format(
-                "/BankCardMagneticTrack.%s.txt", testInfo.getTestMethod().get().getName()),
+            "/BankCardMagneticTrack.%s.txt".formatted(testInfo.getTestMethod().get().getName()),
             StandardCharsets.UTF_8);
     assertThat(track.toString().replaceAll("\\R", ""), is(trackToString.replaceAll("\\R", "")));
   }

@@ -9,6 +9,7 @@ package us.fatehi.magnetictrack;
 
 import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 
+import java.io.Serial;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -18,7 +19,7 @@ import java.util.regex.Pattern;
  */
 public final class Track3 extends BaseTrackData {
 
-  private static final long serialVersionUID = 1469806733607842924L;
+  @Serial private static final long serialVersionUID = 1469806733607842924L;
 
   private static final Pattern track3Pattern = Pattern.compile(".*?[\t\n\r ]{0,2}(\\+(.*)\\?)");
 
