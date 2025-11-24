@@ -6,14 +6,12 @@ updates:
       interval: "monthly"
     labels:
       - "dependencies"
-      - ":children_crossing: dependencies"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "monthly"
     labels:
       - "dependencies"
-      - ":children_crossing: dependencies"
   - package-ecosystem: "devcontainers"
     directory: "/"
     schedule:
