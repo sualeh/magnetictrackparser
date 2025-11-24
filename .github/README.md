@@ -1,8 +1,9 @@
 <!-- markdownlint-disable MD041 -->
+**:star: Star it :arrow_heading_up: if you love it!**
+
 [![Quick Build](https://github.com/sualeh/magnetictrackparser/actions/workflows/quick_build.yml/badge.svg)](https://github.com/sualeh/magnetictrackparser/actions/workflows/quick_build.yml)
 [![The Central Repository](https://img.shields.io/maven-central/v/us.fatehi/magnetictrackparser.svg)](https://search.maven.org/search?q=g:us.fatehi%20magnetictrackparser*)
 
-> **:star: Star it :arrow_heading_up: if you love it!**
 
 # Magnetic Track Parser
 
