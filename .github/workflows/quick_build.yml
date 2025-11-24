@@ -15,12 +15,16 @@ jobs:
   build:
     name: Quick build
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
 
 # SETUP BUILD ENVIRONMENT
     - id: prepare-maven-build
       name: Prepare Maven build
       uses: sualeh/prepare-maven-build@v1.6.1
+      with:
+        java-version: 17
 
 # BUILD AND TEST
     - id: build-test
