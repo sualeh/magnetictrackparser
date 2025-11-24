@@ -2,7 +2,7 @@
  *
  * Magnetic Track Parser
  * https://github.com/sualeh/magnetictrackparser
- * Copyright (c) 2014-2025, Sualeh Fatehi.
+ * Copyright (c) 2014-2026, Sualeh Fatehi.
  *
  */
 package us.fatehi.magnetictrack;
@@ -11,9 +11,9 @@ import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 import static us.fatehi.creditcardnumber.AccountNumbers.completeAccountNumber;
 import static us.fatehi.creditcardnumber.AccountNumbers.emptyAccountNumber;
 
+import java.io.Serial;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import us.fatehi.creditcardnumber.AccountNumber;
 import us.fatehi.creditcardnumber.ExpirationDate;
 import us.fatehi.creditcardnumber.ServiceCode;
@@ -42,7 +42,7 @@ import us.fatehi.creditcardnumber.ServiceCode;
  */
 public final class Track2 extends BaseBankCardTrackData {
 
-  private static final long serialVersionUID = 2209024303926876386L;
+  @Serial private static final long serialVersionUID = 2209024303926876386L;
 
   private static final Pattern track2Pattern =
       Pattern.compile(".*[\\t\\n\\r ]?(;([0-9]{1,19})=([0-9]{4})([0-9]{3})(.*)\\?).*");

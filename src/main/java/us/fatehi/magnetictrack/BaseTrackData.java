@@ -2,21 +2,21 @@
  *
  * Magnetic Track Parser
  * https://github.com/sualeh/magnetictrackparser
- * Copyright (c) 2014-2025, Sualeh Fatehi.
+ * Copyright (c) 2014-2026, Sualeh Fatehi.
  *
  */
 package us.fatehi.magnetictrack;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.regex.Matcher;
-
 import us.fatehi.creditcardnumber.BaseRawData;
 import us.fatehi.creditcardnumber.DisposableStringData;
 import us.fatehi.creditcardnumber.RawData;
 
 abstract class BaseTrackData extends BaseRawData implements RawData, Serializable {
 
-  private static final long serialVersionUID = 7821463290736676016L;
+  @Serial private static final long serialVersionUID = 7821463290736676016L;
 
   protected static String getGroup(final Matcher matcher, final int group) {
     if (matcher == null || !matcher.matches()) {

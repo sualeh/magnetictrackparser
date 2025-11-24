@@ -2,11 +2,12 @@
  *
  * Magnetic Track Parser
  * https://github.com/sualeh/magnetictrackparser
- * Copyright (c) 2014-2025, Sualeh Fatehi.
+ * Copyright (c) 2014-2026, Sualeh Fatehi.
  *
  */
 package us.fatehi.magnetictrack;
 
+import java.io.Serial;
 import us.fatehi.creditcardnumber.AccountNumber;
 import us.fatehi.creditcardnumber.BankCard;
 import us.fatehi.creditcardnumber.ExpirationDate;
@@ -19,7 +20,7 @@ import us.fatehi.creditcardnumber.ServiceCode;
  */
 public final class BankCardMagneticTrack extends BaseTrackData {
 
-  private static final long serialVersionUID = -8703108091852410189L;
+  @Serial private static final long serialVersionUID = -8703108091852410189L;
 
   private static final String NEWLINE = System.getProperty("line.separator");
 
