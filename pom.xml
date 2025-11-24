@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>us.fatehi</groupId>
   <artifactId>magnetictrackparser</artifactId>
-  <version>4.0.5</version>
+  <version>5.0.1</version>
   <packaging>jar</packaging>
   <name>Magnetic Track Parser</name>
   <description>Magnetic Track Parser is a library that can parse magnetic tracks from a 
@@ -57,7 +57,7 @@
     <dependency>
       <groupId>us.fatehi</groupId>
       <artifactId>creditcardnumber</artifactId>
-      <version>4.0.5</version>
+      <version>5.0.1</version>
     </dependency>
 
     <dependency>
