@@ -30,7 +30,7 @@ Some resources consulted are:
 - The standard `toString()` function formats data in a readable form
 - Internationalization of card numbers is supported
 - Validity is enforced by JUnit 5 tests
-- Java 8 or newer is required
+- Java 17 or newer is required
 - Android friendly
 
 
